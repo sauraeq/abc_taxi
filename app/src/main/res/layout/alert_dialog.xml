@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_6sdp"
+    app:cardElevation="@dimen/_4sdp"
+    android:layout_margin="@dimen/_10sdp"
+    android:elevation="@dimen/_4sdp"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:id="@+id/a"
+            android:padding="@dimen/_8sdp"
+            android:gravity="center"
+            android:background="@color/purple_200"
+
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEXTO"
+            android:id="@+id/text_layout"
+            android:layout_below="@+id/a"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="18sp"
+            android:textColor="#ff000000"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:text="OK"
+            android:id="@+id/btn_dialog"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_below="@+id/text_layout"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/purple_200"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffffff" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

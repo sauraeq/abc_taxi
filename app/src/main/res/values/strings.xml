@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ABC Taxi Booking User Application</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pickup">Pickup</string>
+    <string name="drop">Drop-off</string>
+    <string name="search">Search</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="api_key">AIzaSyCLoLZlbJ7HC0YaLxFn1Rmw5G4LxMrE9aw</string>
+    <string name="enter_drop_location">enter_drop_location</string>
+</resources>

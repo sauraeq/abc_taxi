@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightwhite"
+    android:orientation="vertical"
+    tools:context=".Login.LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_250sdp"
+        android:scaleType="fitXY"
+        android:src="@drawable/nightoutimage" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-90dp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_350sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="@dimen/_5sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rectangle"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvSignUpTab1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:fontFamily="@font/poppinsmedium"
+                        android:gravity="center"
+                        android:text="signup"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tvSiginTab2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:background="@drawable/rectangle_black"
+                        android:fontFamily="@font/poppinsmedium"
+                        android:gravity="center"
+                        android:text="signin"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/grey" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/lnr_sinup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/email_text_input"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_8sdp"
+                            app:boxCornerRadiusBottomEnd="@dimen/_12sdp"
+                            app:boxCornerRadiusBottomStart="@dimen/_12sdp"
+                            app:boxCornerRadiusTopEnd="@dimen/_12sdp"
+                            app:boxCornerRadiusTopStart="@dimen/_12sdp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/email_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Email"
+                                android:textSize="@dimen/_11sdp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_margin="@dimen/_8sdp"
+                            android:background="@drawable/edittext_corner"
+                            android:gravity="center_vertical">
+
+                            <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                                android:id="@+id/ccp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="10dp"
+                                app:ccp_defaultCode="81"
+                                app:ccp_dialogTextColor="@color/black"
+                                app:ccp_textColor="@color/black"
+                                app:ccp_textSize="13dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="DuplicateClickableBoundsCheck" />
+
+                            <View
+                                android:layout_width="@dimen/_1sdp"
+                                android:layout_height="wrap_content"
+                                android:background="@color/grey" />
+
+                            <EditText
+                                android:id="@+id/editText_carrierNumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_2sdp"
+                                android:background="@null"
+                                android:fontFamily="@font/poppinsregular"
+                                android:hint="phone"
+                                android:inputType="phone"
+                                android:singleLine="true"
+                                android:textSize="@dimen/_10sdp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_sign_up"
+                            android:layout_width="@dimen/_220sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:background="@drawable/bgovalshape"
+                            android:fontFamily="@font/poppinsregular"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Sign up"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_13sdp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_20sdp">
+
+                            <View
+                                android:id="@+id/view_line1"
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="@dimen/_2sdp"
+                                android:layout_centerVertical="true"
+                                android:background="@color/lightwhite" />
+
+                            <TextView
+                                android:id="@+id/tv_singup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/_3sdp"
+                                android:layout_toEndOf="@+id/view_line1"
+                                android:fontFamily="@font/poppinsregular"
+                                android:text="or Sign Up with" />
+
+                            <View
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="@dimen/_2sdp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/_3sdp"
+                                android:layout_toEndOf="@+id/tv_singup"
+                                android:background="@color/lightwhite" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_58sdp"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:gravity="center"
+                            android:padding="@dimen/_5sdp">
+
+                            <ImageView
+                                android:id="@+id/img_google"
+                                android:layout_width="@dimen/_45sdp"
+                                android:layout_height="@dimen/_45sdp"
+                                android:background="@drawable/imge_bg_cornerradios"
+                                android:elevation="@dimen/_3sdp"
+                                android:padding="@dimen/_9sdp"
+                                android:src="@drawable/google" />
+
+                            <ImageView
+                                android:id="@+id/img_fb"
+                                android:layout_width="@dimen/_45sdp"
+                                android:layout_height="@dimen/_45sdp"
+                                android:layout_centerInParent="true"
+                                android:layout_marginLeft="@dimen/_15sdp"
+                                android:layout_toEndOf="@+id/img_google"
+                                android:background="@drawable/imge_bg_cornerradios"
+                                android:elevation="@dimen/_3sdp"
+                                android:padding="@dimen/_9sdp"
+                                android:src="@drawable/fb" />
+
+                            <ImageView
+                                android:layout_width="@dimen/_45sdp"
+                                android:layout_height="@dimen/_45sdp"
+                                android:layout_marginLeft="@dimen/_15sdp"
+                                android:layout_toEndOf="@+id/img_fb"
+                                android:background="@drawable/imge_bg_cornerradios"
+                                android:elevation="@dimen/_3sdp"
+                                android:padding="@dimen/_9sdp"
+                                android:src="@drawable/twitter" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </ScrollView>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_marginHorizontal="@dimen/_5sdp"
+                        android:id="@+id/lnr_signin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/poppinsmedium"
+                            android:padding="@dimen/_5sdp"
+                            android:text="Login to your account!"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13sdp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_margin="@dimen/_8sdp"
+                            android:background="@drawable/edittext_corner"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                                android:id="@+id/ccps"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="10dp"
+                                app:ccp_defaultCode="81"
+                                app:ccp_dialogTextColor="@color/black"
+                                app:ccp_textColor="@color/black"
+                                app:ccp_textSize="13dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="DuplicateClickableBoundsCheck" />
+
+                            <View
+                                android:layout_width="@dimen/_1sdp"
+                                android:layout_height="wrap_content"
+                                android:background="@color/grey" />
+
+                            <EditText
+                                android:id="@+id/editText1_carrierNumber"
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:background="@null"
+                                android:hint="phone"
+                                android:inputType="phone"
+                                android:maxLength="18"
+                                android:singleLine="true"
+                                android:textSize="@dimen/_10sdp" />
+
+                            <ImageView
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_marginLeft="@dimen/_35sdp"
+                                android:src="@drawable/xcross" />
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/tv_forgtpass"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:fontFamily="@font/poppinsmedium"
+                            android:text="Forget Password ?"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/purple_700"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_next"
+                            android:layout_width="@dimen/_220sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:background="@drawable/bgovalshape"
+                            android:fontFamily="@font/poppinsmedium"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Next"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14sdp" />
+                    </LinearLayout>
+
+
+                </ScrollView>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="@font/poppinsregular"
+        android:gravity="center"
+        android:text="By clicking on sign up, you agree to our Terms &amp; Conditions"
+        android:textColor="@color/black"
+        android:textSize="10sp" />
+
+</LinearLayout>

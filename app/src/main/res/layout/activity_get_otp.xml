@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightwhite"
+    android:orientation="vertical"
+    tools:context=".Login.LoginActivity">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_250sdp"
+        android:scaleType="fitXY"
+        android:src="@drawable/nightoutimage" />
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="-90dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_280sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardElevation="@dimen/_5sdp">
+            <LinearLayout
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/edittext_corner"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                        android:id="@+id/ccps"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="10dp"
+                        app:ccp_defaultCode="81"
+                        app:ccp_dialogTextColor="@color/black"
+                        app:ccp_textColor="@color/black"
+                        app:ccp_textSize="13dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="DuplicateClickableBoundsCheck" />
+
+                    <View
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/grey" />
+
+                    <EditText
+                        android:id="@+id/editText1_carrierNumber"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:background="@null"
+                        android:hint="phone"
+                        android:inputType="phone"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_getotp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:background="@drawable/bgovalshape"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Get OTP"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
