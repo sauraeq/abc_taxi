@@ -31,6 +31,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaxiBookingUserApplication">
         <activity
+            android:name=".Main.Wallet"
+            android:exported="false" />
+        <activity
+            android:name=".Main.TipInformation"
+            android:exported="false" />
+        <activity
+            android:name=".Map.ConfirmPickUP"
+            android:exported="false" />
+        <activity
             android:name=".Main.TripHistory"
             android:exported="false" />
         <activity

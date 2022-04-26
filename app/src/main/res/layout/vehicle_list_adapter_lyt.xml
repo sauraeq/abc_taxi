@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_8sdp"
+    android:elevation="@dimen/_5sdp"
+    app:cardElevation="@dimen/_8sdp"
+    app:cardCornerRadius="@dimen/_5sdp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/carlist_layout"
+        android:weightSum="4"
+        android:background="#F3F3F3"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/image_veh"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:layout_height="@dimen/_40sdp"
+            >
+
+        </ImageView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/veh_category_txt"
+                android:text="Rental"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppinsmedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+            <TextView
+                android:id="@+id/veh_description_txt"
+                android:text="One car for many stops"
+                android:textSize="@dimen/_9ssp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppinsmedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/toatal_fare_txtview"
+                android:text="$25.12"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppinsmedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

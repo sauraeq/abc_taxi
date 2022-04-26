@@ -66,6 +66,24 @@ interface APIConfiguration {
         @Body stringStringHashMap: HashMap<String, String>,
     ):Call<TripHistory_Response>
 
+    @POST("users/vehiclelist")
+    @Headers("Content-Type:application/x-www-form-urlencoded")
+    fun veh_list(
+        @Body stringStringHashMap: HashMap<String, String>,
+    ):Call<VehicleListResponse>
+
+    @POST("users/booking")
+    @Headers("Content-Type:application/x-www-form-urlencoded")
+    fun booking(
+        @Body stringStringHashMap: HashMap<String, String>,
+    ):Call<BookingResponse>
+
+    @POST("users/bookingstatus")
+    @Headers("Content-Type:application/x-www-form-urlencoded")
+    fun booking_status(
+        @Body stringStringHashMap: HashMap<String, String>,
+    ):Call<BookingStatusResponse>
+
     /*  @POST("user/resend")
      @Headers("Content-Type:application/x-www-form-urlencoded")
      fun ResendOtp(

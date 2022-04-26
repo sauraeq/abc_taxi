@@ -92,12 +92,12 @@ class Manual_PickUp_Fragment : Fragment() {
 
 
         search_btn =rootview.findViewById(R.id.search_text_tv_manual)
-        resultReceiver = AddressResultReceiver(Handler())
+      //  resultReceiver = AddressResultReceiver(Handler())
         pick_up_user = rootview.findViewById(R.id.pickup_location_user)
         img_profile = rootview.findViewById(R.id.img_view_frg)
 
 
-        if ((ContextCompat.checkSelfPermission(
+      /*  if ((ContextCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
             )
@@ -111,7 +111,7 @@ class Manual_PickUp_Fragment : Fragment() {
             Toast.makeText(requireContext(), "Permission", Toast.LENGTH_LONG).show()
         } else {
             currentLocation
-        }
+        }*/
         Image_Url =
             SharedPreferenceUtils.getInstance(requireContext())
                 ?.getStringValue(ConstantUtils.Image_Url, "").toString()
@@ -141,47 +141,14 @@ class Manual_PickUp_Fragment : Fragment() {
         initAutoCompleteTextView_drop()
         initAutoCompleteTextView_pickup()
 
-        /* var search_textt: TextView = rootview.findViewById(R.id.search_text_tv)*/
-        /* search_textt.setOnClickListener {
 
-             pick_up_location = pickup_location_user.text.toString()
-             drop_location = drop_location_user.text.toString()
-
-
-             //  getLocationFromAddress(drop_location)
-
-             if (pick_up_location.isEmpty()) {
-                 Toast.makeText(requireContext(), "Please select pickup location", Toast.LENGTH_LONG).show()
-             } else if (drop_location.isEmpty()) {
-                 Toast.makeText(requireContext(), "Please select drop location", Toast.LENGTH_LONG).show()
-             }
-             else {
-                 if ( lati_curr.isEmpty()|| longi_current.isEmpty()|| lati_drop.isEmpty()
-                     ||langit_drop.isEmpty())
-                 {
-
-                 }
-                 else{
-                     var toatal_distance = getKilometers(lati_curr.toDouble(), longi_current.toDouble(), lati_drop.toDouble(), langit_drop.toDouble())
-                     var total_distance_apprx=roundOffDecimal(toatal_distance.toDouble())
-                    *//* SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
-                        ConstantUtils.Distance, total_distance_apprx.toString())
-                    SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
-                        ConstantUtils.Drop_location,drop_location)*//*
-
-
-                }
-
-            }
-
-        }*/
 
         var ivMenu1: ImageView = rootview.findViewById(R.id.img_view_frg)
         ivMenu1.setOnClickListener {
             (activity as Manual_Pick_up)?.click1()
         }
 
-        //customprogress.hide()
+
         return rootview
     }
 
@@ -205,14 +172,7 @@ class Manual_PickUp_Fragment : Fragment() {
 
     companion object {
 
-        /*  @JvmStatic
-          fun newInstance(param1: String, param2: String) =
-              PickupFragments().apply {
-                  arguments = Bundle().apply {
-                      putString(ARG_PARAM1, param1)
-                      putString(ARG_PARAM2, param2)
-                  }
-              }*/
+
     }
 
 
@@ -319,6 +279,7 @@ class Manual_PickUp_Fragment : Fragment() {
             }
         }
 
+/*
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -334,8 +295,9 @@ class Manual_PickUp_Fragment : Fragment() {
             }
         }
     }
+*/
 
-
+/*
     private val currentLocation: Unit
         private get() {
 
@@ -397,7 +359,6 @@ class Manual_PickUp_Fragment : Fragment() {
                 locat = address + "," + locaity + "," + state
                 pick_up_user.setText(locat)
 
-                /* SharedPreferenceUtils.getInstance(requireContext())?.setStringValue(ConstantUtils.CurrentL,locat)*/
                 SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
                     ConstantUtils.Pick_up_Location, locat)
                 loadMap(lati_curr, longi_current, locat)
@@ -418,14 +379,14 @@ class Manual_PickUp_Fragment : Fragment() {
         intent.putExtra(Constant.RECEVIER, resultReceiver)
         intent.putExtra(Constant.LOCATION_DATA_EXTRA, location)
         requireContext().startService(intent)
-    }
+    }*/
 
     fun loadMap(lati_curr1: String, longi_current1: String, loate1: String) {
         try {
             if (lati_curr.isEmpty() || longi_current.isEmpty()) {
 
             } else {
-                // customprogress.dismiss()
+
                 val mapFragment =
                     childFragmentManager.findFragmentById(R.id.frg) as SupportMapFragment?
                 mapFragment!!.getMapAsync { mMap ->

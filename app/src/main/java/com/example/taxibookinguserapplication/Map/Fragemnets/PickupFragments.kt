@@ -70,7 +70,6 @@ class PickupFragments : Fragment() {
     var adapter: AutoCompleteAdapter? = null
     var adapter_1:AutoCompleteAdapter_pickup?=null
 
-   /* lateinit var customprogress: Dialog*/
     private val LOCATION_PERMISSION_REQUEST_CODE = 1
     lateinit var pick_up_user: AutoCompleteTextView
     var resultReceiver: ResultReceiver? = null
@@ -140,47 +139,14 @@ class PickupFragments : Fragment() {
         initAutoCompleteTextView_drop()
         initAutoCompleteTextView_pickup()
 
-       /* var search_textt: TextView = rootview.findViewById(R.id.search_text_tv)*/
-       /* search_textt.setOnClickListener {
 
-            pick_up_location = pickup_location_user.text.toString()
-            drop_location = drop_location_user.text.toString()
-
-
-            //  getLocationFromAddress(drop_location)
-
-            if (pick_up_location.isEmpty()) {
-                Toast.makeText(requireContext(), "Please select pickup location", Toast.LENGTH_LONG).show()
-            } else if (drop_location.isEmpty()) {
-                Toast.makeText(requireContext(), "Please select drop location", Toast.LENGTH_LONG).show()
-            }
-            else {
-                if ( lati_curr.isEmpty()|| longi_current.isEmpty()|| lati_drop.isEmpty()
-                    ||langit_drop.isEmpty())
-                {
-
-                }
-                else{
-                    var toatal_distance = getKilometers(lati_curr.toDouble(), longi_current.toDouble(), lati_drop.toDouble(), langit_drop.toDouble())
-                    var total_distance_apprx=roundOffDecimal(toatal_distance.toDouble())
-                   *//* SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
-                        ConstantUtils.Distance, total_distance_apprx.toString())
-                    SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
-                        ConstantUtils.Drop_location,drop_location)*//*
-
-
-                }
-
-            }
-
-        }*/
 
         var ivMenu1: ImageView = rootview.findViewById(R.id.img_view_frg)
         ivMenu1.setOnClickListener {
             (activity as Pick_up)?.click1()
         }
 
-        //customprogress.hide()
+
         return rootview
     }
 
@@ -195,14 +161,7 @@ class PickupFragments : Fragment() {
 
     companion object {
 
-      /*  @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PickupFragments().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }*/
+
     }
 
 
@@ -245,6 +204,7 @@ class PickupFragments : Fragment() {
                         inputMethodManager.hideSoftInputFromWindow(drop_location_user.getWindowToken(), 0)
 
                         drop_location = drop_location_user.text.toString()
+                        SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(ConstantUtils.Drop_Off_Location,drop_location)
                         getLocationFromAddress_drop(drop_location)
 
                     }.addOnFailureListener { e ->
@@ -284,7 +244,8 @@ class PickupFragments : Fragment() {
                         inputMethodManager.hideSoftInputFromWindow(pick_up_user.getWindowToken(), 0)
 
                         pick_up_location = pick_up_user.text.toString()
-                     /*   SharedPreferenceUtils.getInstance(requireContext())?.setStringValue(ConstantUtils.CurrentL,pick_up_location)*/
+
+
                         getLocationFromAddress_pickup(pick_up_location)
 
                     }.addOnFailureListener { e ->
@@ -377,8 +338,6 @@ class PickupFragments : Fragment() {
                 SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
                     ConstantUtils.Pick_up_Location, locat)
 
-               /* SharedPreferenceUtils.getInstance(requireContext())?.setStringValue(ConstantUtils.CurrentL,locat)*/
-
                 loadMap(lati_curr, longi_current,locat)
 
             } else {
@@ -404,7 +363,7 @@ class PickupFragments : Fragment() {
             if (lati_curr.isEmpty() || longi_current.isEmpty()) {
 
             } else {
-               // customprogress.dismiss()
+
                 val mapFragment =
                     childFragmentManager.findFragmentById(R.id.frg) as SupportMapFragment?
                 mapFragment!!.getMapAsync { mMap ->
@@ -532,37 +491,6 @@ class PickupFragments : Fragment() {
         df.roundingMode = RoundingMode.CEILING
         return df.format(number).toDouble()
     }
-/*
-    fun numberPickerCustom() {
-
-        val d = AlertDialog.Builder(requireContext())
-        val inflater = this.layoutInflater
-        val dialogView = inflater.inflate(R.layout.date_picker, null)
-
-        d.setView(dialogView)
-
-        val numberPicker = dialogView.findViewById<NumberPicker>(R.id.numberpicker)
-
-        numberPicker.minValue = 1
-        numberPicker.maxValue = 4
-        numberPicker.value=1
-        numberPicker.wrapSelectorWheel =true
-
-
-        numberPicker.setOnValueChangedListener {
-                numberPicker, i, i1 -> println("onValueChange: ")
-        }
-        d.setPositiveButton("Done") { dialogInterface, i ->
-            println("onClick: " + numberPicker.value)
-            var numberpickkk=numberPicker.value.toString()
-            no_passenger.setText(numberpickkk)
-
-
-        }
-        d.setNegativeButton("Cancel") { dialogInterface, i -> }
-        val alertDialog = d.create()
-        alertDialog.show()
-    }*/
 
 
 
