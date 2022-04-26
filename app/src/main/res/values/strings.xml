@@ -9,4 +9,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="api_key">AIzaSyCLoLZlbJ7HC0YaLxFn1Rmw5G4LxMrE9aw</string>
     <string name="enter_drop_location">enter_drop_location</string>
+    <string name="No_Internet">No Internet</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="gender">Gender</string>
+    <string name="save">Save</string>
 </resources>

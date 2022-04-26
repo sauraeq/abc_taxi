@@ -13,8 +13,10 @@ import com.example.taxibookinguserapplication.Responses.SignUpResponse
 
 import com.example.taxibookinguserapplication.Responses.SigninResponse
 import com.example.taxibookinguserapplication.util.BaseActivity
+import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
 import com.example.taxibookinguserapplication.util.cont
 import com.rehablab.localsaved.shareprefrences
+import com.rehablab.util.ConstantUtils
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -105,6 +107,8 @@ class LoginActivity : BaseActivity(), cont {
 
                                 var data = response.body()!!.data[0]
                                 Toast.makeText(this@LoginActivity,"otp__"+data.otp,Toast.LENGTH_LONG).show()
+                                SharedPreferenceUtils.getInstance(this@LoginActivity)?.setStringValue(ConstantUtils.Phone_Number,response.body()!!.data[0].phone)
+                                SharedPreferenceUtils.getInstance(this@LoginActivity)?.setStringValue(ConstantUtils.USER_ID,response.body()!!.data[0].id)
                                 shrp.setStringPreference(OTP, data.otp)
                                 shrp.setStringPreference(DEVICE_TOKENID, data.device_tokanid)
                                 startActivity(

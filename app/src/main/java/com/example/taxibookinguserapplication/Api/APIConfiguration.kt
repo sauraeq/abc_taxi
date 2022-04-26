@@ -3,6 +3,8 @@ package com.example.taxibookinguserapplication.Api
 
 
 import com.example.taxibookinguserapplication.Responses.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -44,6 +46,25 @@ interface APIConfiguration {
     @Headers("Content-Type:application/x-www-form-urlencoded")
     fun TC(
     ):Call<TCResponse>
+
+    @POST("users/usereditprofile")
+    @Headers("Content-Type:application/x-www-form-urlencoded")
+    fun edit_profile(
+        @Body stringStringHashMap: HashMap<String, String>,
+    ):Call<EditProfileResponse>
+
+    @Multipart
+    @POST("users/edituser")
+    fun profile_img_update(
+        @Part("user_id") driver_id: RequestBody,
+        @Part image: MultipartBody.Part?,
+    ): Call<EditImgResponse>
+
+    @POST("users/triphistory")
+    @Headers("Content-Type:application/x-www-form-urlencoded")
+    fun trip_his(
+        @Body stringStringHashMap: HashMap<String, String>,
+    ):Call<TripHistory_Response>
 
     /*  @POST("user/resend")
      @Headers("Content-Type:application/x-www-form-urlencoded")

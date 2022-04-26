@@ -19,6 +19,7 @@ import com.example.taxibookinguserapplication.Main.Term_ConditionActivity
 import com.example.taxibookinguserapplication.Main.TripHistory
 import com.example.taxibookinguserapplication.Main.ViewProfile
 import com.example.taxibookinguserapplication.Map.Adapter.NavigationRVAdapter
+import com.example.taxibookinguserapplication.Map.Fragemnets.Manual_PickUp_Fragment
 import com.example.taxibookinguserapplication.Map.Fragemnets.PickupFragments
 import com.example.taxibookinguserapplication.Map.Model.ClickListener
 import com.example.taxibookinguserapplication.Map.Model.NavigationItemModel
@@ -27,13 +28,15 @@ import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
 import com.rehablab.util.ConstantUtils
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_manual_pick_up.*
 import kotlinx.android.synthetic.main.activity_pick_up.*
 
-class Pick_up : AppCompatActivity() {
+class Manual_Pick_up : AppCompatActivity() {
+
     lateinit var drawerLayout: DrawerLayout
     private lateinit var adapter: NavigationRVAdapter
     lateinit var navigation_rv: RecyclerView
-    lateinit var ivClose1:ImageView
+    lateinit var ivClose1: ImageView
     var Image_Url:String=""
 
 
@@ -56,31 +59,32 @@ class Pick_up : AppCompatActivity() {
         // NavigationItemModel(R.drawable.back, "Like us on facebook")
     )
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pick_up)
+        setContentView(R.layout.activity_manual_pick_up)
+        drawerLayout = findViewById(R.id.drawer_layout_manual)
+        navigation_rv=findViewById(R.id.navigation_rv1_manual)
+        var ivMenu=findViewById<ImageView>(R.id.ivMenu1_manual)
+        ivClose1=findViewById(R.id.ivClose_manual)
 
-        drawerLayout = findViewById(R.id.drawer_layout)
-        navigation_rv=findViewById(R.id.navigation_rv1)
-        var ivMenu=findViewById<ImageView>(R.id.ivMenu1)
-        ivClose1=findViewById(R.id.ivClose)
-
-        Image_Url=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Image_Url,"").toString()
+        Image_Url=
+            SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Image_Url,"").toString()
 
         if (Image_Url.equals(""))
         {
-            val  picasso=Picasso.get()
-            picasso.load(R.drawable.driverimg).into(navigation_user_pic)
+            val  picasso= Picasso.get()
+            picasso.load(R.drawable.driverimg).into(navigation_user_pic_manual)
         }
         else
         {
-            val  picasso=Picasso.get()
-            picasso.load(Image_Url).into(navigation_user_pic)
+            val  picasso= Picasso.get()
+            picasso.load(Image_Url).into(navigation_user_pic_manual)
         }
 
-        Logout_Linear_Layout.setOnClickListener {
+        Logout_Linear_Layout_manual.setOnClickListener {
             SharedPreferenceUtils.getInstance(this)?.clear()
-            val intent=Intent(this,LoginActivity::class.java)
+            val intent= Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
@@ -89,10 +93,10 @@ class Pick_up : AppCompatActivity() {
         /* bundle.putString("Location",locat)
          bundle.putString("Late",latii)
          bundle.putString("Long",lan)*/
-        val settingsFragment =PickupFragments()
+        val settingsFragment = Manual_PickUp_Fragment()
         settingsFragment.arguments = bundle
         supportFragmentManager.beginTransaction()
-            .replace(R.id.activity_main_content_id, settingsFragment).commit()
+            .replace(R.id.activity_main_content_id_manual, settingsFragment).commit()
 
 
         getSupportActionBar()?.setDisplayShowTitleEnabled(false);
@@ -111,7 +115,7 @@ class Pick_up : AppCompatActivity() {
             override fun onClick(view: View, position: Int) {
                 when (position) {
                     0 -> {
-                        val intent = Intent(this@Pick_up, ViewProfile::class.java)
+                        val intent = Intent(this@Manual_Pick_up, ViewProfile::class.java)
                         startActivity(intent)
 
                     }
@@ -121,18 +125,18 @@ class Pick_up : AppCompatActivity() {
                         startActivity(intent)*/
                     }
                     2 -> {
-                        val intent = Intent(this@Pick_up, TripHistory::class.java)
+                        val intent = Intent(this@Manual_Pick_up, TripHistory::class.java)
                         startActivity(intent)
                     }
                     3 -> {
-                        val intent = Intent(this@Pick_up, Term_ConditionActivity::class.java)
+                        val intent = Intent(this@Manual_Pick_up, Term_ConditionActivity::class.java)
                         startActivity(intent)
                         // # Books Fragment
 
                     }
                     4 -> {
                         // # Profile Activity
-                        val intent = Intent(this@Pick_up, PrivacyPolicyActivity::class.java)
+                        val intent = Intent(this@Manual_Pick_up, PrivacyPolicyActivity::class.java)
                         startActivity(intent)
                     }
                     5 -> {

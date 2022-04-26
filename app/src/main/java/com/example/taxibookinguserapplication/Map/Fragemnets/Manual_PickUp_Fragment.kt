@@ -2,7 +2,6 @@ package com.example.taxibookinguserapplication.Map.Fragemnets
 
 import android.Manifest
 import android.app.Activity
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -22,7 +21,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.taxibookinguserapplication.Map.Pick_up
+import com.example.taxibookinguserapplication.Map.Manual_Pick_up
 import com.example.taxibookinguserapplication.Map.Vechicle_list
 import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.util.Constant
@@ -43,14 +42,13 @@ import com.google.android.libraries.places.api.net.FetchPlaceRequest
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.rehablab.util.ConstantUtils
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_pick_up.*
 import kotlinx.android.synthetic.main.pickup_fragments.*
 import java.io.IOException
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
 
-class PickupFragments : Fragment() {
+class Manual_PickUp_Fragment : Fragment() {
 
     private var param1: String? = null
     private var param2: String? = null
@@ -63,14 +61,15 @@ class PickupFragments : Fragment() {
     var lati_drop: String = ""
     var langit_drop: String = ""
     var placesClient: PlacesClient? = null
-    var Image_Url:String=""
-    lateinit var img_profile:ImageView
+    var Image_Url: String = ""
+    lateinit var img_profile: ImageView
+    lateinit var search_btn:TextView
 
     var autoCompleteTextView_drop: AutoCompleteTextView? = null
     var adapter: AutoCompleteAdapter? = null
-    var adapter_1:AutoCompleteAdapter_pickup?=null
+    var adapter_1: AutoCompleteAdapter_pickup? = null
 
-   /* lateinit var customprogress: Dialog*/
+    /* lateinit var customprogress: Dialog*/
     private val LOCATION_PERMISSION_REQUEST_CODE = 1
     lateinit var pick_up_user: AutoCompleteTextView
     var resultReceiver: ResultReceiver? = null
@@ -87,15 +86,15 @@ class PickupFragments : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val rootview = inflater.inflate(R.layout.pickup_fragments, container, false)
+        val rootview = inflater.inflate(R.layout.manual_pick_up_layout, container, false)
 
 
 
 
-
+        search_btn =rootview.findViewById(R.id.search_text_tv_manual)
         resultReceiver = AddressResultReceiver(Handler())
         pick_up_user = rootview.findViewById(R.id.pickup_location_user)
-        img_profile=rootview.findViewById(R.id.img_view_frg)
+        img_profile = rootview.findViewById(R.id.img_view_frg)
 
 
         if ((ContextCompat.checkSelfPermission(
@@ -109,61 +108,63 @@ class PickupFragments : Fragment() {
                 LOCATION_PERMISSION_REQUEST_CODE
             )
 
-            Toast.makeText(requireContext(),"Permission", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Permission", Toast.LENGTH_LONG).show()
         } else {
             currentLocation
         }
-        Image_Url=
-            SharedPreferenceUtils.getInstance(requireContext())?.getStringValue(ConstantUtils.Image_Url,"").toString()
-        if (Image_Url.equals(""))
-        {
-            val  picasso= Picasso.get()
+        Image_Url =
+            SharedPreferenceUtils.getInstance(requireContext())
+                ?.getStringValue(ConstantUtils.Image_Url, "").toString()
+        if (Image_Url.equals("")) {
+            val picasso = Picasso.get()
             picasso.load(R.drawable.driverimg).into(img_profile)
-        }
-        else
-        {
-            val  picasso= Picasso.get()
+        } else {
+            val picasso = Picasso.get()
             picasso.load(Image_Url).into(img_profile)
         }
         val apiKey = getString(R.string.api_key)
 
-
+        search_btn.setOnClickListener {
+       val intent=Intent(requireContext(),Vechicle_list::class.java)
+            startActivity(intent)
+        }
 
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), apiKey)
         }
 
         placesClient = Places.createClient(requireContext())
-        autoCompleteTextView_drop = rootview.findViewById<AutoCompleteTextView>(R.id.drop_location_user)
+        autoCompleteTextView_drop =
+            rootview.findViewById<AutoCompleteTextView>(R.id.drop_location_user)
 
 
         initAutoCompleteTextView_drop()
         initAutoCompleteTextView_pickup()
 
-       /* var search_textt: TextView = rootview.findViewById(R.id.search_text_tv)*/
-       /* search_textt.setOnClickListener {
+        /* var search_textt: TextView = rootview.findViewById(R.id.search_text_tv)*/
+        /* search_textt.setOnClickListener {
 
-            pick_up_location = pickup_location_user.text.toString()
-            drop_location = drop_location_user.text.toString()
+             pick_up_location = pickup_location_user.text.toString()
+             drop_location = drop_location_user.text.toString()
 
 
-            //  getLocationFromAddress(drop_location)
+             //  getLocationFromAddress(drop_location)
 
-            if (pick_up_location.isEmpty()) {
-                Toast.makeText(requireContext(), "Please select pickup location", Toast.LENGTH_LONG).show()
-            } else if (drop_location.isEmpty()) {
-                Toast.makeText(requireContext(), "Please select drop location", Toast.LENGTH_LONG).show()
-            }
-            else {
-                if ( lati_curr.isEmpty()|| longi_current.isEmpty()|| lati_drop.isEmpty()
-                    ||langit_drop.isEmpty())
-                {
+             if (pick_up_location.isEmpty()) {
+                 Toast.makeText(requireContext(), "Please select pickup location", Toast.LENGTH_LONG).show()
+             } else if (drop_location.isEmpty()) {
+                 Toast.makeText(requireContext(), "Please select drop location", Toast.LENGTH_LONG).show()
+             }
+             else {
+                 if ( lati_curr.isEmpty()|| longi_current.isEmpty()|| lati_drop.isEmpty()
+                     ||langit_drop.isEmpty())
+                 {
 
-                }
-                else{
-                    var toatal_distance = getKilometers(lati_curr.toDouble(), longi_current.toDouble(), lati_drop.toDouble(), langit_drop.toDouble())
-                    var total_distance_apprx=roundOffDecimal(toatal_distance.toDouble())
-                   *//* SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
+                 }
+                 else{
+                     var toatal_distance = getKilometers(lati_curr.toDouble(), longi_current.toDouble(), lati_drop.toDouble(), langit_drop.toDouble())
+                     var total_distance_apprx=roundOffDecimal(toatal_distance.toDouble())
+                    *//* SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
                         ConstantUtils.Distance, total_distance_apprx.toString())
                     SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
                         ConstantUtils.Drop_location,drop_location)*//*
@@ -177,7 +178,7 @@ class PickupFragments : Fragment() {
 
         var ivMenu1: ImageView = rootview.findViewById(R.id.img_view_frg)
         ivMenu1.setOnClickListener {
-            (activity as Pick_up)?.click1()
+            (activity as Manual_Pick_up)?.click1()
         }
 
         //customprogress.hide()
@@ -186,8 +187,17 @@ class PickupFragments : Fragment() {
 
     private fun bitmapDescriptorFromVector(context: Context?, vectorResId: Int): BitmapDescriptor {
         val vectorDrawable = ContextCompat.getDrawable(requireContext(), vectorResId)
-        vectorDrawable!!.setBounds(0, 0, vectorDrawable.intrinsicWidth, vectorDrawable.intrinsicHeight)
-        val bitmap = Bitmap.createBitmap(vectorDrawable.intrinsicWidth, vectorDrawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
+        vectorDrawable!!.setBounds(
+            0,
+            0,
+            vectorDrawable.intrinsicWidth,
+            vectorDrawable.intrinsicHeight
+        )
+        val bitmap = Bitmap.createBitmap(
+            vectorDrawable.intrinsicWidth,
+            vectorDrawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        )
         val canvas = Canvas(bitmap)
         vectorDrawable.draw(canvas)
         return BitmapDescriptorFactory.fromBitmap(bitmap)
@@ -195,14 +205,14 @@ class PickupFragments : Fragment() {
 
     companion object {
 
-      /*  @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PickupFragments().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }*/
+        /*  @JvmStatic
+          fun newInstance(param1: String, param2: String) =
+              PickupFragments().apply {
+                  arguments = Bundle().apply {
+                      putString(ARG_PARAM1, param1)
+                      putString(ARG_PARAM2, param2)
+                  }
+              }*/
     }
 
 
@@ -212,6 +222,7 @@ class PickupFragments : Fragment() {
         adapter = AutoCompleteAdapter(requireContext(), placesClient)
         autoCompleteTextView_drop?.setAdapter(adapter)
     }
+
     private fun initAutoCompleteTextView_pickup() {
         pick_up_user?.setThreshold(1)
         pick_up_user?.setOnItemClickListener(autocompleteClickListener_pickup)
@@ -241,8 +252,12 @@ class PickupFragments : Fragment() {
                 }
                 if (request != null) {
                     placesClient!!.fetchPlace(request).addOnSuccessListener { task ->
-                        val inputMethodManager = requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-                        inputMethodManager.hideSoftInputFromWindow(drop_location_user.getWindowToken(), 0)
+                        val inputMethodManager =
+                            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                        inputMethodManager.hideSoftInputFromWindow(
+                            drop_location_user.getWindowToken(),
+                            0
+                        )
 
                         drop_location = drop_location_user.text.toString()
                         getLocationFromAddress_drop(drop_location)
@@ -280,21 +295,27 @@ class PickupFragments : Fragment() {
                     placesClient!!.fetchPlace(request).addOnSuccessListener { task ->
 
 
-                        val inputMethodManager = requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                        val inputMethodManager =
+                            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
                         inputMethodManager.hideSoftInputFromWindow(pick_up_user.getWindowToken(), 0)
 
                         pick_up_location = pick_up_user.text.toString()
-                     /*   SharedPreferenceUtils.getInstance(requireContext())?.setStringValue(ConstantUtils.CurrentL,pick_up_location)*/
+                        /*   SharedPreferenceUtils.getInstance(requireContext())?.setStringValue(ConstantUtils.CurrentL,pick_up_location)*/
                         getLocationFromAddress_pickup(pick_up_location)
 
                     }.addOnFailureListener { e ->
                         e.printStackTrace()
-                        Toast.makeText(requireContext(),e.printStackTrace().toString(), Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            requireContext(),
+                            e.printStackTrace().toString(),
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                Toast.makeText(requireContext(),e.printStackTrace().toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), e.printStackTrace().toString(), Toast.LENGTH_LONG)
+                    .show()
             }
         }
 
@@ -346,6 +367,7 @@ class PickupFragments : Fragment() {
                                 val longi = locationResult.locations[latestlocIndex].longitude
                                 lati_curr = lati.toString()
                                 longi_current = longi.toString()
+
                                 SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
                                     ConstantUtils.Pick_UP_Latitude, lati_curr)
                                 SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
@@ -374,12 +396,11 @@ class PickupFragments : Fragment() {
                 var country: String? = resultData.getString(Constant.ADDRESS)
                 locat = address + "," + locaity + "," + state
                 pick_up_user.setText(locat)
+
+                /* SharedPreferenceUtils.getInstance(requireContext())?.setStringValue(ConstantUtils.CurrentL,locat)*/
                 SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
                     ConstantUtils.Pick_up_Location, locat)
-
-               /* SharedPreferenceUtils.getInstance(requireContext())?.setStringValue(ConstantUtils.CurrentL,locat)*/
-
-                loadMap(lati_curr, longi_current,locat)
+                loadMap(lati_curr, longi_current, locat)
 
             } else {
                 Toast.makeText(
@@ -399,12 +420,12 @@ class PickupFragments : Fragment() {
         requireContext().startService(intent)
     }
 
-    fun loadMap(lati_curr1: String, longi_current1: String,loate1:String) {
+    fun loadMap(lati_curr1: String, longi_current1: String, loate1: String) {
         try {
             if (lati_curr.isEmpty() || longi_current.isEmpty()) {
 
             } else {
-               // customprogress.dismiss()
+                // customprogress.dismiss()
                 val mapFragment =
                     childFragmentManager.findFragmentById(R.id.frg) as SupportMapFragment?
                 mapFragment!!.getMapAsync { mMap ->
@@ -419,7 +440,11 @@ class PickupFragments : Fragment() {
                         .bearing(0f)
                         .build()
 
-                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex), 1000, null)
+                    mMap.animateCamera(
+                        CameraUpdateFactory.newCameraPosition(googlePlex),
+                        1000,
+                        null
+                    )
 
                     mMap.addMarker(
                         MarkerOptions()
@@ -467,11 +492,8 @@ class PickupFragments : Fragment() {
 
             Log.d("daad", lati_drop + langit_drop)
             if (strAddress != null) {
-                loadMap(lati_drop, langit_drop,strAddress)
+                loadMap(lati_drop, langit_drop, strAddress)
             }
-
-            val intent=Intent(requireContext(),Vechicle_list::class.java)
-            startActivity(intent)
 
 
         } catch (e: IOException) {
@@ -495,17 +517,17 @@ class PickupFragments : Fragment() {
             var la_longArr = latLng.toString().split(",", "(", ")")
             lati_curr = la_longArr[1]
             longi_current = la_longArr[2]
-            Toast.makeText(requireContext(),lati_curr+longi_current, Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), lati_curr + longi_current, Toast.LENGTH_LONG).show()
             SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
                 ConstantUtils.Pick_up_Location, strAddress)
-           SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
+            SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
                 ConstantUtils.Pick_UP_Latitude, lati_curr)
             SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
                 ConstantUtils.Pick_UP_Longitude, longi_current)
 
             Log.d("daad", lati_curr + longi_current)
             if (strAddress != null) {
-                loadMap(lati_curr, longi_current,strAddress)
+                loadMap(lati_curr, longi_current, strAddress)
             }
 
 
@@ -563,7 +585,6 @@ class PickupFragments : Fragment() {
         val alertDialog = d.create()
         alertDialog.show()
     }*/
-
 
 
 }

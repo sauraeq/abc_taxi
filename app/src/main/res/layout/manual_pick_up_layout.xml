@@ -58,7 +58,7 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_weight="0.5"
+            android:layout_weight="0.7"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp">
@@ -198,7 +198,7 @@
 
                             </AutoCompleteTextView>
                         </LinearLayout>
-                        <View
+                        <!--<View
                             android:layout_width="match_parent"
                             android:layout_height="1dip"
                             android:layout_alignParentTop="true"
@@ -206,7 +206,7 @@
                             android:layout_marginLeft="@dimen/_30sdp"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginRight="@dimen/_20sdp"
-                            android:background="#C8C3C3" />
+                            android:background="#C8C3C3" />-->
                         <!--<TextView
                             android:text="@string/no_of_passengers"
                             android:layout_width="wrap_content"
@@ -247,6 +247,7 @@
 
                             </EditText>
                         </LinearLayout>
+                        -->
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dip"
@@ -267,7 +268,7 @@
                             android:padding="@dimen/_5sdp">
 
                             <TextView
-                                android:id="@+id/search_text_tv"
+                                android:id="@+id/search_text_tv_manual"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/button_corner"
@@ -276,10 +277,10 @@
                                 android:text="@string/search"
                                 android:textAlignment="center"
                                 android:clickable="true"
-                                android:textColor="@color/black"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/_13sdp"
                                 android:textStyle="bold" />
-                        </LinearLayout>-->
+                        </LinearLayout>
 
 
 

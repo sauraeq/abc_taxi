@@ -11,8 +11,10 @@ import com.example.taxibookinguserapplication.LocationMap.Location_fetchActivity
 import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.Responses.LoginotpverifyResponse
 import com.example.taxibookinguserapplication.util.BaseActivity
+import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
 import com.example.taxibookinguserapplication.util.cont
 import com.rehablab.localsaved.shareprefrences
+import com.rehablab.util.ConstantUtils
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_phoneverification.*
 import retrofit2.Call
@@ -41,6 +43,7 @@ class PhoneVerificationActivity : BaseActivity(), cont {
             /* val intent= Intent(this,ResetPasswordActivity::class.java)
              startActivity(intent)*/
             if (otp_view.otp!!.length == 4) {
+
                 VerifyOtp()
 
             } else {
@@ -66,7 +69,7 @@ class PhoneVerificationActivity : BaseActivity(), cont {
                     hideProgressDialog()
 
                         if (response.body()!!.success == "true") {
-
+                            SharedPreferenceUtils.getInstance(this@PhoneVerificationActivity)?.setStringValue(ConstantUtils.OTP,otp_view.otp.toString())
                             var intent=Intent(this@PhoneVerificationActivity,Location_fetchActivity::class.java)
                             startActivity(intent)
                         }

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main.EditProfile">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+
+                android:id="@+id/rel_canlemark"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsemibold"
+                    android:text="@string/edit_profile"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13sdp">
+
+                </TextView>
+
+                <ImageView
+                    android:id="@+id/back_act_editprofile"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/canclemark" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/userProfile_edit_img"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_marginLeft="@dimen/_28sdp"
+                    android:layout_marginTop="@dimen/_59sdp"
+                    android:src="@drawable/driverimg"
+                    app:civ_border_color="@color/yellow"
+                    app:civ_border_width="1dp" />
+                <LinearLayout
+                    android:id="@+id/change_profile_img"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_marginTop="@dimen/_110sdp"
+                    android:background="@drawable/circlebackblack"
+                    android:layout_marginLeft="@dimen/_80sdp">
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:src="@drawable/camera">
+                    </ImageView>
+                </LinearLayout>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_18sdp"
+                android:layout_marginRight="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_38sdp"
+                android:orientation="vertical">
+                <TextView
+                    android:text="@string/name"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:textSize="@dimen/_13ssp"
+                    android:layout_height="@dimen/_19sdp">
+                </TextView>
+                <EditText
+                    android:id="@+id/user_name_edittext"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp"
+                    android:background="@null"
+                    android:inputType="textPersonName"
+                    android:layout_height="wrap_content">
+                </EditText>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/_9sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="#000" />
+                <TextView
+                    android:text="@string/email"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:textSize="@dimen/_13ssp"
+                    android:layout_height="@dimen/_19sdp">
+                </TextView>
+                <EditText
+                    android:id="@+id/user_email_edittext"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp"
+                    android:background="@null"
+                    android:inputType="textEmailAddress"
+                    android:layout_height="wrap_content">
+                </EditText>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="#000" />
+                <!--<TextView
+                    android:text="Phone Number"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:textSize="@dimen/_13ssp"
+                    android:layout_height="@dimen/_19sdp">
+                </TextView>
+                <EditText
+                    android:id="@+id/user_phone_edittext"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:layout_height="@dimen/_19sdp">
+                </EditText>-->
+                <!--<View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="#000" />-->
+
+                <TextView
+                    android:text="@string/gender"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:textSize="@dimen/_13ssp"
+                    android:layout_height="@dimen/_19sdp">
+                </TextView>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:weightSum="4"
+                    android:layout_height="@dimen/_19sdp">
+
+
+                    <EditText
+                        android:id="@+id/user_gender_edittext"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/poppinsmedium"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15ssp"
+                        android:background="@null"
+                        android:inputType="text"
+                        android:visibility="gone"
+                        android:layout_weight="2"
+                        android:layout_height="@dimen/_19sdp">
+                    </EditText>
+                    <Spinner
+                        android:id="@+id/gender_spinner"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:layout_height="wrap_content">
+
+                    </Spinner>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="#000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="@dimen/_18sdp"
+                    android:layout_marginRight="@dimen/_18sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:padding="@dimen/_5sdp">
+
+                    <TextView
+                        android:id="@+id/edit_profile_save"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_corner"
+                        android:fontFamily="@font/poppinsmedium"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:text="@string/save"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -135,7 +135,7 @@ public class AutoCompleteAdapter_pickup extends ArrayAdapter<AutocompletePredict
         final FindAutocompletePredictionsRequest.Builder requestBuilder =
                 FindAutocompletePredictionsRequest.builder()
                         .setQuery(constraint.toString())
-                        .setCountry("AU") //Use only in specific country
+                        .setCountry("In") //Use only in specific country
                         // Call either setLocationBias() OR setLocationRestriction().
                         .setLocationBias(bounds)
 //                        .setLocationRestriction(bounds)

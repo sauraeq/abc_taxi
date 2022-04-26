@@ -25,9 +25,12 @@
                 android:fontFamily="@font/poppinsemibold"
                 android:text="Terms &amp; Conditions"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_13sdp"></TextView>
+                android:textSize="@dimen/_13sdp">
+
+            </TextView>
 
             <ImageView
+                android:id="@+id/back_act_terms"
                 android:layout_width="@dimen/_12sdp"
                 android:layout_height="@dimen/_12sdp"
                 android:layout_alignParentRight="true"

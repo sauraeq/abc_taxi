@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout_manual"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:openDrawer="start">
+
+    <!-- Main Activity -->
+    <LinearLayout
+        android:id="@+id/main_activity_content_id_manual"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:context=".Activity.MainActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/activity_main_appbarlayout_manual"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            >
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/activity_main_toolbar_manual"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                android:weightSum="1"
+                app:contentInsetStart="0dp"
+                >
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:visibility="gone"
+                    />
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="marquee"
+                    android:fadingEdge="horizontal"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:textColor="#ff4500"
+                    android:textSize="30sp" />
+
+                <ImageView
+
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:src="@drawable/twitter"
+
+                    android:textSize="@dimen/_19ssp" />
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            >
+
+
+            <ImageView
+                android:id="@+id/ivMenu1_manual"
+                android:layout_width="25dp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/twitter"
+                android:visibility="visible" />
+
+
+            <TextView
+                android:id="@+id/activity_main_toolbar_title_manual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="#ff4500"
+                android:textSize="30sp" />
+
+
+            <RelativeLayout
+                android:id="@+id/activity_main_content_id_manual"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:clipToPadding="false">
+
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </LinearLayout>
+    <!-- Main Activity End -->
+
+
+    <!-- Custom Navigation Drawer Start -->
+    <LinearLayout
+        android:id="@+id/navigation_layout_manual"
+        android:layout_width="260dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        android:visibility="visible"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_Cross_manual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/ivClose_manual"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/cancel" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/navigation_user_pic_manual"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginLeft="@dimen/_22sdp"
+                android:src="@drawable/driverimg"
+                app:civ_border_color="@color/yellow"
+
+                app:civ_border_width="1dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/username_sidebar_manual"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Alexis Enache"
+                    android:layout_marginLeft="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp" />
+                <TextView
+                    android:id="@+id/user_location_sidebar_manual"
+                    android:text="London, UK"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:textSize="@dimen/_13ssp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <View
+                    android:id="@+id/separator_manual"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:background="#C8C3C3" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/navigation_rv1_manual"
+            android:layout_width="250dp"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:scrollbarThumbHorizontal="@null"
+            android:scrollbarThumbVertical="@null">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="50dp"
+            android:weightSum="3"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginBottom="@dimen/_19sdp"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:id="@+id/Logout_Linear_Layout_manual"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_weight="1"
+                    android:src="@drawable/logout"
+                    >
+                </ImageView>
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Logout"
+                    android:layout_weight="2"
+                    android:padding="@dimen/_4sdp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--<RelativeLayout
+        android:id="@+id/progress_loader_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:visibility="gone">
+        <include layout="@layout/loader_layout"/>
+
+    </RelativeLayout>-->
+
+    <!-- Custom Navigation Drawer End -->
+
+</androidx.drawerlayout.widget.DrawerLayout>
