@@ -1,5 +1,6 @@
 package com.example.taxibookinguserapplication.Main
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,14 +23,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ViewProfile : BaseActivity() {
+class ViewProfile : AppCompatActivity() {
 
     var phone_number:String=""
     var token_id:String=""
     var Image_Url:String=""
+    lateinit var customprogress:Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_profile)
+        customprogress= Dialog(this)
+        customprogress.setContentView(R.layout.loaderrrr_layout)
         Image_Url=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Image_Url,"").toString()
         token_id=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Token_ID,"").toString()
         phone_number=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Phone_Number,"").toString()
@@ -63,7 +67,7 @@ class ViewProfile : BaseActivity() {
 
 
     private fun user_drtails() {
-        showProgressDialog()
+        customprogress.show()
         var hashMap = HashMap<String, String>()
         hashMap.put("mobile",phone_number)
         hashMap.put("device_tokanid", "hddhd")
@@ -95,32 +99,32 @@ class ViewProfile : BaseActivity() {
                                     var picasso=Picasso.get()
                                     picasso.load(response.body()!!.data[0].profile_photo).into(User_profile_pic)
                                 }
-
+                                customprogress.hide()
 
                             } catch (e:Exception)
                             {
 
                             }
-                            hideProgressDialog()
+                            customprogress.hide()
                         }
                         else {
 
                             Toast.makeText(this@ViewProfile,response.body()!!.msg,Toast.LENGTH_LONG).show()
-                            hideProgressDialog()
+                            customprogress.hide()
 
                         }
                     }
 
                 } catch (e: Exception) {
                     Log.e("signinrfailuour", e.message.toString())
-                    hideProgressDialog()
+                    customprogress.hide()
                 }
             }
 
             override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
-                hideProgressDialog()
+                customprogress.hide()
                 Log.e("signinrfailuour", t.message.toString())
-                hideProgressDialog()
+
 
             }
         })

@@ -1,5 +1,6 @@
 package com.example.taxibookinguserapplication.Main
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,8 +22,11 @@ import retrofit2.Response
 class TripHistory : AppCompatActivity() {
     lateinit var recycler_trip_history: RecyclerView
     private var mlist: List<TripHistoryData> = ArrayList()
+     lateinit  var customprogress:Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        customprogress= Dialog(this)
+        customprogress.setContentView(R.layout.loaderrrr_layout)
         setContentView(R.layout.activity_trip_history)
         recycler_trip_history=findViewById(R.id.recyclerview_trip_history)
         Triphistory()
@@ -33,7 +37,7 @@ class TripHistory : AppCompatActivity() {
 
 
     fun Triphistory()
-    {
+    {    customprogress.show()
         var hashMap = HashMap<String, String>()
         hashMap.put("user_id","38")
 
@@ -50,23 +54,23 @@ class TripHistory : AppCompatActivity() {
                         mlist= response.body()!!.data
                         recycler_trip_history.layoutManager= LinearLayoutManager(this@TripHistory)
                         recycler_trip_history.adapter= TripHistory_adapter(this@TripHistory,mlist)
-
+                        customprogress.hide()
 
                     } else {
                         Toast.makeText(this@TripHistory,response.body()!!.msg,Toast.LENGTH_LONG).show()
-
+                        customprogress.hide()
                     }
 
                 }  catch (e: Exception) {
                     Log.e("saurav", e.toString())
-
+                    customprogress.hide()
                 }
 
             }
 
             override fun onFailure(call: Call<TripHistory_Response>, t: Throwable) {
                 Log.e("Saurav", t.message.toString())
-
+                customprogress.hide()
             }
 
         })

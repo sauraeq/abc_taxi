@@ -1,5 +1,6 @@
 package com.example.taxibookinguserapplication.Main
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,13 +24,16 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.HashMap
 
-class Term_ConditionActivity : BaseActivity() {
+class Term_ConditionActivity : AppCompatActivity() {
 
     lateinit var recycler_privacy: RecyclerView
     private var mlist: List<TCResData> = ArrayList()
+    lateinit var customprogress:Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        customprogress= Dialog(this)
+        customprogress.setContentView(R.layout.loaderrrr_layout)
         setContentView(R.layout.activity_term_condition)
         recycler_privacy=findViewById(R.id.recycler_termss)
         TermsConditionss()
@@ -41,7 +45,7 @@ class Term_ConditionActivity : BaseActivity() {
 
     fun TermsConditionss()
     {
-    showProgressDialog()
+    customprogress.show()
         var terms: Call<TCResponse> = APIUtils.getServiceAPI()!!.TC()
 
         terms.enqueue(object : Callback<TCResponse> {
@@ -55,22 +59,22 @@ class Term_ConditionActivity : BaseActivity() {
                         recycler_privacy.layoutManager= LinearLayoutManager(this@Term_ConditionActivity)
                         recycler_privacy.adapter= TCAdapter(this@Term_ConditionActivity,mlist)
 
-                   hideProgressDialog()
+                        customprogress.hide()
                     } else {
                     Toast.makeText(this@Term_ConditionActivity,response.body()!!.msg,Toast.LENGTH_LONG).show()
-                        hideProgressDialog()
+                        customprogress.hide()
                     }
 
                 }  catch (e: Exception) {
                     Log.e("saurav", e.toString())
-                    hideProgressDialog()
+                    customprogress.hide()
                 }
 
             }
 
             override fun onFailure(call: Call<TCResponse>, t: Throwable) {
                 Log.e("Saurav", t.message.toString())
-                hideProgressDialog()
+                customprogress.hide()
             }
 
         })

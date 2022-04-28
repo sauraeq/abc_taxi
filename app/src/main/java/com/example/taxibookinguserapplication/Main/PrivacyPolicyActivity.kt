@@ -1,5 +1,6 @@
 package com.example.taxibookinguserapplication.Main
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,13 +20,16 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.HashMap
 
-class PrivacyPolicyActivity : BaseActivity() {
+class PrivacyPolicyActivity : AppCompatActivity() {
 
     lateinit var recycler_privacy: RecyclerView
     private var mlist: List<PrivacyResData> = ArrayList()
+    lateinit var customprogress:Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        customprogress= Dialog(this)
+        customprogress.setContentView(R.layout.loaderrrr_layout)
         setContentView(R.layout.activity_privacy_policy)
         recycler_privacy=findViewById(R.id.recycler_privacy_Terms)
         back_act_privacy.setOnClickListener {
@@ -40,7 +44,7 @@ class PrivacyPolicyActivity : BaseActivity() {
 
     fun PrivacyPolicy()
     {
-showProgressDialog()
+customprogress.show()
 
         var privacy: Call<Privacy_Response> = APIUtils.getServiceAPI()!!.privacy()
 
@@ -54,22 +58,22 @@ showProgressDialog()
                         mlist= response.body()!!.data
                         recycler_privacy.layoutManager= LinearLayoutManager(this@PrivacyPolicyActivity)
                         recycler_privacy.adapter= PrivacyAdapter(this@PrivacyPolicyActivity,mlist)
-                        hideProgressDialog()
+                        customprogress.hide()
                     } else {
-                        hideProgressDialog()
+                        customprogress.hide()
 
                     }
 
                 }  catch (e: Exception) {
                     Log.e("saurav", e.toString())
-                    hideProgressDialog()
+                    customprogress.hide()
                 }
 
             }
 
             override fun onFailure(call: Call<Privacy_Response>, t: Throwable) {
                 Log.e("Saurav", t.message.toString())
-                hideProgressDialog()
+                customprogress.hide()
 
             }
 

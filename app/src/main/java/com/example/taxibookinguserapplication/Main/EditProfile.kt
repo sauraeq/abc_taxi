@@ -51,7 +51,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class EditProfile : BaseActivity() {
+class EditProfile : AppCompatActivity() {
 
 
     var image=""
@@ -75,6 +75,7 @@ class EditProfile : BaseActivity() {
     var mCompressor: FileCompressor? = null
     private var CAMERA_REQUEST: Int = 1
     private var PICK_IMAGE_REQUEST: Int = 1
+    lateinit var customprogress:Dialog
 
     //  lateinit var datePicker: datePickerHelper
     var date:String =""
@@ -83,6 +84,8 @@ class EditProfile : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
+        customprogress= Dialog(this)
+        customprogress.setContentView(R.layout.loaderrrr_layout)
         back_act_editprofile.setOnClickListener {
             onBackPressed()
         }
@@ -151,7 +154,7 @@ class EditProfile : BaseActivity() {
                 if (NetworkUtils.checkInternetConnection(this))
                 {
                     EditProfilee()
-                    showProgressDialog()
+
                 }
 
 
@@ -441,7 +444,7 @@ class EditProfile : BaseActivity() {
 
 
     private  fun editprofileimg() {
-        showProgressDialog()
+       customprogress.show()
         val multiPartRepeatString = "application/image"
 
         var facility_image: MultipartBody.Part? = null
@@ -469,21 +472,21 @@ class EditProfile : BaseActivity() {
                         if (response.body()!!.success.equals("true")) {
                            // SharedPreferenceUtils.getInstance(this@EditProfile)!!.setStringValue(ConstantUtils.Image_Url,response.body()!!.image)
                             Toast.makeText(this@EditProfile,response.body()!!.msg, Toast.LENGTH_LONG).show()
-                              hideProgressDialog()
+                            customprogress.hide()
                         } else {
-                            hideProgressDialog()
+                            customprogress.hide()
                             Toast.makeText(this@EditProfile,response.body()!!.msg, Toast.LENGTH_LONG).show()
                         }
                     }
                 } catch (e: Exception) {
-                    hideProgressDialog()
+                    customprogress.hide()
                     Toast.makeText(this@EditProfile,e.toString(), Toast.LENGTH_LONG).show()
 
                 }
             }
 
             override fun onFailure(call: Call<EditImgResponse>, t: Throwable) {
-                hideProgressDialog()
+                customprogress.hide()
                 Toast.makeText(this@EditProfile,t.toString(), Toast.LENGTH_LONG).show()
             }
 
@@ -494,7 +497,7 @@ class EditProfile : BaseActivity() {
 
     fun EditProfilee()
     {
-       showProgressDialog()
+        customprogress.show()
         var user_id=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.USER_ID,"").toString()
         val request = HashMap<String, String>()
         request.put("name",user_name_et)
@@ -517,12 +520,12 @@ class EditProfile : BaseActivity() {
                         val intent=Intent(this@EditProfile,ViewProfile::class.java)
                         startActivity(intent)
                         finishAffinity()
-                        hideProgressDialog()
+                        customprogress.hide()
 
                     } else {
 
                         Toast.makeText(this@EditProfile,"Error", Toast.LENGTH_LONG).show()
-                        hideProgressDialog()
+                        customprogress.hide()
                     }
 
                 }  catch (e: Exception) {
@@ -530,7 +533,7 @@ class EditProfile : BaseActivity() {
 
                     Toast.makeText(this@EditProfile,e.message, Toast.LENGTH_LONG).show()
 
-                    hideProgressDialog()
+                    customprogress.hide()
                 }
 
             }
@@ -540,7 +543,7 @@ class EditProfile : BaseActivity() {
 
                 Toast.makeText(this@EditProfile,t.message, Toast.LENGTH_LONG).show()
 
-                hideProgressDialog()
+                customprogress.hide()
 
             }
 
