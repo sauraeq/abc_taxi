@@ -467,9 +467,7 @@ class EditProfile : BaseActivity() {
                     if (response.code() == 200) {
 
                         if (response.body()!!.success.equals("true")) {
-                            SharedPreferenceUtils.getInstance(this@EditProfile)?.setStringValue(ConstantUtils.Image_Url,response.body()!!.image)
-                            SharedPreferenceUtils.getInstance(this@EditProfile)?.setStringValue(ConstantUtils.Image_Url,response.body()!!.image)
-                            SharedPreferenceUtils.getInstance(this@EditProfile)?.setStringValue(ConstantUtils.Image_Url,response.body()!!.image)
+                           // SharedPreferenceUtils.getInstance(this@EditProfile)!!.setStringValue(ConstantUtils.Image_Url,response.body()!!.image)
                             Toast.makeText(this@EditProfile,response.body()!!.msg, Toast.LENGTH_LONG).show()
                               hideProgressDialog()
                         } else {

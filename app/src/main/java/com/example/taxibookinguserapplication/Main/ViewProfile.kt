@@ -34,9 +34,24 @@ class ViewProfile : BaseActivity() {
         token_id=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Token_ID,"").toString()
         phone_number=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Phone_Number,"").toString()
 
+
         var picasso=Picasso.get()
         user_drtails()
-        picasso.load(Image_Url).into(User_profile_pic)
+        try {
+            if (Image_Url!=null)
+            {
+                picasso.load(Image_Url).into(User_profile_pic)
+            }
+            else
+            {
+                picasso.load(R.drawable.driverimg).into(User_profile_pic)
+            }
+        }catch (e:Exception)
+        {
+
+        }
+
+
         edit_profile_imageview.setOnClickListener {
             val intent=Intent(this,EditProfile::class.java)
             startActivity(intent)
@@ -70,8 +85,17 @@ class ViewProfile : BaseActivity() {
                                 user_gender.setText(response.body()!!.data[0].gender)
                                 User_email.setText(response.body()!!.data[0].email)
                                 User_name.setText(response.body()!!.data[0].email)
-                                var picasso=Picasso.get()
-                                picasso.load(response.body()!!.data[0].profile_photo).into(User_profile_pic)
+                              var img_url= response.body()!!.data[0].profile_photo
+                                if(img_url.isEmpty())
+                                {
+
+                                }else
+                                {
+                                    SharedPreferenceUtils.getInstance(this@ViewProfile)!!.setStringValue(ConstantUtils.Image_Url,img_url)
+                                    var picasso=Picasso.get()
+                                    picasso.load(response.body()!!.data[0].profile_photo).into(User_profile_pic)
+                                }
+
 
                             } catch (e:Exception)
                             {

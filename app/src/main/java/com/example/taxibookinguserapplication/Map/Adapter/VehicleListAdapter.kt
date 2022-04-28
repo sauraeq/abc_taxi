@@ -16,7 +16,7 @@ import com.example.taxibookinguserapplication.Responses.VehicleResponseData
 import com.squareup.picasso.Picasso
 
 class VehicleListAdapter (var mContext: Context,val lintener: PractiseInterface, var mlist: List<VehicleResponseData>) : RecyclerView.Adapter<VehicleListAdapter.ViewHolder>() {
-
+    private var selectedItemPosition: String = ""
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
 
@@ -25,6 +25,7 @@ class VehicleListAdapter (var mContext: Context,val lintener: PractiseInterface,
         lateinit var car_description: TextView
         lateinit var price: TextView
         lateinit var car_list_layout:LinearLayout
+
 
 
         init {
@@ -70,12 +71,23 @@ class VehicleListAdapter (var mContext: Context,val lintener: PractiseInterface,
         holder.price.text= "$"+mlist[position].amount
 
         holder.itemView.setOnClickListener {
+            selectedItemPosition=position.toString()
+            notifyDataSetChanged()
             lintener.onclick( mlist[position].driver_id)
             holder.car_list_layout.setBackgroundColor(Color.WHITE)
 
         }
-        /*   holder.description.text=mlist[position].description
-           holder.introduction.text=mlist[position].id*/
+    if(selectedItemPosition==position.toString())
+    {
+
+        holder.car_list_layout.setBackgroundColor(Color.parseColor("#F3F3F3"))
+    }
+        else
+    {
+        holder.car_list_layout.setBackgroundColor(Color.WHITE)
+    }
+
+
     }
 
 

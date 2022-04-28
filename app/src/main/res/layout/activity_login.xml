@@ -313,6 +313,7 @@
                             android:layout_marginRight="@dimen/_15sdp"
                             android:fontFamily="@font/poppinsmedium"
                             android:text="Forget Password ?"
+                            android:visibility="gone"
                             android:textAlignment="textEnd"
                             android:textColor="@color/purple_700"
                             android:textSize="@dimen/_11sdp" />

@@ -43,7 +43,8 @@
                         android:src="@drawable/twitter"
                         android:layout_marginLeft="@dimen/_2sdp"
                         android:visibility="gone" />
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/img_view_frg"
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
@@ -58,7 +59,7 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_weight="0.7"
+            android:layout_weight="0.4"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp">
@@ -248,7 +249,7 @@
                             </EditText>
                         </LinearLayout>
                         -->
-                        <View
+                       <!-- <View
                             android:layout_width="match_parent"
                             android:layout_height="1dip"
                             android:layout_alignParentTop="true"
@@ -257,7 +258,8 @@
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginRight="@dimen/_20sdp"
                             android:background="#C8C3C3" />
-                        <LinearLayout
+                      &lt;!&ndash;      -->
+                       <!-- <LinearLayout
 
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_50sdp"
@@ -280,7 +282,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_13sdp"
                                 android:textStyle="bold" />
-                        </LinearLayout>
+                        </LinearLayout>&ndash;&gt;-->
 
 
 

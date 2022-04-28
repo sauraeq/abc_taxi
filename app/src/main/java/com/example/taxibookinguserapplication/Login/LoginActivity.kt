@@ -1,10 +1,13 @@
 package com.example.taxibookinguserapplication.Login
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.taxibookinguserapplication.Api.APIUtils
 import com.example.taxibookinguserapplication.LocationMap.Location_fetchActivity
@@ -27,6 +30,7 @@ class LoginActivity : BaseActivity(), cont {
     lateinit var shrp: shareprefrences
     var language: String = ""
     var device_tokenid :String=""
+    var LOCATION_PERMISSION_REQUEST_CODE=1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +38,19 @@ class LoginActivity : BaseActivity(), cont {
         setContentView(R.layout.activity_login)
 
         shrp = shareprefrences(this)
+        if ((ContextCompat.checkSelfPermission(
+                applicationContext,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+                    != PackageManager.PERMISSION_GRANTED)
+        ) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+        } else {
+
+        }
 
         try {
             language = intent.getStringExtra("language").toString()

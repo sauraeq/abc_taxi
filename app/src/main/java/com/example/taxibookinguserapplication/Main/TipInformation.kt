@@ -2,6 +2,7 @@ package com.example.taxibookinguserapplication.Main
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -63,6 +64,10 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         setContentView(R.layout.activity_tip_information)
         customprogress= Dialog(this)
         customprogress.setContentView(R.layout.dialog_progress)
+        Cancel_booking_btn_aty.setOnClickListener {
+            val intent=Intent(this,CancelRide::class.java)
+            startActivity(intent)
+        }
 
         try {
             approx_km=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Total_distance,"").toString()

@@ -69,6 +69,7 @@ class ConfirmPickUpFragemnt : Fragment() {
     var toatal_time_taken:String="0"
     var Drop_address:String=""
     var user_id:String=""
+    var driver_id:String=""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -127,7 +128,9 @@ class ConfirmPickUpFragemnt : Fragment() {
 
 
         try {
-           user_id=SharedPreferenceUtils.getInstance(requireContext())?.getStringValue(ConstantUtils.USER_ID,"").toString()
+            driver_id=SharedPreferenceUtils.getInstance(requireContext())?.getStringValue(ConstantUtils.Driver_id,"").toString()
+
+            user_id=SharedPreferenceUtils.getInstance(requireContext())?.getStringValue(ConstantUtils.USER_ID,"").toString()
             total_time=SharedPreferenceUtils.getInstance(requireContext())?.getStringValue(ConstantUtils.Total_Time,"").toString()
             total_distance=SharedPreferenceUtils.getInstance(requireContext())?.getStringValue(ConstantUtils.Total_distance,"").toString()
             Drop_address=SharedPreferenceUtils.getInstance(requireContext())?.getStringValue(ConstantUtils.Drop_Off_Location,"").toString()
@@ -372,7 +375,7 @@ class ConfirmPickUpFragemnt : Fragment() {
         request.put("dropLatitude", drop_lati)
         request.put("dropLongitude", drop_longi)
         request.put("user_id", user_id)
-        request.put("driver_id","209")
+        request.put("driver_id",driver_id)
         request.put("amount", "20")
         request.put("time",total_time )
         request.put("distance",total_distance)
@@ -394,7 +397,7 @@ class ConfirmPickUpFragemnt : Fragment() {
                          val intent=Intent(requireContext(),TipInformation::class.java)
                 startActivity(intent)
                         SharedPreferenceUtils.getInstance(requireContext())!!
-                            .setStringValue(ConstantUtils.Booking_id, response.body()!!.data[0].id)
+                            .setStringValue(ConstantUtils.Booking_id, response.body()!!.data[0].booking_id.toString())
                         Toast.makeText(requireContext(), response.body()!!.msg, Toast.LENGTH_LONG)
                             .show()
 

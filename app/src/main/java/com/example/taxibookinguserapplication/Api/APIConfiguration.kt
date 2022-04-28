@@ -84,6 +84,16 @@ interface APIConfiguration {
         @Body stringStringHashMap: HashMap<String, String>,
     ):Call<BookingStatusResponse>
 
+    @POST("users/cancelreasondata")
+    @Headers("Content-Type:application/x-www-form-urlencoded")
+    fun CancelReason(): Call<CancelRideResonResponse>
+
+    @POST("users/cancelride")
+    @Headers("Content-Type:application/x-www-form-urlencoded")
+    fun CancelResultSubmission(
+        @Body stringStringHashMap: HashMap<String, String>,
+    ): Call<CancelTripResponse>
+
     /*  @POST("user/resend")
      @Headers("Content-Type:application/x-www-form-urlencoded")
      fun ResendOtp(

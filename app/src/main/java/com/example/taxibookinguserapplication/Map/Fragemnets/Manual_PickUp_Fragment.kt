@@ -63,7 +63,6 @@ class Manual_PickUp_Fragment : Fragment() {
     var placesClient: PlacesClient? = null
     var Image_Url: String = ""
     lateinit var img_profile: ImageView
-    lateinit var search_btn:TextView
 
     var autoCompleteTextView_drop: AutoCompleteTextView? = null
     var adapter: AutoCompleteAdapter? = null
@@ -91,7 +90,7 @@ class Manual_PickUp_Fragment : Fragment() {
 
 
 
-        search_btn =rootview.findViewById(R.id.search_text_tv_manual)
+
       //  resultReceiver = AddressResultReceiver(Handler())
         pick_up_user = rootview.findViewById(R.id.pickup_location_user)
         img_profile = rootview.findViewById(R.id.img_view_frg)
@@ -124,10 +123,7 @@ class Manual_PickUp_Fragment : Fragment() {
         }
         val apiKey = getString(R.string.api_key)
 
-        search_btn.setOnClickListener {
-       val intent=Intent(requireContext(),Vechicle_list::class.java)
-            startActivity(intent)
-        }
+
 
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), apiKey)
@@ -455,7 +451,8 @@ class Manual_PickUp_Fragment : Fragment() {
             if (strAddress != null) {
                 loadMap(lati_drop, langit_drop, strAddress)
             }
-
+            val intent=Intent(requireContext(),Vechicle_list::class.java)
+            startActivity(intent)
 
         } catch (e: IOException) {
             e.printStackTrace()

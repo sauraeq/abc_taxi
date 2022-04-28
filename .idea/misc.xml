@@ -52,17 +52,20 @@
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable-v24/back_corner.xml" value="0.173" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/button_corner.xml" value="0.173" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/cancel.xml" value="0.173" />
+        <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/edittext_corner.xml" value="0.166" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/noti.xml" value="0.173" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/otp_bck_corner.xml" value="0.173" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/progress_icon.xml" value="0.173" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/rectangle_black.xml" value="0.173" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/rightarrow.xml" value="0.173" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/search_bg.xml" value="0.173" />
+        <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_cancel_ride.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_confirm_pick_up.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_current_location.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_edit_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_get_otp.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_location_fetch.xml" value="0.20416666666666666" />
+        <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_manual_pick_up.xml" value="0.1" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_pick_up.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_privacy_policy.xml" value="0.20416666666666666" />
@@ -74,10 +77,11 @@
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_view_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_wallet.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_welcome.xml" value="0.20416666666666666" />
+        <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/cancel_trip_layout_adapter.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/confirm_pickupfragment.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/dialog_progress.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/loader_layout.xml" value="0.20416666666666666" />
-        <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/manual_pick_up_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/manual_pick_up_layout.xml" value="0.1" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/pickup_fragments.xml" value="0.25" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/privacy_adapter_lyt.xml" value="0.20416666666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/row_nav_drawer.xml" value="0.20416666666666666" />
