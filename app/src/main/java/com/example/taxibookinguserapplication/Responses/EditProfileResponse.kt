@@ -1,7 +1,7 @@
 package com.example.taxibookinguserapplication.Responses
 
 data class EditProfileResponse(
-    val `data`: EditProfileResponseData,
+    val `data`: List<EditProfleResponseData>,
     val error: Int,
     val msg: String,
     val service: String,

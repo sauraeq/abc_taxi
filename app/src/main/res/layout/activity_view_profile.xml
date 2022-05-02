@@ -45,10 +45,10 @@
                 android:id="@+id/User_profile_pic"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
-                android:layout_marginLeft="@dimen/_32sdp"
+                android:layout_marginLeft="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:src="@drawable/driverimg"
-                app:civ_border_color="@color/yellow"
+                app:civ_border_color="@color/black"
                 app:civ_border_width="1dp" />
 
             <LinearLayout
@@ -56,7 +56,7 @@
                 android:layout_height="@dimen/_24sdp"
                 android:layout_marginTop="@dimen/_90sdp"
                 android:background="@drawable/circlebackblack"
-                android:layout_marginLeft="@dimen/_88sdp">
+                android:layout_marginLeft="@dimen/_79sdp">
 
                 <ImageView
                     android:id="@+id/edit_profile_imageview"
@@ -69,6 +69,7 @@
 
                 </ImageView>
             </LinearLayout>
+
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -129,7 +130,7 @@
                 android:layout_marginRight="@dimen/_12sdp"
                 android:background="#000" />
             <TextView
-                android:text="Gender"
+                android:text="Address"
                 android:layout_width="match_parent"
                 android:fontFamily="@font/poppinsmedium"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -138,7 +139,7 @@
             </TextView>
             <TextView
                 android:id="@+id/user_gender"
-                android:text="Male"
+                android:text="London"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:layout_width="match_parent"
                 android:fontFamily="@font/poppinsmedium"

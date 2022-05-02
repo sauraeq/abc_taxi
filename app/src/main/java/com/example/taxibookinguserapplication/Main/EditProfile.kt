@@ -16,10 +16,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
-import android.view.View
 import android.view.WindowManager
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
@@ -27,7 +24,6 @@ import com.example.taxibookinguserapplication.Api.APIUtils
 import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.Responses.EditImgResponse
 import com.example.taxibookinguserapplication.Responses.EditProfileResponse
-import com.example.taxibookinguserapplication.util.BaseActivity
 import com.example.taxibookinguserapplication.util.Camerautils.FileCompressor
 import com.example.taxibookinguserapplication.util.Camerautils.PermissionUtils
 import com.example.taxibookinguserapplication.util.Camerautils.Utility
@@ -70,8 +66,11 @@ class EditProfile : AppCompatActivity() {
     var user_email_et:String=""
     var user_gender_et:String=""
     var user_address_et:String=""
+    var user_name:String=""
+    var user_email:String=""
+    var user_address:String=""
     var img_url:String=""
-    var selectedItem:String=""
+    var selectedItem:String="male"
     var mCompressor: FileCompressor? = null
     private var CAMERA_REQUEST: Int = 1
     private var PICK_IMAGE_REQUEST: Int = 1
@@ -86,6 +85,18 @@ class EditProfile : AppCompatActivity() {
         setContentView(R.layout.activity_edit_profile)
         customprogress= Dialog(this)
         customprogress.setContentView(R.layout.loaderrrr_layout)
+
+        user_name =intent!!.getStringExtra("name").toString()
+        user_email =intent!!.getStringExtra("email").toString()
+        user_address =intent!!.getStringExtra("address").toString()
+        user_name_edittext.setText(user_name)
+        user_email_edittext.setText(user_email)
+        address.setText(user_address)
+
+
+
+
+
         back_act_editprofile.setOnClickListener {
             onBackPressed()
         }
@@ -111,7 +122,7 @@ class EditProfile : AppCompatActivity() {
         lang.add("Male")
         lang.add("Female")
 
-        if (gender_spinner != null) {
+       /* if (gender_spinner != null) {
             val adapter = ArrayAdapter(this,
                 android.R.layout.simple_spinner_dropdown_item, lang)
             gender_spinner.adapter = adapter
@@ -128,29 +139,17 @@ class EditProfile : AppCompatActivity() {
 
             }
 
-        }
+        }*/
 
 
         edit_profile_save.setOnClickListener {
 
             user_name_et=user_name_edittext.text.toString()
             user_email_et=user_email_edittext.text.toString()
+            user_address_et=address.text.toString()
 
 
-            if (selectedItem.equals("Select"))
-            {
-                Toast.makeText(this,"Please Select gender", Toast.LENGTH_LONG).show()
-            }
-            else if (user_name_et.isEmpty())
-            {
-                Toast.makeText(this,"Please Enter gender", Toast.LENGTH_LONG).show()
-            }
-            else if (user_email_et.isEmpty())
-            {
-                Toast.makeText(this,"Please Enter Email", Toast.LENGTH_LONG).show()
-            }
-            else
-            {
+
                 if (NetworkUtils.checkInternetConnection(this))
                 {
                     EditProfilee()
@@ -158,7 +157,7 @@ class EditProfile : AppCompatActivity() {
                 }
 
 
-            }
+
 
         }
 
@@ -502,7 +501,7 @@ class EditProfile : AppCompatActivity() {
         val request = HashMap<String, String>()
         request.put("name",user_name_et)
         request.put("email",user_email_et)
-        request.put("address","ssdd")
+        request.put("address","sess")
         request.put("gender",selectedItem)
         request.put("user_id",user_id)
 

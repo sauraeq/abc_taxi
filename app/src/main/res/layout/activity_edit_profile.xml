@@ -52,7 +52,7 @@
                     android:layout_marginLeft="@dimen/_28sdp"
                     android:layout_marginTop="@dimen/_59sdp"
                     android:src="@drawable/driverimg"
-                    app:civ_border_color="@color/yellow"
+                    app:civ_border_color="@color/black"
                     app:civ_border_width="1dp" />
                 <LinearLayout
                     android:id="@+id/change_profile_img"
@@ -159,7 +159,7 @@
                     android:background="#000" />-->
 
                 <TextView
-                    android:text="@string/gender"
+                    android:text="Address"
                     android:layout_width="match_parent"
                     android:fontFamily="@font/poppinsmedium"
                     android:layout_marginTop="@dimen/_18sdp"
@@ -170,11 +170,11 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:weightSum="4"
-                    android:layout_height="@dimen/_19sdp">
+                    android:layout_height="wrap_content">
 
 
                     <EditText
-                        android:id="@+id/user_gender_edittext"
+                        android:id="@+id/address"
                         android:layout_marginTop="@dimen/_3sdp"
                         android:layout_width="match_parent"
                         android:fontFamily="@font/poppinsmedium"
@@ -182,25 +182,24 @@
                         android:textSize="@dimen/_15ssp"
                         android:background="@null"
                         android:inputType="text"
-                        android:visibility="gone"
                         android:layout_weight="2"
-                        android:layout_height="@dimen/_19sdp">
+                        android:layout_height="wrap_content">
                     </EditText>
-                    <Spinner
+                    <!--<Spinner
                         android:id="@+id/gender_spinner"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_marginRight="@dimen/_20sdp"
                         android:layout_height="wrap_content">
 
-                    </Spinner>
+                    </Spinner>-->
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_12sdp"
                     android:background="#000" />
 

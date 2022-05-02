@@ -211,8 +211,7 @@ class ConfirmPickUpFragemnt : Fragment() {
                 .zoom(20f)
                 .bearing(0f)
                 .build()
-            Toast.makeText(requireContext(),"Msap"+var_2+var_3+var1, Toast
-                .LENGTH_LONG).show()
+
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex), 1000, null)
             val height = 90
             val width = 90

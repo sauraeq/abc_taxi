@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "743454785870",
+    "project_id": "abctaxi-7cd5a",
+    "storage_bucket": "abctaxi-7cd5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743454785870:android:6a67b653b47020e6729e1f",
+        "android_client_info": {
+          "package_name": "com.example.taxibookinguserapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743454785870-ur6pbjqvv5l4e6o87ue7903idsi8edqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4UV-7BAuYSQoK5EhBsq6vqtVN9uWrhOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743454785870-ur6pbjqvv5l4e6o87ue7903idsi8edqi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

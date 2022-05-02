@@ -58,6 +58,9 @@ class ViewProfile : AppCompatActivity() {
 
         edit_profile_imageview.setOnClickListener {
             val intent=Intent(this,EditProfile::class.java)
+            intent.putExtra("name",User_name.text.toString() )
+            intent.putExtra("email",User_email.text.toString())
+            intent.putExtra("address",user_gender.text.toString())
             startActivity(intent)
         }
         back_act_view.setOnClickListener {
