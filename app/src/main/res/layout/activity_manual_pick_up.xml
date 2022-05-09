@@ -167,7 +167,7 @@
                 android:layout_height="@dimen/_80sdp"
                 android:layout_marginLeft="@dimen/_22sdp"
                 android:src="@drawable/driverimg"
-                app:civ_border_color="@color/yellow"
+                app:civ_border_color="@color/black"
 
                 app:civ_border_width="1dp" />
 
@@ -215,8 +215,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/navigation_rv1_manual"
             android:layout_width="250dp"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginLeft="@dimen/_5sdp"
             android:scrollbarThumbHorizontal="@null"
@@ -228,7 +227,6 @@
             android:layout_width="@dimen/_150sdp"
             android:layout_height="50dp"
             android:weightSum="3"
-            android:layout_marginLeft="@dimen/_18sdp"
             android:layout_marginBottom="@dimen/_19sdp"
             android:orientation="horizontal"
             >
@@ -237,11 +235,11 @@
                 android:id="@+id/Logout_Linear_Layout_manual"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_11sdp"
                 android:layout_height="wrap_content">
 
 
                 <ImageView
-
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_weight="1"
@@ -257,8 +255,9 @@
                     android:text="Logout"
                     android:layout_weight="2"
                     android:padding="@dimen/_4sdp"
+                    android:layout_marginLeft="@dimen/_8sdp"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/_12ssp" />
             </LinearLayout>
 
         </LinearLayout>

@@ -47,7 +47,7 @@
                         android:layout_weight="5"
                         android:fontFamily="@font/poppinsmedium"
                         android:gravity="center"
-                        android:text="signup"
+                        android:text="@string/signup"
                         android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
@@ -60,7 +60,7 @@
                         android:background="@drawable/rectangle_black"
                         android:fontFamily="@font/poppinsmedium"
                         android:gravity="center"
-                        android:text="signin"
+                        android:text="@string/signin"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
@@ -253,7 +253,7 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/poppinsmedium"
                             android:padding="@dimen/_5sdp"
-                            android:text="Login to your account!"
+                            android:text="@string/login_to_your_account"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp" />
 
@@ -287,13 +287,13 @@
 
                             <EditText
                                 android:id="@+id/editText1_carrierNumber"
-                                android:layout_width="@dimen/_100sdp"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
                                 android:layout_marginLeft="@dimen/_5sdp"
                                 android:background="@null"
                                 android:hint="phone"
                                 android:inputType="phone"
-                                android:maxLength="18"
+                                android:maxLength="13"
                                 android:singleLine="true"
                                 android:textSize="@dimen/_10sdp" />
 
@@ -301,6 +301,7 @@
                                 android:layout_width="@dimen/_15sdp"
                                 android:layout_height="@dimen/_15sdp"
                                 android:layout_marginLeft="@dimen/_35sdp"
+                                android:visibility="gone"
                                 android:src="@drawable/xcross" />
                         </LinearLayout>
 

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -79,9 +80,7 @@ class Pick_up : AppCompatActivity() {
         }
 
         Logout_Linear_Layout.setOnClickListener {
-            SharedPreferenceUtils.getInstance(this)?.clear()
-            val intent=Intent(this,LoginActivity::class.java)
-            startActivity(intent)
+            exit_alert_dialog()
         }
 
         val bundle = Bundle()
@@ -225,6 +224,32 @@ class Pick_up : AppCompatActivity() {
     fun click1(){
         drawerLayout.openDrawer(GravityCompat.START)
     }
+    fun exit_alert_dialog()
+    {
+        val builder = AlertDialog.Builder(this)
 
+        builder.setTitle("Logout")
+
+        builder.setMessage("Are you want to sure to exit!")
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+
+        builder.setPositiveButton("Yes"){dialogInterface, which ->
+            SharedPreferenceUtils.getInstance(this)?.clear()
+            val intent= Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+
+        }
+
+
+        builder.setNegativeButton("No"){dialogInterface, which ->
+            dialogInterface.dismiss()
+        }
+
+        val alertDialog: AlertDialog = builder.create()
+
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+    }
 
 }

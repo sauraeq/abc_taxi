@@ -18,4 +18,11 @@
     <string name="cancel_booking">Cancel Booking</string>
     <string name="other_reason">other reason</string>
     <string name="cancel_trip">Cancel Trip</string>
+    <string name="are_you_want_to_sure_to_logout">Are you want to sure to logout</string>
+    <string name="signup">SignUp</string>
+    <string name="signin">SignIn</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="confirm_pickup_location">Confirm PickUp Location</string>
+    <string name="confirm_pick_up">Confirm Pick Up</string>
+
 </resources>

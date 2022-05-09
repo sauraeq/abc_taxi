@@ -463,7 +463,7 @@
                                         android:background="@drawable/button_corner"
                                         android:fontFamily="@font/poppinsmedium"
                                         android:paddingTop="@dimen/_12sdp"
-                                        android:text="cancel_trip"
+                                        android:text="@string/cancel_trip"
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
                                         android:textSize="@dimen/_13sdp"
