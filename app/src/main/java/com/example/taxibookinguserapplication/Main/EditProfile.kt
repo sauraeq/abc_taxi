@@ -29,6 +29,11 @@ import com.example.taxibookinguserapplication.util.Camerautils.PermissionUtils
 import com.example.taxibookinguserapplication.util.Camerautils.Utility
 import com.example.taxibookinguserapplication.util.NetworkUtils
 import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.rehablab.util.ConstantUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_edit_profile.*
@@ -162,7 +167,8 @@ class EditProfile : AppCompatActivity() {
         }
 
         change_profile_img.setOnClickListener {
-            getPermissions()
+           /* getPermissions()*/
+            getMultiplePermission()
             //val i = Intent()
             // i.type = "image/*"
             //i.action = Intent.ACTION_GET_CONTENT
@@ -231,7 +237,7 @@ class EditProfile : AppCompatActivity() {
                         REQUEST_CODE
                     )
                 ) {
-                    selectImage()
+
                 }
             }
         }
@@ -350,7 +356,7 @@ class EditProfile : AppCompatActivity() {
             userProfile_edit_img.setImageBitmap(bitmap)
             editprofileimg()
 
-            Toast.makeText(this,image1path+"2", Toast.LENGTH_LONG).show()
+           // Toast.makeText(this,image1path+"2", Toast.LENGTH_LONG).show()
 
 
             profileimage = getStringImage(bitmap)
@@ -382,7 +388,7 @@ class EditProfile : AppCompatActivity() {
                     bitmap = mCompressor!!.compressToBitmap(file)
                     image1path=file.path
                     editprofileimg()
-                    Toast.makeText(this,image1path, Toast.LENGTH_LONG).show()
+                   // Toast.makeText(this,image1path, Toast.LENGTH_LONG).show()
 
                     profileimage = bitmap?.let { getStringImage(it) }.toString()
                     userProfile_edit_img.setImageBitmap(bitmap)
@@ -479,14 +485,14 @@ class EditProfile : AppCompatActivity() {
                     }
                 } catch (e: Exception) {
                     customprogress.hide()
-                    Toast.makeText(this@EditProfile,e.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@EditProfile,"Weak Internet Connection", Toast.LENGTH_LONG).show()
 
                 }
             }
 
             override fun onFailure(call: Call<EditImgResponse>, t: Throwable) {
                 customprogress.hide()
-                Toast.makeText(this@EditProfile,t.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(this@EditProfile,"Weak Internet Connection", Toast.LENGTH_LONG).show()
             }
 
         })
@@ -547,6 +553,35 @@ class EditProfile : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun getMultiplePermission() {
+        Dexter.withContext(this)
+            .withPermissions(
+                Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ).withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                    report.let {
+
+                        if (report.areAllPermissionsGranted()) {
+                            selectImage()
+                           // Toast.makeText(this@EditProfile, "Permissions Granted", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this@EditProfile, "Please Grant Permissions to use the app", Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+                }
+
+                override fun onPermissionRationaleShouldBeShown(permissions: List<PermissionRequest?>?, token: PermissionToken?) {
+                    token?.continuePermissionRequest()
+                }
+            }).withErrorListener{
+                Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
+            }.check()
+
     }
 
 

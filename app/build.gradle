@@ -69,9 +69,10 @@ dependencies {
 
     implementation 'com.google.android.libraries.places:places:2.6.0'
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
-    implementation 'com.google.android.gms:play-services-auth:20.1.0'
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.karumi:dexter:6.2.2'
     /*  implementation 'com.github.ar-android:DrawRouteMaps:3.1.0'*/
 
   /*  implementation 'com.google.firebase:firebase-analytics-ktx'*/

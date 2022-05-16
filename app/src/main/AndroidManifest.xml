@@ -30,6 +30,9 @@
         android:roundIcon="@drawable/logo_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaxiBookingUserApplication">
+        <activity
+            android:name=".Main.ViewProfileImage"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -40,6 +43,9 @@
 
         <activity
             android:name=".Main.CancelRide"
+            android:exported="false" />
+        <activity
+            android:name=".Pofile.ViewImage"
             android:exported="false" />
         <activity
             android:name=".Main.Wallet"
@@ -120,6 +126,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -144,6 +151,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <service
             android:name=".Firebase.MyFirebaseMessagingService"
             android:exported="false">

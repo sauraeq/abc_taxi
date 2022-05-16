@@ -6,21 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import com.example.taxibookinguserapplication.Api.APIUtils
-import com.example.taxibookinguserapplication.Login.LoginActivity
-import com.example.taxibookinguserapplication.Login.PhoneVerificationActivity
+import com.example.taxibookinguserapplication.Pofile.ViewImage
 import com.example.taxibookinguserapplication.R
-import com.example.taxibookinguserapplication.Responses.SignUpResponse
 import com.example.taxibookinguserapplication.Responses.SigninResponse
-import com.example.taxibookinguserapplication.util.BaseActivity
 import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
 import com.rehablab.util.ConstantUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_view_profile.*
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 
 class ViewProfile : AppCompatActivity() {
@@ -44,11 +39,11 @@ class ViewProfile : AppCompatActivity() {
         try {
             if (Image_Url!=null)
             {
-                picasso.load(Image_Url).into(User_profile_pic)
+                picasso.load(Image_Url).into(User_profile_pic1)
             }
             else
             {
-                picasso.load(R.drawable.driverimg).into(User_profile_pic)
+                picasso.load(R.drawable.driverimg).into(User_profile_pic1)
             }
         }catch (e:Exception)
         {
@@ -66,11 +61,28 @@ class ViewProfile : AppCompatActivity() {
         back_act_view.setOnClickListener {
             onBackPressed()
         }
+        User_profile_pic1.setOnClickListener {
+
+
+                val intent=Intent(this,ViewProfileImage::class.java)
+            if (Image_Url.equals(""))
+            {
+
+            }
+
+            else
+            {
+                intent.putExtra("image_url",Image_Url)
+            }
+                startActivity(intent)
+
+
+        }
     }
 
 
     private fun user_drtails() {
-        customprogress.show()
+       // customprogress.show()
         var hashMap = HashMap<String, String>()
         hashMap.put("mobile",phone_number)
         hashMap.put("device_tokanid", "hddhd")
@@ -100,7 +112,7 @@ class ViewProfile : AppCompatActivity() {
                                 {
                                     SharedPreferenceUtils.getInstance(this@ViewProfile)!!.setStringValue(ConstantUtils.Image_Url,img_url)
                                     var picasso=Picasso.get()
-                                    picasso.load(response.body()!!.data[0].profile_photo).into(User_profile_pic)
+                                    picasso.load(response.body()!!.data[0].profile_photo).into(User_profile_pic1)
                                 }
                                 customprogress.hide()
 
