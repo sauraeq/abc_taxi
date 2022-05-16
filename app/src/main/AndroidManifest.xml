@@ -44,6 +44,11 @@
         <activity
             android:name=".Main.CancelRide"
             android:exported="false" />
+        <activity android:name=".Map.Adapter.SearchActivityNew"
+            android:exported="false"
+            >
+
+        </activity>
         <activity
             android:name=".Pofile.ViewImage"
             android:exported="false" />

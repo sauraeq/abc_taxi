@@ -139,6 +139,8 @@
                                 android:layout_marginLeft="@dimen/_12sdp"
                                 android:background="@null"
                                 android:hint="@string/pickup"
+                                android:inputType="textMultiLine"
+                                android:focusable="false"
                                 android:fontFamily="@font/poppinsmedium"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12ssp"
@@ -192,12 +194,24 @@
                                 android:background="@null"
                                 android:fontFamily="@font/poppinsmedium"
                                 android:hint="@string/drop"
+                                android:inputType="textMultiLine"
+                                android:focusable="false"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12ssp"
                                 tools:ignore="TouchTargetSizeCheck">
 
                             </AutoCompleteTextView>
+
                         </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dip"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginRight="@dimen/_20sdp"
+                            android:background="#C8C3C3" />
                         <!--<View
                             android:layout_width="match_parent"
                             android:layout_height="1dip"

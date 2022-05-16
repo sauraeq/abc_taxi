@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taxibookinguserapplication.Api.APIUtils
+import com.example.taxibookinguserapplication.LocationMap.Location_fetchActivity
 import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.Responses.BookingStatusResponse
 import com.example.taxibookinguserapplication.Responses.MapData
@@ -65,6 +66,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         setContentView(R.layout.activity_tip_information)
         customprogress= Dialog(this)
         customprogress.setContentView(R.layout.dialog_progress)
+        progess_linear.visibility=View.VISIBLE
         Cancel_booking_btn_aty.setOnClickListener {
             val intent=Intent(this,CancelRide::class.java)
             startActivity(intent)
@@ -84,6 +86,10 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         if (NetworkUtils.checkInternetConnection(this))
         {
             Booking_status()
+        }
+        textview_cancel.setOnClickListener {
+            var intent=Intent(this,Location_fetchActivity::class.java)
+            startActivity(intent)
         }
 
 
@@ -110,7 +116,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
             mMap.addMarker(MarkerOptions().position(destinationLocation))
             val urll = getDirectionURL(originLocation, destinationLocation, apiKey)
             GetDirection(urll).execute()
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 14F))
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 10F))
         }
 
     }
@@ -120,7 +126,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         val originLocation = LatLng(originLatitude.toDouble(), originLongitude.toDouble())
         mMap.clear()
         mMap.addMarker(MarkerOptions().position(originLocation))
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 18F))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 5F))
     }
 
     private fun getDirectionURL(origin:LatLng, dest:LatLng, secret: String) : String{
@@ -199,7 +205,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
     fun Booking_status()
     {
-        customprogress.show()
+        /*customprogress.show()*/
         val request = HashMap<String, String>()
         request.put("booking_id",booking_id)
 
@@ -231,7 +237,9 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
                         {
 
-                            customprogress.hide()
+                          /*  customprogress.hide()*/
+                            progess_linear.visibility=View.GONE
+                            trip_details_linear.visibility=View.VISIBLE
                             var otp=response.body()!!.data[0].otp
                             var driver_profile_pic=response.body()!!.data[0].profile_photo
                             var vechile_img=response.body()!!.data[0].vehicle_image

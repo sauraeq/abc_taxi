@@ -24,5 +24,6 @@
     <string name="login_to_your_account">Login to your account</string>
     <string name="confirm_pickup_location">Confirm PickUp Location</string>
     <string name="confirm_pick_up">Confirm Pick Up</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

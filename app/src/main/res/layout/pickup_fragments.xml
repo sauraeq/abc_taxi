@@ -138,6 +138,8 @@
                                 android:layout_marginLeft="@dimen/_12sdp"
                                 android:background="@null"
                                 android:hint="@string/pickup"
+                                android:focusable="false"
+                                android:inputType="textMultiLine"
                                 android:fontFamily="@font/poppinsmedium"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12ssp"
@@ -184,13 +186,15 @@
                             </ImageView>
 
                             <AutoCompleteTextView
-                                android:id="@+id/drop_location_user"
+                                android:id="@+id/drop_location_user_automatic"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="@dimen/_12sdp"
                                 android:background="@null"
                                 android:fontFamily="@font/poppinsmedium"
                                 android:hint="@string/drop"
+                                android:inputType="textMultiLine"
+                                android:focusable="false"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12ssp"
                                 tools:ignore="TouchTargetSizeCheck">

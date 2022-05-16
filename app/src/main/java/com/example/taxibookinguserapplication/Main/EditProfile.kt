@@ -507,7 +507,7 @@ class EditProfile : AppCompatActivity() {
         val request = HashMap<String, String>()
         request.put("name",user_name_et)
         request.put("email",user_email_et)
-        request.put("address","sess")
+        request.put("address",user_address_et)
         request.put("gender",selectedItem)
         request.put("user_id",user_id)
 

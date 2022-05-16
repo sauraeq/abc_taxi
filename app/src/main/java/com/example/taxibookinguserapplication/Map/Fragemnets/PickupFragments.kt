@@ -22,6 +22,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.taxibookinguserapplication.Map.Adapter.SearchActivityNew
 import com.example.taxibookinguserapplication.Map.Pick_up
 import com.example.taxibookinguserapplication.Map.Vechicle_list
 import com.example.taxibookinguserapplication.R
@@ -62,6 +63,13 @@ class PickupFragments : Fragment() {
     var n_of_passenger: String = ""
     var lati_drop: String = ""
     var langit_drop: String = ""
+    var sourlat = 0.0
+    var sourlng:Double = 0.0
+    var deslat = 0.0
+    var deslng:Double = 0.0
+    var destLoc=""
+
+    var locType:String=""
     var placesClient: PlacesClient? = null
     var Image_Url:String=""
     lateinit var img_profile:ImageView
@@ -95,6 +103,13 @@ class PickupFragments : Fragment() {
         resultReceiver = AddressResultReceiver(Handler())
         pick_up_user = rootview.findViewById(R.id.pickup_location_user)
         img_profile=rootview.findViewById(R.id.img_view_frg)
+       /* pick_up_user.setOnClickListener {
+            locType = "pickloc"
+
+            var intent = Intent(requireContext(), SearchActivityNew::class.java)
+            startActivityForResult(intent, 100)
+        }*/
+
 
 
         if ((ContextCompat.checkSelfPermission(
@@ -133,11 +148,18 @@ class PickupFragments : Fragment() {
         }
 
         placesClient = Places.createClient(requireContext())
-        autoCompleteTextView_drop = rootview.findViewById<AutoCompleteTextView>(R.id.drop_location_user)
+        autoCompleteTextView_drop = rootview.findViewById<AutoCompleteTextView>(R.id.drop_location_user_automatic)
+        autoCompleteTextView_drop?.setOnClickListener {
+            locType = "droploc"
+
+            var intent = Intent(requireContext(), SearchActivityNew::class.java)
+            startActivityForResult(intent, 100)
+
+        }
 
 
         initAutoCompleteTextView_drop()
-        initAutoCompleteTextView_pickup()
+       // initAutoCompleteTextView_pickup()
 
 
 
@@ -148,6 +170,54 @@ class PickupFragments : Fragment() {
 
 
         return rootview
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        try {
+            if (requestCode == 100) {
+                val lat: String = data?.getStringExtra("lat").toString()
+                val lng: String = data?.getStringExtra("lng").toString()
+                val location: String = data?.getStringExtra("location").toString()
+                if(locType.equals("pickloc")){
+                    sourlat=lat.toDouble()
+                    sourlng=lng.toDouble()
+                    pick_up_user?.setText(location)
+                    pick_up_user?.setText(location)
+                    /*SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
+                        ConstantUtils.Drop_Off_Location, location)
+                    SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
+                        ConstantUtils.Drop_Off_Latitude, sourlat.toString())
+                    SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
+                        ConstantUtils.Drop_Off_Longitude, sourlng.toString())*/
+
+                   // sourcelatLng= LatLng(sourlat,sourlng)
+                }else{
+                    deslat=lat.toDouble()
+                    deslng=lng.toDouble()
+                    destLoc=location
+                  //  destlatLng= LatLng(deslat,deslng)
+                    SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
+                        ConstantUtils.Drop_Off_Location, location)
+                    SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
+                        ConstantUtils.Drop_Off_Latitude, deslat.toString())
+                    SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
+                        ConstantUtils.Drop_Off_Longitude, deslng.toString())
+
+                    autoCompleteTextView_drop?.setText(location)
+                    autoCompleteTextView_drop?.setText(location)
+                    val intent=Intent(requireContext(),Vechicle_list::class.java)
+                    startActivity(intent)
+                }
+
+
+
+            }
+
+        }catch (e:Exception){
+
+        }
+
     }
 
     private fun bitmapDescriptorFromVector(context: Context?, vectorResId: Int): BitmapDescriptor {
@@ -171,12 +241,12 @@ class PickupFragments : Fragment() {
         adapter = AutoCompleteAdapter(requireContext(), placesClient)
         autoCompleteTextView_drop?.setAdapter(adapter)
     }
-    private fun initAutoCompleteTextView_pickup() {
+   /* private fun initAutoCompleteTextView_pickup() {
         pick_up_user?.setThreshold(1)
         pick_up_user?.setOnItemClickListener(autocompleteClickListener_pickup)
         adapter_1 = AutoCompleteAdapter_pickup(requireContext(), placesClient)
         pick_up_user?.setAdapter(adapter_1)
-    }
+    }*/
 
     private val autocompleteClickListener_drop =
         AdapterView.OnItemClickListener { adapterView, view, i, l ->
@@ -201,9 +271,9 @@ class PickupFragments : Fragment() {
                 if (request != null) {
                     placesClient!!.fetchPlace(request).addOnSuccessListener { task ->
                         val inputMethodManager = requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-                        inputMethodManager.hideSoftInputFromWindow(drop_location_user.getWindowToken(), 0)
+                        inputMethodManager.hideSoftInputFromWindow(drop_location_user_automatic.getWindowToken(), 0)
 
-                        drop_location = drop_location_user.text.toString()
+                        drop_location = drop_location_user_automatic.text.toString()
                         SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(ConstantUtils.Drop_Off_Location,drop_location)
                         getLocationFromAddress_drop(drop_location)
 
@@ -417,12 +487,6 @@ class PickupFragments : Fragment() {
             var la_longArr = latLng.toString().split(",", "(", ")")
             lati_drop = la_longArr[1]
             langit_drop = la_longArr[2]
-            SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
-                ConstantUtils.Drop_Off_Location, strAddress)
-            SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
-                ConstantUtils.Drop_Off_Latitude, lati_drop)
-            SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
-                ConstantUtils.Drop_Off_Longitude, langit_drop)
 
             Log.d("daad", lati_drop + langit_drop)
             if (strAddress != null) {

@@ -120,7 +120,7 @@ class Vechicle_list : AppCompatActivity(),OnMapReadyCallback,VehicleListAdapter.
             mMap.addMarker(MarkerOptions().position(destinationLocation))
             val urll = getDirectionURL(originLocation, destinationLocation, apiKey)
             GetDirection(urll).execute()
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 14F))
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 10F))
         }
 
     }
@@ -167,7 +167,7 @@ class Vechicle_list : AppCompatActivity(),OnMapReadyCallback,VehicleListAdapter.
             val lineoption = PolylineOptions()
             for (i in result.indices){
                 lineoption.addAll(result[i])
-                lineoption.width(15f)
+                lineoption.width(8f)
                 lineoption.color(Color.BLACK)
                 lineoption.geodesic(true)
             }
