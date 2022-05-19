@@ -37,7 +37,7 @@ class CancelRide : AppCompatActivity(), CancelTripAdapter.PractiseInterface{
 
         Cancel_trip_submit=findViewById(R.id.Cancel_trip_submit_btn)
         customprogress= Dialog(this)
-        customprogress.setContentView(R.layout.loader_layout)
+        customprogress.setContentView(R.layout.loaderrrr_layout)
         CancelTripReson()
         bookig_id= SharedPreferenceUtils.getInstance(this)?.getStringValue(
             ConstantUtils
@@ -59,6 +59,8 @@ class CancelRide : AppCompatActivity(), CancelTripAdapter.PractiseInterface{
         reason=name
 
         if (reason.isEmpty()) {
+
+            Toast.makeText(this,"Please Select Cancellation Reason",Toast.LENGTH_LONG).show()
 
         } else {
             Cancel_trip_submit.setOnClickListener {

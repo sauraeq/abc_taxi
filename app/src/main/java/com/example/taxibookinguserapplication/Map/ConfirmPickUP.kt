@@ -28,16 +28,18 @@ class ConfirmPickUP : AppCompatActivity() {
     var locat:String=""
     var lan:String=""
     var latii:String=""
+    lateinit var customprogess:Dialog
     /*lateinit var  customprogress: Dialog*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_pick_up)
         supportActionBar?.hide()
-      /*  customprogress= Dialog(this)
-        customprogress.setContentView(R.layout.loader_layout)
-        customprogress.show()*/
+        customprogess= Dialog(this)
+        customprogess.setContentView(R.layout.loaderrrr_layout)
+        customprogess.show()
 
         resultReceiver = AddressResultReceiver(Handler())
+
 
 
         if ((ContextCompat.checkSelfPermission(
@@ -154,6 +156,7 @@ class ConfirmPickUP : AppCompatActivity() {
                 settingsFragment.arguments = bundle
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.activity_main_content_id12, settingsFragment).commit()
+                customprogess.hide()
                /// customprogress.hide()
 
                 /* address!!.text = resultData.getString(Constants.ADDRESS)

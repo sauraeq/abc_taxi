@@ -51,23 +51,33 @@
         <entry key="..\:/Users/Ajay/Desktop/TaxiBookingUserApplication2/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable-v24/gray_border.xml" value="0.1415" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/bgovalshape.xml" value="0.1415" />
+        <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/location_iocon.xml" value="0.1415" />
+        <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_cancel_ride.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_confirm_pick_up.xml" value="0.18072916666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_current_location.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_edit_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_language.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_location_fetch.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_manual_pick_up.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_pick_up.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_search.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_tip_information.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_vechicle_list.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_view_image.xml" value="0.203125" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_view_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_view_profile_image.xml" value="0.1875" />
+        <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/activity_wallet.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/cancel_trip_layout_adapter.xml" value="0.18072916666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/confirm_pickupfragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/loader_layout.xml" value="0.18072916666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/loaderrrr_layout.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/logout_exit.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/manual_pick_up_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/pickup_fragments.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/place_row.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/popup_write_review.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/arash/Documents/finalproject/TaxiBookingUserApplication/app/src/main/res/layout/vehicle_list_adapter_lyt.xml" value="0.18072916666666666" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable-v24/back_corner.xml" value="0.173" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/button_corner.xml" value="0.173" />
         <entry key="..\:/finalproject/TaxiBookingUserApplication/app/src/main/res/drawable/cancel.xml" value="0.173" />

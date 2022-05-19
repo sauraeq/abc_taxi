@@ -101,6 +101,7 @@ class ViewProfile : AppCompatActivity() {
 
                           //  Toast.makeText(this@ViewProfile,response.body()!!.msg,Toast.LENGTH_LONG).show()
                             try {
+                                SharedPreferenceUtils.getInstance(this@ViewProfile)!!.setStringValue(ConstantUtils.USER_LOC,response.body()!!.data[0].address)
                                 user_gender.setText(response.body()!!.data[0].address)
                                 User_email.setText(response.body()!!.data[0].email)
                                 User_name.setText(response.body()!!.data[0].name)

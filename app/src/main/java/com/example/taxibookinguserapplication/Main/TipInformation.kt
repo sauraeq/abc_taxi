@@ -13,8 +13,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.Toast
+import android.view.ViewGroup
+import android.widget.*
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taxibookinguserapplication.Api.APIUtils
@@ -22,6 +22,7 @@ import com.example.taxibookinguserapplication.LocationMap.Location_fetchActivity
 import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.Responses.BookingStatusResponse
 import com.example.taxibookinguserapplication.Responses.MapData
+import com.example.taxibookinguserapplication.Responses.RatingReviewResponse
 import com.example.taxibookinguserapplication.util.NetworkUtils
 import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -32,6 +33,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.libraries.places.api.Places
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.rehablab.util.ConstantUtils
 import com.squareup.picasso.Picasso
@@ -52,13 +54,15 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
     var booking_id:String=""
     var approx_km:String=""
     var toatal_time_taken:String=""
-
-
+    var user_id:String=""
+    var driver_id:String=""
     lateinit var navigation_rv: RecyclerView
     lateinit var ivClose1: ImageView
     lateinit var customprogress: Dialog
     var amount:String=""
     var total_km:String=""
+    var rating_val:String=""
+    var reveiw_string_value:String=""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +77,8 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         }
 
         try {
+            user_id=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.USER_ID,"").toString()
+            driver_id=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Driver_id,"").toString()
             approx_km=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Total_distance,"").toString()
             toatal_time_taken=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Total_Time,"").toString()
             originLatitude=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Pick_UP_Latitude,"").toString()
@@ -260,6 +266,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
                             tp_driverdetails.setText("$"+amount)
                             total_distancee_driverdetails.setText(approx_km)
                             total_timee_driverdetails.setText(toatal_time_taken)
+                            Ride_status()
 
                         }
 
@@ -301,6 +308,178 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
 
         Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+    }
+
+    fun Ride_status()
+    {
+
+        val request = HashMap<String, String>()
+        request.put("booking_id",booking_id)
+
+        var driver_vec_details: Call<BookingStatusResponse> = APIUtils.getServiceAPI()!!.booking_status(request)
+
+        driver_vec_details.enqueue(object : Callback<BookingStatusResponse> {
+            override fun onResponse(call: Call<BookingStatusResponse>, response: Response<BookingStatusResponse>) {
+                try {
+
+
+                    if (response.body()!!.success.equals("true")) {
+
+                        if (response.body()!!.data[0].status.equals("3"))
+
+                        {
+                            showDialog()
+
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Booking_id)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Driver_id)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Drop_Off_Location)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Drop_Off_Latitude)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Drop_Off_Longitude)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Total_distance)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Total_Time)
+
+
+                        }
+                        else
+
+                        {
+                            var handler: Handler? = null
+                            handler = Handler()
+                            handler.postDelayed(Runnable {
+                                Ride_status()
+
+                            }, 5000)
+
+                        }
+
+                    }
+                    else {
+
+                        Toast.makeText(this@TipInformation,response.body()!!.msg, Toast.LENGTH_LONG)
+                            .show()
+                        customprogress.hide()
+                    }
+
+                }  catch (e: Exception) {
+                    Log.e("saurav", e.toString())
+                    Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
+                    customprogress.hide()
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<BookingStatusResponse>, t: Throwable) {
+                Log.e("Saurav", t.message.toString())
+                Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
+                customprogress.hide()
+
+            }
+
+        })
+    }
+
+    fun showDialog() {
+        val dialog = BottomSheetDialog(this)
+
+        //  val dialog = Dialog(mContext,android.R.style.ThemeOverlay_Material_Light)
+
+        dialog.getWindow()!!
+            .setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+
+
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.popup_write_review)
+
+        /* var booking_id=SharedPreferenceUtils.getInstance(mContext)?.getStringValue(ConstantUtils.Booking_id,"").toString()
+         var driver_id=SharedPreferenceUtils.getInstance(mContext)?.getStringValue(ConstantUtils.Driver_Id,"").toString()
+         var user_id=SharedPreferenceUtils.getInstance(mContext)?.getStringValue(ConstantUtils.USER_ID,"").toString()*/
+
+
+        var reveiw_edittext=dialog.findViewById<EditText>(R.id.edit_review)
+        var rating_bar=dialog.findViewById<RatingBar>(R.id.rBar)
+
+        var submit_review_btn=dialog.findViewById<TextView>(R.id.submit_review_btn)
+
+        submit_review_btn?.setOnClickListener {
+             reveiw_string_value=reveiw_edittext?.text.toString()
+             rating_val= rating_bar?.rating.toString()
+
+            if (reveiw_string_value.isEmpty())
+            {
+                Toast.makeText(this,"Please Write Review",Toast.LENGTH_LONG).show()
+            }
+            else if (rating_val.equals("0.0"))
+            {
+                Toast.makeText(this,"Please rate your Review",Toast.LENGTH_LONG).show()
+            }
+
+            else
+            {
+                writereveiw()
+                dialog.hide()
+
+            }
+
+        }
+
+
+
+
+        dialog.show()
+
+    }
+    fun writereveiw()
+    {
+
+        val request = HashMap<String, String>()
+        request.put("booking_id",booking_id)
+        request.put("user_id",user_id)
+        request.put("driver_id",driver_id)
+        request.put("rating",rating_val)
+        request.put("review",reveiw_string_value)
+
+
+
+
+
+        var login_in: Call<RatingReviewResponse> = APIUtils.getServiceAPI()!!.rating(request)
+
+        login_in.enqueue(object : Callback<RatingReviewResponse> {
+            override fun onResponse(call: Call<RatingReviewResponse>, response: Response<RatingReviewResponse>) {
+                try {
+
+
+                    if (response.body()!!.success.equals("true")) {
+                        Toast.makeText(this@TipInformation,response.body()!!.msg.toString(), Toast.LENGTH_LONG).show()
+                        var intent=Intent(this@TipInformation,Location_fetchActivity::class.java)
+                        startActivity(intent)
+
+
+
+                    } else {
+
+                        Toast.makeText(this@TipInformation,response.body()!!.msg.toString(), Toast.LENGTH_LONG).show()
+
+                    }
+
+                }  catch (e: Exception) {
+                    Log.e("saurav", e.toString())
+                    Toast.makeText(this@TipInformation,e.message, Toast.LENGTH_LONG).show()
+
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<RatingReviewResponse>, t: Throwable) {
+                Log.e("Saurav", t.message.toString())
+                Toast.makeText(this@TipInformation,t.message, Toast.LENGTH_LONG).show()
+
+            }
+
+        })
     }
 
 }

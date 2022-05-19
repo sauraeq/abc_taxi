@@ -56,12 +56,12 @@ class CancelTripAdapter (
         }
         if(selectedItemPosition==position.toString())
         {
-            holder.Reason.setTextColor(Color.BLUE)
-            holder.linear_trip.setBackgroundColor(Color.YELLOW)
+            holder.Reason.setTextColor(Color.BLACK)
+            holder.linear_trip.setBackgroundColor(Color.GRAY)
         }
         else
         {   holder.Reason.setTextColor(Color.BLACK)
-            holder.linear_trip.setBackgroundColor(Color.RED)
+            holder.linear_trip.setBackgroundColor(Color.WHITE)
         }
 
     }

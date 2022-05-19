@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsemibold"
-                android:text="View Profile"
+                android:text="@string/profile_overview"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp">
 

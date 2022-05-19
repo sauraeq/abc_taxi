@@ -212,15 +212,25 @@ class Vechicle_list : AppCompatActivity(),OnMapReadyCallback,VehicleListAdapter.
         /*  Toast.makeText(this,reason,Toast.LENGTH_LONG).show()*/
         if (driver_idd.isEmpty()) {
 
+
         } else {
             SharedPreferenceUtils.getInstance(this)!!.setStringValue(ConstantUtils.Driver_id,driver_idd)
             confirm_txt.setOnClickListener {
+                if (driver_idd.equals(""))
+                {
+                    Toast.makeText(this,"please Select Vehicle",Toast.LENGTH_LONG).show()
 
-                if (NetworkUtils.checkInternetConnection(this)) {
-                   Vehiclelist()
-                    val intent=Intent(this,ConfirmPickUP::class.java)
-                    startActivity(intent)
                 }
+                else
+                {
+                    if (NetworkUtils.checkInternetConnection(this)) {
+                        Vehiclelist()
+                        val intent=Intent(this,ConfirmPickUP::class.java)
+                        startActivity(intent)
+                    }
+                }
+
+
             }
         }
 

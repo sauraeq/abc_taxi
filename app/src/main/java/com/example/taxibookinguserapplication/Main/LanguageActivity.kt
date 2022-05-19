@@ -9,8 +9,10 @@ import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.Responses.LanguageRespnse
 import com.example.taxibookinguserapplication.databinding.ActivityLanguageBinding
 import com.example.taxibookinguserapplication.util.BaseActivity
+import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
 import com.example.taxibookinguserapplication.util.cont
 import com.rehablab.localsaved.shareprefrences
+import com.rehablab.util.ConstantUtils
 import kotlinx.android.synthetic.main.activity_language.*
 import kotlinx.android.synthetic.main.activity_language.tv_next
 import kotlinx.android.synthetic.main.activity_login.*
@@ -65,6 +67,7 @@ class LanguageActivity : BaseActivity(), cont {
                             if (response.body()!!.data.size > 0) {
                                 var data = response.body()!!.data[0]
                                 shrp.setStringPreference(ID, data.id)
+                                SharedPreferenceUtils.getInstance(this@LanguageActivity)!!.setStringValue(ConstantUtils.Language_Choosen,data.name)
                                 val intent =
                                     Intent(this@LanguageActivity, LoginActivity::class.java)
                                 intent.putExtra("language", tv_next.text.toString())
@@ -72,7 +75,7 @@ class LanguageActivity : BaseActivity(), cont {
                                 /*    startActivity(Intent(this@LanguageActivity, LoginActivity::class.java)
                                  )*/
 
-                                showToastMessage(this@LanguageActivity, response.body()?.msg)
+                               // showToastMessage(this@LanguageActivity, response.body()?.msg)
 
                             }
                         } else {
@@ -97,7 +100,9 @@ class LanguageActivity : BaseActivity(), cont {
 
     private fun onClick() {
         rl_english.setOnClickListener {
-                setLanguages()
+            SharedPreferenceUtils.getInstance(this@LanguageActivity)!!.setStringValue(ConstantUtils.Language_Choosen,"English")
+
+            setLanguages()
                 img_english.setImageResource(R.drawable.greycircle)
             intent.putExtra("language",tv_english.text.toString())
         }

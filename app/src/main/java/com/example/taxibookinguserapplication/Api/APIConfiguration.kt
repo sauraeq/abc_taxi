@@ -94,6 +94,12 @@ interface APIConfiguration {
         @Body stringStringHashMap: HashMap<String, String>,
     ): Call<CancelTripResponse>
 
+    @POST("users/addreview")
+    @Headers("Content-Type:application/x-www-form-urlencoded")
+    fun rating(
+        @Body stringStringHashMap: HashMap<String, String>,
+    ): Call<RatingReviewResponse>
+
     /*  @POST("user/resend")
      @Headers("Content-Type:application/x-www-form-urlencoded")
      fun ResendOtp(

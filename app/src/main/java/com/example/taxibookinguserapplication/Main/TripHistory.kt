@@ -12,6 +12,8 @@ import com.example.taxibookinguserapplication.Main.Adapter.TCAdapter
 import com.example.taxibookinguserapplication.Main.Adapter.TripHistory_adapter
 import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.Responses.*
+import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
+import com.rehablab.util.ConstantUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_trip_history.*
 import kotlinx.android.synthetic.main.activity_view_profile.*
@@ -23,23 +25,26 @@ class TripHistory : AppCompatActivity() {
     lateinit var recycler_trip_history: RecyclerView
     private var mlist: List<TripHistoryData> = ArrayList()
      lateinit  var customprogress:Dialog
+     var user_id:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         customprogress= Dialog(this)
         customprogress.setContentView(R.layout.loaderrrr_layout)
         setContentView(R.layout.activity_trip_history)
         recycler_trip_history=findViewById(R.id.recyclerview_trip_history)
-        Triphistory()
+
+        user_id=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.USER_ID,"").toString()
         back_act_triphistory.setOnClickListener {
             onBackPressed()
         }
+        Triphistory()
     }
 
 
     fun Triphistory()
     {    customprogress.show()
         var hashMap = HashMap<String, String>()
-        hashMap.put("user_id","38")
+        hashMap.put("user_id",user_id)
 
 
         var trips: Call<TripHistory_Response> = APIUtils.getServiceAPI()!!.trip_his(hashMap)

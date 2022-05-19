@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:text="@string/your_ride_has_been_completed_successfully"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/_14ssp"
+            android:gravity="center"
+            android:layout_margin="@dimen/_4sdp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <TextView
+            android:text="@string/please_rate_the_driver_now"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/_14ssp"
+            android:gravity="center"
+            android:layout_margin="@dimen/_4sdp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_30sdp">
+
+            <RatingBar
+                android:id="@+id/rBar"
+                android:theme="@style/MyRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:numStars="5"
+                android:stepSize="0.5" />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="@dimen/_15sdp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="write a review:-"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15ssp"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_25sdp"/>
+            <EditText
+                android:id="@+id/edit_review"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:background="@drawable/edittext_corner"
+                android:padding="@dimen/_5sdp"
+                android:gravity="start"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:inputType="textMultiLine"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:hint="Write a review"
+                android:textSize="@dimen/_15ssp">
+
+            </EditText>
+
+
+            <LinearLayout
+                android:id="@+id/sign_up_linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:clickable="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:padding="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/submit_review_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/button_corner"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:layout_marginRight="@dimen/_50sdp"
+                    android:layout_marginLeft="@dimen/_50sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:text="Submit"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

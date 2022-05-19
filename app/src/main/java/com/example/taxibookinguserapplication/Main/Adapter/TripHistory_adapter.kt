@@ -45,7 +45,7 @@ class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryDat
         //holder.price.setText(mlist[position].amount.toString())
         //holder.time_date.setText(mlist[position].created_date)
       //  holder.vehicle.setText(mlist[position].driver_name)
-        holder.price.text= mlist[position].amount as CharSequence?
+        holder.price.text= "CHF"+" "+mlist[position].amount as CharSequence?
         holder.time_date.text= mlist[position].created_date
         holder.vehicle.text= mlist[position].driver_name
 

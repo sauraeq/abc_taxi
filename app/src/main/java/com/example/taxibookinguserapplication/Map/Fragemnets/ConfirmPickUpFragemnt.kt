@@ -19,6 +19,7 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.taxibookinguserapplication.Api.APIUtils
+import com.example.taxibookinguserapplication.LocationMap.Location_fetchActivity
 import com.example.taxibookinguserapplication.Main.TipInformation
 import com.example.taxibookinguserapplication.Map.ConfirmPickUP
 import com.example.taxibookinguserapplication.R
@@ -65,6 +66,7 @@ class ConfirmPickUpFragemnt : Fragment() {
     lateinit var customprogress: Dialog
     lateinit var confirm_search_btn: TextView
     lateinit var pick_up_confirm_texview: TextView
+    lateinit var rest_loc:TextView
     var Confirm_pickup_total_distance:String=""
     var toatal_time_taken:String="0"
     var Drop_address:String=""
@@ -88,15 +90,28 @@ class ConfirmPickUpFragemnt : Fragment() {
         var  confirm_pick_up=rootview.findViewById<LinearLayout>(R.id.confirm_pick_Up_layout)
         current_location=rootview.findViewById(R.id.current_loc_textview)
         pick_up_confirm_texview =rootview.findViewById(R.id.pick_up_confirm_txt1)
+        rest_loc=rootview.findViewById(R.id.reset_location)
 
         customprogress= Dialog(requireContext())
-        customprogress.setContentView(R.layout.loader_layout)
+        customprogress.setContentView(R.layout.loaderrrr_layout)
 
 
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
 
+        }
+        rest_loc.setOnClickListener {
+            SharedPreferenceUtils.getInstance(requireContext())!!.removeKey(ConstantUtils.Pick_UP_Longitude)
+            SharedPreferenceUtils.getInstance(requireContext())!!.removeKey(ConstantUtils.Pick_UP_Latitude)
+            SharedPreferenceUtils.getInstance(requireContext())!!.removeKey(ConstantUtils.Pick_up_Location)
+            SharedPreferenceUtils.getInstance(requireContext())!!.removeKey(ConstantUtils.Drop_Off_Location)
+            SharedPreferenceUtils.getInstance(requireContext())!!.removeKey(ConstantUtils.Drop_Off_Latitude)
+            SharedPreferenceUtils.getInstance(requireContext())!!.removeKey(ConstantUtils.Drop_Off_Location)
+            SharedPreferenceUtils.getInstance(requireContext())!!.removeKey(ConstantUtils.Driver_id)
+            SharedPreferenceUtils.getInstance(requireContext())!!.removeKey(ConstantUtils.Booking_id)
+            var intent=Intent(requireContext(),Location_fetchActivity::class.java)
+            startActivity(intent)
         }
 
 

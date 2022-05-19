@@ -2,6 +2,8 @@ package com.rehablab.util
 
 object ConstantUtils {
     const val USER_ID="user_id"
+    const val Language_Choosen="language"
+    const val USER_LOC="user_location"
     const val PERMISSION_REQUEST_CODE = 10001
     const val Image_Url="Image_Url"
     const val Pick_UP_Latitude="pickup_latitude"

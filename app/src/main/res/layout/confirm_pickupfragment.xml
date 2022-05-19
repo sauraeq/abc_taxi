@@ -126,10 +126,10 @@
                                 <AutoCompleteTextView
                                     android:id="@+id/current_loc_textview"
                                     android:background="@null"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="@dimen/_100sdp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_8sdp"
-                                    android:layout_weight="6"
+                                    android:layout_weight="5"
                                     android:focusable="false"
                                     android:inputType="textMultiLine"
                                     android:fontFamily="@font/poppinsmedium"
@@ -151,6 +151,25 @@
                                     android:text="@string/search"
                                     android:visibility="gone"
                                     android:textColor="@color/black" />
+
+                                <TextView
+                                     android:layout_width="@dimen/_50sdp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:layout_marginTop="@dimen/_6sdp"
+                                    android:layout_marginRight="@dimen/_5sdp"
+                                    android:layout_weight="5"
+                                    android:id="@+id/reset_location"
+                                    android:background="@drawable/button_corner"
+                                    android:fontFamily="@font/poppinsmedium"
+                                    android:paddingTop="@dimen/_10sdp"
+                                    android:text="@string/reset"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_8sdp"
+                                    android:textStyle="bold" />
+
+
                             </LinearLayout>
 
                             <LinearLayout

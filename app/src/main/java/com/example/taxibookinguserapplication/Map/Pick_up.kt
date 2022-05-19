@@ -1,34 +1,39 @@
 package com.example.taxibookinguserapplication.Map
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.taxibookinguserapplication.Api.APIUtils
 import com.example.taxibookinguserapplication.Login.LoginActivity
-import com.example.taxibookinguserapplication.Main.PrivacyPolicyActivity
-import com.example.taxibookinguserapplication.Main.Term_ConditionActivity
-import com.example.taxibookinguserapplication.Main.TripHistory
-import com.example.taxibookinguserapplication.Main.ViewProfile
+import com.example.taxibookinguserapplication.Main.*
 import com.example.taxibookinguserapplication.Map.Adapter.NavigationRVAdapter
 import com.example.taxibookinguserapplication.Map.Fragemnets.PickupFragments
 import com.example.taxibookinguserapplication.Map.Model.ClickListener
 import com.example.taxibookinguserapplication.Map.Model.NavigationItemModel
 import com.example.taxibookinguserapplication.Map.Model.RecyclerTouchListener
 import com.example.taxibookinguserapplication.R
+import com.example.taxibookinguserapplication.Responses.SigninResponse
 import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
 import com.rehablab.util.ConstantUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_pick_up.*
+import kotlinx.android.synthetic.main.activity_view_profile.*
+import retrofit2.Call
+import retrofit2.Response
 
 class Pick_up : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
@@ -36,10 +41,15 @@ class Pick_up : AppCompatActivity() {
     lateinit var navigation_rv: RecyclerView
     lateinit var ivClose1:ImageView
     var Image_Url:String=""
+    var User_location:String=""
+    var phone_number:String=""
+    var token_id:String=""
+    var position:String=""
+    lateinit var customprogress: Dialog
 
 
     private var items = arrayListOf(
-        NavigationItemModel(R.drawable.home, "Account"),
+        NavigationItemModel(R.drawable.home, "Profile Overview"),
         NavigationItemModel(R.drawable.wallet, "Wallet"),
         NavigationItemModel(R.drawable.trips, "Trips"),
         NavigationItemModel(R.drawable.tc, "Terms & Conditions"),
@@ -48,7 +58,7 @@ class Pick_up : AppCompatActivity() {
         // NavigationItemModel(R.drawable.back, "Like us on facebook")
     )
     private var items1 = arrayListOf(
-        NavigationItemModel(R.drawable.home, "Account"),
+        NavigationItemModel(R.drawable.home, "Profile Overview"),
         NavigationItemModel(R.drawable.wallet, "Wallet"),
         NavigationItemModel(R.drawable.trips, "Trips"),
         NavigationItemModel(R.drawable.tc, "Terms & Conditions"),
@@ -61,12 +71,29 @@ class Pick_up : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pick_up)
 
+
         drawerLayout = findViewById(R.id.drawer_layout)
         navigation_rv=findViewById(R.id.navigation_rv1)
         var ivMenu=findViewById<ImageView>(R.id.ivMenu1)
         ivClose1=findViewById(R.id.ivClose)
+        customprogress= Dialog(this)
+        customprogress.setContentView(R.layout.loaderrrr_layout)
+
+        token_id=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Token_ID,"").toString()
+        phone_number=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Phone_Number,"").toString()
+
 
         Image_Url=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Image_Url,"").toString()
+
+        User_location=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.USER_LOC,"").toString()
+       if (User_location.equals(""))
+       {
+
+       }
+        else{
+           user_location_sidebar.setText(User_location)
+       }
+        user_drtails()
 
         if (Image_Url.equals(""))
         {
@@ -81,6 +108,9 @@ class Pick_up : AppCompatActivity() {
 
         Logout_Linear_Layout.setOnClickListener {
             exit_alert_dialog()
+        }
+        ivClose.setOnClickListener{
+            onBackPressed()
         }
 
         val bundle = Bundle()
@@ -116,8 +146,8 @@ class Pick_up : AppCompatActivity() {
                     }
                     1 -> {
                         //  drawerLayout.closeDrawer(GravityCompat.START)
-                        /*val intent = Intent(this@Pick_up, TripDetails::class.java)
-                        startActivity(intent)*/
+                        val intent = Intent(this@Pick_up, Wallet::class.java)
+                        startActivity(intent)
                     }
                     2 -> {
                         val intent = Intent(this@Pick_up, TripHistory::class.java)
@@ -250,6 +280,67 @@ class Pick_up : AppCompatActivity() {
 
         alertDialog.setCancelable(false)
         alertDialog.show()
+    }
+    private fun user_drtails() {
+        customprogress.show()
+        var hashMap = HashMap<String, String>()
+        hashMap.put("mobile", phone_number)
+        hashMap.put("device_tokanid", "hddhd")
+
+        val SinginCall = APIUtils.getServiceAPI()?.signin(hashMap)
+        SinginCall?.enqueue(object : retrofit2.Callback<SigninResponse> {
+            override fun onResponse(
+                call: Call<SigninResponse>,
+                response: Response<SigninResponse>
+            ) {
+                try {
+
+
+                    if (response.code() == 200) {
+                        if (response.body()?.success.equals("true")) {
+
+                            //  Toast.makeText(this@ViewProfile,response.body()!!.msg,Toast.LENGTH_LONG).show()
+                            try {
+                                user_location_sidebar.setText(response.body()!!.data[0].address)
+                                username_sidebar.setText(response.body()!!.data[0].name)
+                                var img_url = response.body()!!.data[0].profile_photo
+                                if (img_url.isEmpty()) {
+
+                                } else {
+                                    SharedPreferenceUtils.getInstance(this@Pick_up)!!
+                                        .setStringValue(ConstantUtils.Image_Url, img_url)
+                                    var picasso = Picasso.get()
+                                    picasso.load(response.body()!!.data[0].profile_photo)
+                                        .into(navigation_user_pic)
+                                }
+                                customprogress.hide()
+
+                            } catch (e: Exception) {
+
+                            }
+                            customprogress.hide()
+                        } else {
+
+                            Toast.makeText(this@Pick_up, response.body()!!.msg, Toast.LENGTH_LONG)
+                                .show()
+                            customprogress.hide()
+
+                        }
+                    }
+
+                } catch (e: Exception) {
+                    Log.e("signinrfailuour", e.message.toString())
+                    customprogress.hide()
+                }
+            }
+
+            override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
+                customprogress.hide()
+                Log.e("signinrfailuour", t.message.toString())
+
+
+            }
+        })
     }
 
 }

@@ -15,15 +15,23 @@
     <string name="email">Email</string>
     <string name="gender">Gender</string>
     <string name="save">Save</string>
-    <string name="cancel_booking">Cancel Booking</string>
+    <string name="cancel_booking">Cancel Ride</string>
     <string name="other_reason">other reason</string>
-    <string name="cancel_trip">Cancel Trip</string>
+    <string name="cancel_trip">Cancel Ride</string>
     <string name="are_you_want_to_sure_to_logout">Are you want to sure to logout</string>
     <string name="signup">SignUp</string>
     <string name="signin">SignIn</string>
     <string name="login_to_your_account">Login to your account</string>
-    <string name="confirm_pickup_location">Confirm PickUp Location</string>
-    <string name="confirm_pick_up">Confirm Pick Up</string>
+    <string name="confirm_pickup_location">Confirm Your PickUp Location</string>
+    <string name="confirm_pick_up">Confirm PickUp</string>
     <string name="cancel">Cancel</string>
+    <string name="phone">Phone</string>
+    <string name="remarks">Remarks</string>
+    <string name="reset">Reset Location</string>
+    <string name="profile_overview">Profile Overview</string>
+    <string name="cash">Cash</string>
+    <string name="paytm">Paytm</string>
+    <string name="please_rate_the_driver_now">Please rate the driver now.</string>
+    <string name="your_ride_has_been_completed_successfully">Your ride has been completed successfully.</string>
 
 </resources>

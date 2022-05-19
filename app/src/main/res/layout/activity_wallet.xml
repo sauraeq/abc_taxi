@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E5E5E5"
     tools:context=".Main.Wallet">
 
     <LinearLayout
@@ -30,8 +31,7 @@
             </TextView>
 
             <ImageView
-
-                android:id="@+id/back_act_view"
+                android:id="@+id/back_icon_wallet"
                 android:layout_width="@dimen/_12sdp"
                 android:layout_height="@dimen/_12sdp"
                 android:layout_alignParentRight="true"
@@ -79,7 +79,7 @@
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 app:cardCornerRadius="@dimen/_8sdp"
-                android:layout_height="@dimen/_40sdp">
+                android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_margin="@dimen/_2sdp"
                     android:layout_width="match_parent"
@@ -94,7 +94,6 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/_2sdp"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:layout_marginEnd="@dimen/_2sdp"
@@ -107,9 +106,102 @@
                     <TextView
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/_45sdp"
-                        android:text="Paytm"
+                        android:text="@string/paytm"
                         android:textStyle="bold"
                         android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        >
+
+                    </TextView>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                app:cardElevation="@dimen/_5sdp"
+                android:elevation="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                app:cardCornerRadius="@dimen/_8sdp"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_margin="@dimen/_2sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <RelativeLayout
+                        android:background="@drawable/payment_bck"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginEnd="@dimen/_2sdp"
+                            android:layout_marginBottom="@dimen/_2sdp"
+                            android:src="@drawable/cash_icon">
+
+                        </ImageView>
+
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_45sdp"
+                        android:text="@string/cash"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        >
+
+                    </TextView>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                app:cardElevation="@dimen/_5sdp"
+                android:elevation="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                app:cardCornerRadius="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_margin="@dimen/_2sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <RelativeLayout
+                        android:background="@drawable/payment_bck"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginEnd="@dimen/_2sdp"
+                            android:layout_marginBottom="@dimen/_2sdp"
+                            android:src="@drawable/add_payment">
+
+                        </ImageView>
+
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_45sdp"
+                        android:text="Add payment method"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         >

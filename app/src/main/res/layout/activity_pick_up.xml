@@ -185,6 +185,7 @@
                     android:text="Alexis Enache"
                     android:layout_marginLeft="@dimen/_14sdp"
                     android:textColor="@color/black"
+                    android:inputType="textCapSentences"
                     android:textSize="@dimen/_15ssp" />
                 <TextView
                     android:id="@+id/user_location_sidebar"
@@ -194,6 +195,7 @@
                     android:textSize="@dimen/_13ssp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:inputType="textCapSentences"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                 </TextView>

@@ -454,7 +454,7 @@ class PickupFragments : Fragment() {
                         MarkerOptions()
                             .position(LatLng(lati_curr1.toDouble(), longi_current1.toDouble()))
                             .title(loate1)
-                            .icon(bitmapDescriptorFromVector(activity, R.drawable.maparroww))
+                            .icon(bitmapDescriptorFromVector(activity, R.drawable.location_iocon))
                     )
                 }
 
