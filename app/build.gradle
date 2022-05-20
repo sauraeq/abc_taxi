@@ -84,7 +84,7 @@ dependencies {
 
     implementation 'com.kaopiz:kprogresshud:1.2.0'
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
-    implementation platform('com.google.firebase:firebase-bom:29.3.1')
+    implementation platform('com.google.firebase:firebase-bom:29.3.0')
     implementation 'com.google.firebase:firebase-analytics'
 
     //dependency of retrofit

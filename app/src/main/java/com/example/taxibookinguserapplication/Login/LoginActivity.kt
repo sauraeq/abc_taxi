@@ -152,7 +152,7 @@ class LoginActivity : BaseActivity(), cont {
             override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
                 hideProgressDialog()
                 Log.e("signinrfailuour", t.message.toString())
-                showToastMessage(this@LoginActivity, t.message.toString())
+                showToastMessage(this@LoginActivity, "Weak Internet Connection".toString())
             }
         })
 
@@ -198,7 +198,7 @@ class LoginActivity : BaseActivity(), cont {
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                 hideProgressDialog()
                 Log.e("signuprfailuour", t.message.toString())
-                showToastMessage(this@LoginActivity, t.message.toString())
+                showToastMessage(this@LoginActivity, "Weak Internet Connection".toString())
             }
         })
     }
@@ -239,7 +239,7 @@ class LoginActivity : BaseActivity(), cont {
                     hideProgressDialog()
                     Log.e("saurav", e.toString())
 
-                    Toast.makeText(this@LoginActivity,e.message,Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@LoginActivity,"Weak Internet Connection",Toast.LENGTH_LONG).show()
                    // custom_progress.hide()
 
                 }

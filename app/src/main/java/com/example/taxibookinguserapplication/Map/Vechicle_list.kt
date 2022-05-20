@@ -10,10 +10,12 @@ import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taxibookinguserapplication.Api.APIUtils
+import com.example.taxibookinguserapplication.LocationMap.Location_fetchActivity
 import com.example.taxibookinguserapplication.Main.Adapter.TCAdapter
 import com.example.taxibookinguserapplication.Map.Adapter.VehicleListAdapter
 import com.example.taxibookinguserapplication.R
@@ -87,7 +89,11 @@ class Vechicle_list : AppCompatActivity(),OnMapReadyCallback,VehicleListAdapter.
         back_linera_layout_act.setOnClickListener {
             onBackPressed()
         }
-
+        no_driver_btn.setOnClickListener {
+            //finishAffinity()
+            var intent=Intent(this,Location_fetchActivity::class.java)
+            startActivity(intent)
+        }
 
         /*confirm_txt.setOnClickListener {
 
@@ -253,21 +259,24 @@ class Vechicle_list : AppCompatActivity(),OnMapReadyCallback,VehicleListAdapter.
 
 
                     if (response.body()!!.success.equals("true")) {
-
+                        list_vehcile_linear.visibility= View.VISIBLE
+                        no_driver_found_linear.visibility=View.GONE
                         mlist= response.body()!!.data
                         recycler_Vehicle_list.layoutManager= LinearLayoutManager(this@Vechicle_list)
                         recycler_Vehicle_list.adapter= VehicleListAdapter(this@Vechicle_list,this@Vechicle_list,mlist)
                         customprogress.hide()
 
                     } else {
-                        Toast.makeText(this@Vechicle_list,response.body()!!.msg, Toast.LENGTH_LONG).show()
+                        list_vehcile_linear.visibility=View.GONE
+                        no_driver_found_linear.visibility=View.VISIBLE
+                       // Toast.makeText(this@Vechicle_list,response.body()!!.msg, Toast.LENGTH_LONG).show()
                         customprogress.hide()
                     }
 
                 }  catch (e: Exception) {
                     customprogress.hide()
                     Log.e("saurav", e.toString())
-                    Toast.makeText(this@Vechicle_list,e.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@Vechicle_list,"Weak Internet Connection", Toast.LENGTH_LONG).show()
                 }
 
             }
@@ -275,7 +284,7 @@ class Vechicle_list : AppCompatActivity(),OnMapReadyCallback,VehicleListAdapter.
             override fun onFailure(call: Call<VehicleListResponse>, t: Throwable) {
                 customprogress.hide()
                 Log.e("Saurav", t.message.toString())
-                Toast.makeText(this@Vechicle_list,t.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(this@Vechicle_list,"Weak Internet Connection", Toast.LENGTH_LONG).show()
 
         }
     })

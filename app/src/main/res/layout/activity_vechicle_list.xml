@@ -53,8 +53,10 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/list_vehcile_linear"
                 android:layout_weight="0.8"
                 android:orientation="vertical"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="0dp">
 
@@ -80,7 +82,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyler_vehicle_List"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_150sdp"
+                        android:layout_height="@dimen/_170sdp"
                         android:layout_margin="@dimen/_5sdp">
 
                     </androidx.recyclerview.widget.RecyclerView>
@@ -118,6 +120,63 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/no_driver_found_linear"
+                android:layout_weight="0.8"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                >
+                <TextView
+                    android:text="@string/no_driver_found"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:textSize="@dimen/_15ssp"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+                <TextView
+                    android:text="@string/please_try_after_some_time"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:textSize="@dimen/_12ssp"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginRight="@dimen/_60sdp"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_5sdp">
+
+                    <TextView
+                       android:id="@+id/no_driver_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_corner"
+                        android:fontFamily="@font/poppinsmedium"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:text="Ok"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
 
             </LinearLayout>

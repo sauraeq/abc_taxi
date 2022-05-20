@@ -1,34 +1,77 @@
 {
   "project_info": {
-    "project_number": "365998007440",
-    "project_id": "abctaxiuser",
-    "storage_bucket": "abctaxiuser.appspot.com"
+    "project_number": "940771417880",
+    "project_id": "taxidriver-6c531",
+    "storage_bucket": "taxidriver-6c531.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:365998007440:android:0a640a954b1d8fdee1e415",
+        "mobilesdk_app_id": "1:940771417880:android:0eb49e2174956d0b64c86d",
         "android_client_info": {
-          "package_name": "com.example.taxibookinguserapplication"
+          "package_name": "com.abc.taxidriver"
         }
       },
       "oauth_client": [
         {
-          "client_id": "365998007440-l0qak1eg1j0enblljs8gn4e2opcr5dlb.apps.googleusercontent.com",
+          "client_id": "940771417880-mp4jubrh1hnvr9pb6n2iccv95qk8rh4u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDPIKxs4TEjzRyXF9TSNtD2CAqwhXX52A8"
+          "current_key": "AIzaSyBnpSf8wj96DR3eB8G803CZNU54uORbXQg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "365998007440-l0qak1eg1j0enblljs8gn4e2opcr5dlb.apps.googleusercontent.com",
+              "client_id": "940771417880-mp4jubrh1hnvr9pb6n2iccv95qk8rh4u.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "940771417880-0ivbun50qne2140a2a2l9tigdkughalp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.equalinfotech.ABC-Taxi"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940771417880:android:393ff4aaf5e343da64c86d",
+        "android_client_info": {
+          "package_name": "com.example.taxibookinguserapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940771417880-mp4jubrh1hnvr9pb6n2iccv95qk8rh4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnpSf8wj96DR3eB8G803CZNU54uORbXQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940771417880-mp4jubrh1hnvr9pb6n2iccv95qk8rh4u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "940771417880-0ivbun50qne2140a2a2l9tigdkughalp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.equalinfotech.ABC-Taxi"
+              }
             }
           ]
         }

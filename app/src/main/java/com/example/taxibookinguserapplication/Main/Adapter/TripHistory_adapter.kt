@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.Responses.PrivacyResData
 import com.example.taxibookinguserapplication.Responses.TripHistoryData
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
 class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryData>) : RecyclerView.Adapter<TripHistory_adapter.ViewHolder>() {
 
@@ -17,14 +19,21 @@ class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryDat
 
         lateinit var time_date: TextView
         lateinit var price: TextView
-        lateinit var vehicle: TextView
-
+        lateinit var driver_img: CircleImageView
+        lateinit var distance:TextView
+        lateinit var pick_locatio:TextView
+        lateinit var drop_location:TextView
+        lateinit var driver_name:TextView
 
         init {
 
             time_date=itemView.findViewById(R.id.trip_time)
-            price=itemView.findViewById(R.id.trip_fare)
-            vehicle=itemView.findViewById(R.id.trip_vehicle)
+            price=itemView.findViewById(R.id.trip_amount)
+            driver_name=itemView.findViewById(R.id.trip_name)
+            driver_img=itemView.findViewById(R.id.trip_image)
+            pick_locatio=itemView.findViewById(R.id.trip_pick)
+            drop_location=itemView.findViewById(R.id.trip_drop)
+            distance=itemView.findViewById(R.id.trip_distance)
 
 
         }
@@ -47,7 +56,22 @@ class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryDat
       //  holder.vehicle.setText(mlist[position].driver_name)
         holder.price.text= "CHF"+" "+mlist[position].amount as CharSequence?
         holder.time_date.text= mlist[position].created_date
-        holder.vehicle.text= mlist[position].driver_name
+        holder.driver_name.text= mlist[position].driver_name
+
+        holder.pick_locatio.text= mlist[position].pickup_address
+        holder.drop_location.text= mlist[position].drop_address
+        holder.distance.text= mlist[position].distance+" "+"Km"
+
+        if (mlist[position].driver_photo.isEmpty())
+        {
+            var pica= Picasso.get()
+            pica.load(R.drawable.driverimg).into(holder.driver_img)
+        }
+        else
+        {
+            var pica= Picasso.get()
+            pica.load(mlist[position].driver_photo).into(holder.driver_img)
+        }
 
 
      /*   holder.description.text=mlist[position].description

@@ -59,16 +59,16 @@ class VehicleListAdapter (var mContext: Context,val lintener: PractiseInterface,
         if (vehList.isNotEmpty())
         {
             var picasso = Picasso.get()
-            picasso.load(vehList).into(holder.image_veh)
+            picasso.load(R.drawable.nanocarimg).into(holder.image_veh)
         }
         else{
             var picasso = Picasso.get()
-            picasso.load(R.drawable.driverimg).into(holder.image_veh)
+            picasso.load(R.drawable.nanocarimg).into(holder.image_veh)
         }
 
         holder.car_category.text= mlist[position].vehicle_no
         holder.car_description.text= mlist[position].vehicle_name
-        holder.price.text= "$"+mlist[position].amount
+        holder.price.text= "CHF"+mlist[position].amount
 
         holder.itemView.setOnClickListener {
             selectedItemPosition=position.toString()

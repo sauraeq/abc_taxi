@@ -466,7 +466,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
                 }  catch (e: Exception) {
                     Log.e("saurav", e.toString())
-                    Toast.makeText(this@TipInformation,e.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
 
 
                 }
@@ -475,7 +475,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
             override fun onFailure(call: Call<RatingReviewResponse>, t: Throwable) {
                 Log.e("Saurav", t.message.toString())
-                Toast.makeText(this@TipInformation,t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
 
             }
 

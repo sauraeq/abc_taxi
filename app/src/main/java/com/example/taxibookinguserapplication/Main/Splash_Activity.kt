@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.taxibookinguserapplication.LocationMap.Location_fetchActivity
+import com.example.taxibookinguserapplication.Login.LoginActivity
 import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
 import com.rehablab.util.ConstantUtils
@@ -25,7 +26,7 @@ class Splash_Activity : AppCompatActivity() {
             }
             else
             {
-                val intent = Intent(this,LanguageActivity::class.java)
+                val intent = Intent(this,LoginActivity::class.java)
                 startActivity(intent)
 
             }

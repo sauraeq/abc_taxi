@@ -132,14 +132,14 @@ class ViewProfile : AppCompatActivity() {
                     }
 
                 } catch (e: Exception) {
-                    Log.e("signinrfailuour", e.message.toString())
+                    Log.e("signinrfailuour", "Weak Internet Connection".toString())
                     customprogress.hide()
                 }
             }
 
             override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
                 customprogress.hide()
-                Log.e("signinrfailuour", t.message.toString())
+                Log.e("signinrfailuour","Weak Internet Connection".toString())
 
 
             }

@@ -536,7 +536,7 @@ class EditProfile : AppCompatActivity() {
                 }  catch (e: Exception) {
                     Log.e("saurav", e.toString())
 
-                    Toast.makeText(this@EditProfile,e.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@EditProfile,"Weak Internet Connection", Toast.LENGTH_LONG).show()
 
                     customprogress.hide()
                 }
@@ -546,7 +546,7 @@ class EditProfile : AppCompatActivity() {
             override fun onFailure(call: Call<EditProfileResponse>, t: Throwable) {
                 Log.e("Saurav", t.message.toString())
 
-                Toast.makeText(this@EditProfile,t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@EditProfile,"Weak Internet Connection", Toast.LENGTH_LONG).show()
 
                 customprogress.hide()
 

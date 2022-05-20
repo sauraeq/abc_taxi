@@ -427,7 +427,7 @@ class ConfirmPickUpFragemnt : Fragment() {
 
                 } catch (e: Exception) {
                     Log.e("saurav", e.toString())
-                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Weak Internet Connection", Toast.LENGTH_LONG).show()
                     customprogress.hide()
 
                 }
@@ -436,7 +436,7 @@ class ConfirmPickUpFragemnt : Fragment() {
 
             override fun onFailure(call: Call<BookingResponse>, t: Throwable) {
                 Log.e("Saurav", t.message.toString())
-                Toast.makeText(requireContext(), t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(),"Weak Internet Connection", Toast.LENGTH_LONG).show()
                 customprogress.hide()
 
 

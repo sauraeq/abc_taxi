@@ -12,86 +12,19 @@
         tools:ignore="MissingConstraints">
 
 
-
         <androidx.cardview.widget.CardView
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="-8dp"
             android:layout_margin="@dimen/_10sdp"
-            android:elevation="@dimen/_5sdp"
+            android:elevation="@dimen/_10sdp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_20sdp"
 
             >
-            <androidx.cardview.widget.CardView
-                android:elevation="@dimen/_10sdp"
-                app:cardElevation="@dimen/_10sdp"
-                app:cardCornerRadius="@dimen/_10sdp"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                >
-                <ImageView
-                    android:layout_margin="@dimen/_5sdp"
-                    android:src="@drawable/trip_map"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </ImageView>
-            </androidx.cardview.widget.CardView>
             <LinearLayout
-                android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_105sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/trip_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:text="12/12/21, 8:20 PM"
-                    android:textSize="@dimen/_10ssp">
-
-                </TextView>
-
-                <TextView
-                    android:id="@+id/trip_fare"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:text="$55.00"
-                    android:textSize="@dimen/_10ssp">
-
-                </TextView>
-            </RelativeLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_120sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/trip_vehicle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:text="Mecedez Benz"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp">
-                </TextView>
-            </LinearLayout>
-            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_90sdp"
                 android:orientation="horizontal">
@@ -102,19 +35,19 @@
                     android:layout_width="@dimen/_42sdp"
                     android:layout_height="@dimen/_42sdp"
                     android:visibility="gone"
-                    android:src="@drawable/profilepic"
+                    android:src="@drawable/driverimg"
                     >
 
                 </ImageView>
                 <de.hdodenhof.circleimageview.CircleImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/user_image_trip"
+                    android:id="@+id/trip_image"
                     android:layout_marginTop="@dimen/_30sdp"
                     android:layout_marginLeft="@dimen/_14sdp"
                     android:layout_width="@dimen/_42sdp"
                     android:layout_height="@dimen/_42sdp"
                     android:src="@drawable/driverimg"
-                    app:civ_border_color="@color/yellow"
+                    app:civ_border_color="@color/black"
                     app:civ_border_width="1dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -133,7 +66,7 @@
 
 
                             <TextView
-                                android:id="@+id/user_profile_trip"
+                                android:id="@+id/trip_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppinsmedium"
@@ -145,7 +78,7 @@
                             </TextView>
 
                             <TextView
-                                android:id="@+id/user_price_trip"
+                                android:id="@+id/trip_amount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
@@ -184,7 +117,7 @@
 
 
                             <TextView
-                                android:id="@+id/user_distance_travel_trip"
+                                android:id="@+id/trip_distance"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_13sdp"
@@ -196,14 +129,14 @@
                             </TextView>
 
                             <TextView
-                                android:id="@+id/user_time_trip"
+                                android:id="@+id/trip_time"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
                                 android:layout_marginRight="@dimen/_5sdp"
                                 android:fontFamily="@font/poppinsmedium"
                                 android:text="12/12/21, 8:20 PM"
-                                android:textSize="@dimen/_13ssp">
+                                android:textSize="@dimen/_8ssp">
 
 
                             </TextView>
@@ -218,10 +151,10 @@
 
 
 
-            </LinearLayout>-->
+            </LinearLayout>
 
 
-           <!-- <LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_100sdp"
@@ -257,7 +190,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/user_pickup_trip"
+                            android:id="@+id/trip_pick"
                             android:text="7958 Swfit Village"
                             android:layout_width="wrap_content"
                             android:textColor="@color/black"
@@ -297,7 +230,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/user_drop_trip"
+                            android:id="@+id/trip_drop"
                             android:text="7958_swfit_village"
                             android:layout_width="wrap_content"
                             android:textColor="@color/black"
@@ -327,21 +260,22 @@
 
                 </LinearLayout>
 
-               &lt;!&ndash; <TextView
+                <TextView
                     android:id="@+id/write_a_Reveiw"
-                    android:text="@string/write_a_review"
+                    android:text="write_a_review"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor=" #2C40F3"
+                    android:visibility="gone"
                     android:fontFamily="@font/poppinsmedium"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textSize="@dimen/_12sdp"
                     android:layout_marginLeft="@dimen/_14sdp"
                     >
 
-                </TextView>&ndash;&gt;
+                </TextView>
 
-            </LinearLayout>-->
+            </LinearLayout>
 
 
         </androidx.cardview.widget.CardView>

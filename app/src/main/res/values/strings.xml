@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ABC Taxi Booking User Application</string>
+    <string name="app_name">ABC Taxi User</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pickup">Pickup</string>
@@ -19,8 +19,8 @@
     <string name="other_reason">other reason</string>
     <string name="cancel_trip">Cancel Ride</string>
     <string name="are_you_want_to_sure_to_logout">Are you want to sure to logout</string>
-    <string name="signup">SignUp</string>
-    <string name="signin">SignIn</string>
+    <string name="signup">Sign Up</string>
+    <string name="signin">Sign In</string>
     <string name="login_to_your_account">Login to your account</string>
     <string name="confirm_pickup_location">Confirm Your PickUp Location</string>
     <string name="confirm_pick_up">Confirm PickUp</string>
@@ -33,5 +33,7 @@
     <string name="paytm">Paytm</string>
     <string name="please_rate_the_driver_now">Please rate the driver now.</string>
     <string name="your_ride_has_been_completed_successfully">Your ride has been completed successfully.</string>
+    <string name="please_try_after_some_time">Please Try After Some Time</string>
+    <string name="no_driver_found">No Driver Found</string>
 
 </resources>

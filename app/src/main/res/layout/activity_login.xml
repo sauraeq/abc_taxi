@@ -106,9 +106,9 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:layout_margin="@dimen/_8sdp"
-                            android:background="@drawable/edittext_corner"
+                            android:background="@drawable/edittext_background_cornner"
                             android:gravity="center_vertical">
 
                             <com.rilixtech.widget.countrycodepicker.CountryCodePicker
@@ -160,7 +160,7 @@
                             android:textColor="@color/white"
                             android:textSize="@dimen/_13sdp" />
 
-                        <RelativeLayout
+                  <!--      <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_20sdp">
@@ -189,47 +189,9 @@
                                 android:layout_marginLeft="@dimen/_3sdp"
                                 android:layout_toEndOf="@+id/tv_singup"
                                 android:background="@color/lightwhite" />
-                        </RelativeLayout>
+                        </RelativeLayout>-->
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_58sdp"
-                            android:layout_marginTop="@dimen/_15sdp"
-                            android:gravity="center"
-                            android:padding="@dimen/_5sdp">
 
-                            <ImageView
-                                android:id="@+id/img_google"
-                                android:layout_width="@dimen/_45sdp"
-                                android:layout_height="@dimen/_45sdp"
-                                android:background="@drawable/imge_bg_cornerradios"
-                                android:elevation="@dimen/_3sdp"
-                                android:padding="@dimen/_9sdp"
-                                android:src="@drawable/google" />
-
-                            <ImageView
-                                android:id="@+id/img_fb"
-                                android:layout_width="@dimen/_45sdp"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_centerInParent="true"
-                                android:layout_marginLeft="@dimen/_15sdp"
-                                android:layout_toEndOf="@+id/img_google"
-                                android:background="@drawable/imge_bg_cornerradios"
-                                android:elevation="@dimen/_3sdp"
-                                android:padding="@dimen/_9sdp"
-                                android:src="@drawable/fb" />
-
-                            <ImageView
-                                android:layout_width="@dimen/_45sdp"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_marginLeft="@dimen/_15sdp"
-                                android:layout_toEndOf="@+id/img_fb"
-                                android:background="@drawable/imge_bg_cornerradios"
-                                android:elevation="@dimen/_3sdp"
-                                android:padding="@dimen/_9sdp"
-                                android:src="@drawable/twitter" />
-
-                        </RelativeLayout>
                     </LinearLayout>
                 </ScrollView>
 
@@ -261,7 +223,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_40sdp"
                             android:layout_margin="@dimen/_8sdp"
-                            android:background="@drawable/edittext_corner"
+                            android:background="@drawable/edittext_background_cornner"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
@@ -350,6 +312,7 @@
         android:layout_marginBottom="2dp"
         android:fontFamily="@font/poppinsregular"
         android:gravity="center"
+        android:visibility="gone"
         android:text="By clicking on sign up, you agree to our Terms &amp; Conditions"
         android:textColor="@color/black"
         android:textSize="10sp" />
