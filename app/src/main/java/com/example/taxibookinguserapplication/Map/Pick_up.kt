@@ -71,7 +71,7 @@ class Pick_up : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pick_up)
 
-
+        SharedPreferenceUtils.getInstance(this)!!.setStringValue(ConstantUtils.Activity_Status,"2")
         drawerLayout = findViewById(R.id.drawer_layout)
         navigation_rv=findViewById(R.id.navigation_rv1)
         var ivMenu=findViewById<ImageView>(R.id.ivMenu1)

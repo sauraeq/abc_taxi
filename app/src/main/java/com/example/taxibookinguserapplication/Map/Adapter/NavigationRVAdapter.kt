@@ -67,7 +67,7 @@ class NavigationRVAdapter (private var items: ArrayList<NavigationItemModel>, pr
 
         if (position == currentPos) {
             holder.itemView.setBackgroundResource(R.drawable.back_corner)
-            //navigation_icon.setImageResource(items[position].icon)
+            navigation_icon.setImageResource(items[position].icon)
             navigation_icon.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN)
             holder.itemView.navigation_title1.setTextColor(Color.WHITE)
 
@@ -75,13 +75,6 @@ class NavigationRVAdapter (private var items: ArrayList<NavigationItemModel>, pr
             //holder.itemView.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
             navigation_icon.setImageResource(items[position].icon)
         }
-
-
-        // holder.itemView.navigation_icon.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
-        // holder.itemView.navigation_title.setTextColor(Color.BLACK)
-        //val font = ResourcesCompat.getFont(context, R.font.mycustomfont)
-        //holder.itemView.navigation_text.typeface = font
-        //holder.itemView.navigation_text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20.toFloat())
 
         navigation_title1.text = items[position].title
 

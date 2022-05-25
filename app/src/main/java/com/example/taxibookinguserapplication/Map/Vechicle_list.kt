@@ -60,6 +60,7 @@ class Vechicle_list : AppCompatActivity(),OnMapReadyCallback,VehicleListAdapter.
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vechicle_list)
         supportActionBar?.hide()
+        SharedPreferenceUtils.getInstance(this)!!.setStringValue(ConstantUtils.Activity_Status,"4")
         recycler_Vehicle_list=findViewById(R.id.recyler_vehicle_List)
 
         customprogress= Dialog(this)

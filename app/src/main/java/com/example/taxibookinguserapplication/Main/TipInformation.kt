@@ -71,6 +71,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         customprogress= Dialog(this)
         customprogress.setContentView(R.layout.dialog_progress)
         progess_linear.visibility=View.VISIBLE
+        SharedPreferenceUtils.getInstance(this)!!.setStringValue(ConstantUtils.Activity_Status,"5")
         Cancel_booking_btn_aty.setOnClickListener {
             val intent=Intent(this,CancelRide::class.java)
             startActivity(intent)
@@ -263,7 +264,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
                             vechile_number_drvFrg_aty.setText(vehicle_no)
                             otp_drvFrg_aty.setOTP(otp)
                             driver_rating_txt_aty.setText(rating)
-                            tp_driverdetails.setText("$"+amount)
+                            tp_driverdetails.setText("$"+response.body()!!.data[0].amount)
                             total_distancee_driverdetails.setText(approx_km)
                             total_timee_driverdetails.setText(toatal_time_taken)
                             Ride_status()

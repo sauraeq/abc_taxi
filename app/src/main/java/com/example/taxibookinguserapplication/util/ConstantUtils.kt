@@ -17,6 +17,7 @@ object ConstantUtils {
     const val  Amount="amount"
     const val OTP="otp"
     const val Driver_id="driver_id"
+    const val Activity_Status="activity_status"
     const val Booking_id="booking_id"
     const val Phone_Number="phone_number"
     const val Token_ID="Token_id"

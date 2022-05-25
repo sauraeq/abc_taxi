@@ -37,6 +37,8 @@ class LoginActivity : BaseActivity(), cont {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        SharedPreferenceUtils.getInstance(this)!!.setStringValue(ConstantUtils.Activity_Status,"0")
+
         shrp = shareprefrences(this)
         if ((ContextCompat.checkSelfPermission(
                 applicationContext,

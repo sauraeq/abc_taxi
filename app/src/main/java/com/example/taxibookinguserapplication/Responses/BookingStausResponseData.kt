@@ -10,6 +10,7 @@ data class BookingStausResponseData(
     val otp: String,
     val profile_photo: String,
     val rating: String,
+    val amount:String,
     val status:String,
     val vehicle_image: String,
     val vehicle_name: String,

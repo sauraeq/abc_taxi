@@ -74,6 +74,7 @@ class Manual_Pick_up : AppCompatActivity() {
         navigation_rv=findViewById(R.id.navigation_rv1_manual)
         var ivMenu=findViewById<ImageView>(R.id.ivMenu1_manual)
         ivClose1=findViewById(R.id.ivClose_manual)
+        SharedPreferenceUtils.getInstance(this)!!.setStringValue(ConstantUtils.Activity_Status,"3")
 
         token_id=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Token_ID,"").toString()
         phone_number=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Phone_Number,"").toString()

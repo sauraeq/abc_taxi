@@ -35,5 +35,6 @@
     <string name="your_ride_has_been_completed_successfully">Your ride has been completed successfully.</string>
     <string name="please_try_after_some_time">Please Try After Some Time</string>
     <string name="no_driver_found">No Driver Found</string>
+    <string name="reset_location">Reset Location</string>
 
 </resources>

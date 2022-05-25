@@ -9,6 +9,8 @@ import android.widget.Toast
 import com.example.taxibookinguserapplication.Map.Manual_Pick_up
 import com.example.taxibookinguserapplication.Map.Pick_up
 import com.example.taxibookinguserapplication.R
+import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
+import com.rehablab.util.ConstantUtils
 import kotlinx.android.synthetic.main.activity_location_fetch.*
 
 
@@ -16,6 +18,7 @@ class Location_fetchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location_fetch)
+        SharedPreferenceUtils.getInstance(this)!!.setStringValue(ConstantUtils.Activity_Status,"1")
         lin_loc.setOnClickListener {
             val intent=Intent(this,Pick_up::class.java)
             startActivity(intent)
