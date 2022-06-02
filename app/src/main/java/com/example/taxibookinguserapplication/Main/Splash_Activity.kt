@@ -25,6 +25,7 @@ class Splash_Activity : AppCompatActivity() {
             if (status.equals("")) {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                finish()
             } else {
                 when (status!!.toInt()) {
                     0 -> {
@@ -33,10 +34,12 @@ class Splash_Activity : AppCompatActivity() {
                     1 -> {
                         val intent = Intent(this, Location_fetchActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
                     2 -> {
                         val intent = Intent(this, Pick_up::class.java)
                         startActivity(intent)
+                        finish()
 
                     }
                     3 -> {
@@ -47,11 +50,13 @@ class Splash_Activity : AppCompatActivity() {
                     4 -> {
                         val intent = Intent(this, Vechicle_list::class.java)
                         startActivity(intent)
+                        finish()
 
                     }
                     5 -> {
                         val intent = Intent(this, TipInformation::class.java)
                         startActivity(intent)
+                        finish()
 
                     }
 

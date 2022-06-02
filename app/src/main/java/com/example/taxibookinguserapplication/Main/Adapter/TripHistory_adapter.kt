@@ -11,6 +11,7 @@ import com.example.taxibookinguserapplication.Responses.PrivacyResData
 import com.example.taxibookinguserapplication.Responses.TripHistoryData
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import java.util.*
 
 class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryData>) : RecyclerView.Adapter<TripHistory_adapter.ViewHolder>() {
 
@@ -56,8 +57,8 @@ class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryDat
       //  holder.vehicle.setText(mlist[position].driver_name)
         holder.price.text= "CHF"+" "+mlist[position].amount as CharSequence?
         holder.time_date.text= mlist[position].created_date
-        holder.driver_name.text= mlist[position].driver_name
-
+        var username=mlist[position].driver_name
+        holder.driver_name.text= getCapsSentences(username)
         holder.pick_locatio.text= mlist[position].pickup_address
         holder.drop_location.text= mlist[position].drop_address
         holder.distance.text= mlist[position].distance+" "+"Km"
@@ -81,6 +82,21 @@ class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryDat
     override fun getItemCount(): Int {
 
         return mlist.size
+    }
+
+    private fun getCapsSentences(tagName: String): String? {
+        val splits = tagName.lowercase(Locale.getDefault()).split(" ".toRegex()).toTypedArray()
+        val sb = StringBuilder()
+        for (i in splits.indices) {
+            val eachWord = splits[i]
+            if (i > 0 && eachWord.length > 0) {
+                sb.append(" ")
+            }
+            val cap = (eachWord.substring(0, 1).uppercase(Locale.getDefault())
+                    + eachWord.substring(1))
+            sb.append(cap)
+        }
+        return sb.toString()
     }
 
 }

@@ -170,7 +170,7 @@ public class SearchActivityNew extends BaseActivity implements View.OnClickListe
         try {
             StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
             sb.append("?key=" + getResources().getString(R.string.api_key));
-            sb.append("&components=country:in");
+            sb.append("&components=country:CHE");
             sb.append("&input=" + URLEncoder.encode(input, "utf8"));
             Log.e("places_url", sb.toString());
 

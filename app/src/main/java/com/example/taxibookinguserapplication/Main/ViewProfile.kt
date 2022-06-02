@@ -57,9 +57,11 @@ class ViewProfile : AppCompatActivity() {
             intent.putExtra("email",User_email.text.toString())
             intent.putExtra("address",user_gender.text.toString())
             startActivity(intent)
+            finish()
         }
         back_act_view.setOnClickListener {
             onBackPressed()
+            finish()
         }
         User_profile_pic1.setOnClickListener {
 
@@ -75,6 +77,7 @@ class ViewProfile : AppCompatActivity() {
                 intent.putExtra("image_url",Image_Url)
             }
                 startActivity(intent)
+            finish()
 
 
         }

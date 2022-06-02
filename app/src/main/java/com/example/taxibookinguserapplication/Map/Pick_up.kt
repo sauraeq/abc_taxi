@@ -34,6 +34,8 @@ import kotlinx.android.synthetic.main.activity_pick_up.*
 import kotlinx.android.synthetic.main.activity_view_profile.*
 import retrofit2.Call
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.HashMap
 
 class Pick_up : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
@@ -76,6 +78,9 @@ class Pick_up : AppCompatActivity() {
         navigation_rv=findViewById(R.id.navigation_rv1)
         var ivMenu=findViewById<ImageView>(R.id.ivMenu1)
         ivClose1=findViewById(R.id.ivClose)
+        ivClose1.setOnClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
         customprogress= Dialog(this)
         customprogress.setContentView(R.layout.loaderrrr_layout)
 
@@ -111,6 +116,7 @@ class Pick_up : AppCompatActivity() {
         }
         ivClose.setOnClickListener{
             onBackPressed()
+            finish()
         }
 
         val bundle = Bundle()
@@ -142,20 +148,24 @@ class Pick_up : AppCompatActivity() {
                     0 -> {
                         val intent = Intent(this@Pick_up, ViewProfile::class.java)
                         startActivity(intent)
+                        finish()
 
                     }
                     1 -> {
                         //  drawerLayout.closeDrawer(GravityCompat.START)
                         val intent = Intent(this@Pick_up, Wallet::class.java)
                         startActivity(intent)
+                        finish()
                     }
                     2 -> {
                         val intent = Intent(this@Pick_up, TripHistory::class.java)
                         startActivity(intent)
+                        finish()
                     }
                     3 -> {
                         val intent = Intent(this@Pick_up, Term_ConditionActivity::class.java)
                         startActivity(intent)
+                        finish()
                         // # Books Fragment
 
                     }
@@ -163,6 +173,7 @@ class Pick_up : AppCompatActivity() {
                         // # Profile Activity
                         val intent = Intent(this@Pick_up, PrivacyPolicyActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
                     5 -> {
                         drawerLayout.closeDrawer(GravityCompat.START)
@@ -186,7 +197,7 @@ class Pick_up : AppCompatActivity() {
         }))
 
 
-        updateAdapter(0)
+        updateAdapter(6)
 
 
 
@@ -301,8 +312,10 @@ class Pick_up : AppCompatActivity() {
 
                             //  Toast.makeText(this@ViewProfile,response.body()!!.msg,Toast.LENGTH_LONG).show()
                             try {
-                                user_location_sidebar.setText(response.body()!!.data[0].address)
-                                username_sidebar.setText(response.body()!!.data[0].name)
+                                val Address=response.body()!!.data[0].address
+                                user_location_sidebar.setText(getCapsSentences(Address))
+                                val username=response.body()!!.data[0].name
+                                username_sidebar.setText(getCapsSentences(username))
                                 var img_url = response.body()!!.data[0].profile_photo
                                 if (img_url.isEmpty()) {
 
@@ -341,6 +354,21 @@ class Pick_up : AppCompatActivity() {
 
             }
         })
+    }
+
+    private fun getCapsSentences(tagName: String): String? {
+        val splits = tagName.lowercase(Locale.getDefault()).split(" ".toRegex()).toTypedArray()
+        val sb = StringBuilder()
+        for (i in splits.indices) {
+            val eachWord = splits[i]
+            if (i > 0 && eachWord.length > 0) {
+                sb.append(" ")
+            }
+            val cap = (eachWord.substring(0, 1).uppercase(Locale.getDefault())
+                    + eachWord.substring(1))
+            sb.append(cap)
+        }
+        return sb.toString()
     }
 
 }

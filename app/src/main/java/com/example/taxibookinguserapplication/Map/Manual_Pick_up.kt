@@ -35,6 +35,8 @@ import kotlinx.android.synthetic.main.activity_pick_up.*
 import kotlinx.coroutines.NonCancellable.cancel
 import retrofit2.Call
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.HashMap
 
 class Manual_Pick_up : AppCompatActivity() {
 
@@ -97,6 +99,10 @@ class Manual_Pick_up : AppCompatActivity() {
 
         Logout_Linear_Layout_manual.setOnClickListener {
             exit_alert_dialog()
+        }
+
+        ivClose1.setOnClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
         }
 
         val bundle = Bundle()
@@ -288,8 +294,11 @@ class Manual_Pick_up : AppCompatActivity() {
 
                             //  Toast.makeText(this@ViewProfile,response.body()!!.msg,Toast.LENGTH_LONG).show()
                             try {
-                                user_location_sidebar_manual.setText(response.body()!!.data[0].address)
-                                username_sidebar_manual.setText(response.body()!!.data[0].name)
+
+                                var address=response.body()!!.data[0].address
+                                user_location_sidebar_manual.setText(getCapsSentences(address))
+                                var username=response.body()!!.data[0].name
+                                username_sidebar_manual.setText(getCapsSentences(username))
                                 var img_url = response.body()!!.data[0].profile_photo
                                 if (img_url.isEmpty()) {
 
@@ -328,6 +337,22 @@ class Manual_Pick_up : AppCompatActivity() {
 
             }
         })
+    }
+
+
+    private fun getCapsSentences(tagName: String): String? {
+        val splits = tagName.lowercase(Locale.getDefault()).split(" ".toRegex()).toTypedArray()
+        val sb = StringBuilder()
+        for (i in splits.indices) {
+            val eachWord = splits[i]
+            if (i > 0 && eachWord.length > 0) {
+                sb.append(" ")
+            }
+            val cap = (eachWord.substring(0, 1).uppercase(Locale.getDefault())
+                    + eachWord.substring(1))
+            sb.append(cap)
+        }
+        return sb.toString()
     }
 }
 

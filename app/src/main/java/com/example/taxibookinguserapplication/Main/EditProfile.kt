@@ -104,6 +104,7 @@ class EditProfile : AppCompatActivity() {
 
         back_act_editprofile.setOnClickListener {
             onBackPressed()
+            finish()
         }
 
         mCompressor = FileCompressor(this)

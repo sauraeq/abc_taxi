@@ -1,6 +1,7 @@
 package com.example.taxibookinguserapplication.Main.Adapter
 
 import android.content.Context
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +39,7 @@ class TCAdapter (var mContext: Context, var mlist: List<TCResData>) : RecyclerVi
         viewType: Int
     ): ViewHolder {
         lateinit var  aContext: Context
-        val v= LayoutInflater.from(parent.context).inflate(R.layout.privacy_adapter_lyt,parent,false)
+        val v= LayoutInflater.from(parent.context).inflate(R.layout.tc_adapter_lyt,parent,false)
         aContext=parent.context
 
         return ViewHolder(v)    }
@@ -47,7 +48,7 @@ class TCAdapter (var mContext: Context, var mlist: List<TCResData>) : RecyclerVi
         //  holder.nameof.text=notiData[position].description
         //holder.time.text=notiData[position].time
 
-        holder.description.text=mlist[position].description
+        holder.description.text= Html.fromHtml(mlist[position].description)
         holder.introduction.text=mlist[position].id
     }
 

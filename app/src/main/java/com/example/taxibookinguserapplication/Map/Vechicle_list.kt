@@ -88,12 +88,15 @@ class Vechicle_list : AppCompatActivity(),OnMapReadyCallback,VehicleListAdapter.
         }
 
         back_linera_layout_act.setOnClickListener {
-            onBackPressed()
+           var intent= Intent(this,Location_fetchActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         no_driver_btn.setOnClickListener {
             //finishAffinity()
             var intent=Intent(this,Location_fetchActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         /*confirm_txt.setOnClickListener {

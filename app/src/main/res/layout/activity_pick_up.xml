@@ -194,7 +194,6 @@
                     android:layout_marginLeft="@dimen/_15sdp"
                     android:textSize="@dimen/_13ssp"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
                     android:inputType="textCapSentences"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
