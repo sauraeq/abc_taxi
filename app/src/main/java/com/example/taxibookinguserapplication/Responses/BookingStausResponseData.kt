@@ -14,5 +14,6 @@ data class BookingStausResponseData(
     val status:String,
     val vehicle_image: String,
     val vehicle_name: String,
+    val mobile:String,
     val vehicle_no: String
 )

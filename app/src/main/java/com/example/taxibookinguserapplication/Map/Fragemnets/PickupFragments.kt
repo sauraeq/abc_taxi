@@ -554,30 +554,36 @@ class PickupFragments : Fragment() {
     }
 
     fun getAddress(lat:Double,long:Double){
-        val geocoder = Geocoder(requireContext(), Locale.getDefault())
-        val addresses: List<Address>?
-        val address: Address?
-        var fulladdress = ""
-        addresses = geocoder.getFromLocation(lat,long, 1)
+        try{
+            val geocoder = Geocoder(requireContext(), Locale.getDefault())
+            val addresses: List<Address>?
+            val address: Address?
+            var fulladdress = ""
+            addresses = geocoder.getFromLocation(lat,long, 1)
 
-        if (addresses.isNotEmpty()) {
-            address = addresses[0]
-            fulladdress = address.getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex
-            var city = address.getLocality();
-            var state = address.getAdminArea();
-            var country = address.getCountryName();
-            var postalCode = address.getPostalCode();
-            var knownName = address.getFeatureName();
+            if (addresses.isNotEmpty()) {
+                address = addresses[0]
+                fulladdress = address.getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex
+                var city = address.getLocality();
+                var state = address.getAdminArea();
+                var country = address.getCountryName();
+                var postalCode = address.getPostalCode();
+                var knownName = address.getFeatureName();
 
-            pick_up_user.setText(fulladdress)
-            SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
-                ConstantUtils.Pick_up_Location, fulladdress)
+                pick_up_user.setText(fulladdress)
+                SharedPreferenceUtils.getInstance(requireContext())!!.setStringValue(
+                    ConstantUtils.Pick_up_Location, fulladdress)
 
-            loadMap(lati_curr, longi_current,fulladdress)
-            // Only if available else return NULL
-        } else{
-            fulladdress = "Location not found"
+                loadMap(lati_curr, longi_current,fulladdress)
+                // Only if available else return NULL
+            } else{
+                fulladdress = "Location not found"
+            }
+        } catch (E:Exception)
+        {
+
         }
+
     }
 
 

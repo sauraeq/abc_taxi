@@ -115,8 +115,8 @@ class Pick_up : AppCompatActivity() {
             exit_alert_dialog()
         }
         ivClose.setOnClickListener{
-            onBackPressed()
-            finish()
+            drawerLayout.closeDrawer(GravityCompat.START)
+
         }
 
         val bundle = Bundle()
@@ -148,24 +148,24 @@ class Pick_up : AppCompatActivity() {
                     0 -> {
                         val intent = Intent(this@Pick_up, ViewProfile::class.java)
                         startActivity(intent)
-                        finish()
+
 
                     }
                     1 -> {
                         //  drawerLayout.closeDrawer(GravityCompat.START)
                         val intent = Intent(this@Pick_up, Wallet::class.java)
                         startActivity(intent)
-                        finish()
+
                     }
                     2 -> {
                         val intent = Intent(this@Pick_up, TripHistory::class.java)
                         startActivity(intent)
-                        finish()
+
                     }
                     3 -> {
                         val intent = Intent(this@Pick_up, Term_ConditionActivity::class.java)
                         startActivity(intent)
-                        finish()
+
                         // # Books Fragment
 
                     }
@@ -173,7 +173,7 @@ class Pick_up : AppCompatActivity() {
                         // # Profile Activity
                         val intent = Intent(this@Pick_up, PrivacyPolicyActivity::class.java)
                         startActivity(intent)
-                        finish()
+
                     }
                     5 -> {
                         drawerLayout.closeDrawer(GravityCompat.START)
@@ -312,7 +312,7 @@ class Pick_up : AppCompatActivity() {
 
                             //  Toast.makeText(this@ViewProfile,response.body()!!.msg,Toast.LENGTH_LONG).show()
                             try {
-                                val Address=response.body()!!.data[0].address
+                                val Address=response.body()!!.data[0].phone
                                 user_location_sidebar.setText(getCapsSentences(Address))
                                 val username=response.body()!!.data[0].name
                                 username_sidebar.setText(getCapsSentences(username))
@@ -359,14 +359,21 @@ class Pick_up : AppCompatActivity() {
     private fun getCapsSentences(tagName: String): String? {
         val splits = tagName.lowercase(Locale.getDefault()).split(" ".toRegex()).toTypedArray()
         val sb = StringBuilder()
-        for (i in splits.indices) {
-            val eachWord = splits[i]
-            if (i > 0 && eachWord.length > 0) {
-                sb.append(" ")
+        try{
+
+            for (i in splits.indices) {
+                val eachWord = splits[i]
+                if (i > 0 && eachWord.length > 0) {
+                    sb.append(" ")
+                }
+                val cap = (eachWord.substring(0, 1).uppercase(Locale.getDefault())
+                        + eachWord.substring(1))
+                sb.append(cap)
             }
-            val cap = (eachWord.substring(0, 1).uppercase(Locale.getDefault())
-                    + eachWord.substring(1))
-            sb.append(cap)
+
+        } catch(e:Exception)
+        {
+
         }
         return sb.toString()
     }

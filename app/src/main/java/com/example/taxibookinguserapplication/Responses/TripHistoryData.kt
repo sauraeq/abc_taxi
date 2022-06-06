@@ -15,6 +15,7 @@ data class TripHistoryData(
     val drop_longitude: String,
     val id: String,
     val otp: Any,
+    val rating:String,
     val pickup_address: String,
     val pickup_latitude: String,
     val pickup_longitude: String,

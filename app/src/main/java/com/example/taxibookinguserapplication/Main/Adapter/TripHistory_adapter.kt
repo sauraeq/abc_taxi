@@ -25,6 +25,7 @@ class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryDat
         lateinit var pick_locatio:TextView
         lateinit var drop_location:TextView
         lateinit var driver_name:TextView
+        lateinit var rating_trip_histryy:TextView
 
         init {
 
@@ -35,6 +36,7 @@ class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryDat
             pick_locatio=itemView.findViewById(R.id.trip_pick)
             drop_location=itemView.findViewById(R.id.trip_drop)
             distance=itemView.findViewById(R.id.trip_distance)
+            rating_trip_histryy=itemView.findViewById(R.id.rating_trip_histry)
 
 
         }
@@ -62,6 +64,7 @@ class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryDat
         holder.pick_locatio.text= mlist[position].pickup_address
         holder.drop_location.text= mlist[position].drop_address
         holder.distance.text= mlist[position].distance+" "+"Km"
+        holder.rating_trip_histryy.text="⭐"+" "+"4"
 
         if (mlist[position].driver_photo.isEmpty())
         {
@@ -87,15 +90,21 @@ class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryDat
     private fun getCapsSentences(tagName: String): String? {
         val splits = tagName.lowercase(Locale.getDefault()).split(" ".toRegex()).toTypedArray()
         val sb = StringBuilder()
-        for (i in splits.indices) {
-            val eachWord = splits[i]
-            if (i > 0 && eachWord.length > 0) {
-                sb.append(" ")
+        try {
+            for (i in splits.indices) {
+                val eachWord = splits[i]
+                if (i > 0 && eachWord.length > 0) {
+                    sb.append(" ")
+                }
+                val cap = (eachWord.substring(0, 1).uppercase(Locale.getDefault())
+                        + eachWord.substring(1))
+                sb.append(cap)
             }
-            val cap = (eachWord.substring(0, 1).uppercase(Locale.getDefault())
-                    + eachWord.substring(1))
-            sb.append(cap)
+        } catch (e:Exception)
+        {
+
         }
+
         return sb.toString()
     }
 

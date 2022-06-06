@@ -189,6 +189,7 @@
 
 
                                     <ImageView
+                                        android:id="@+id/callicon_image"
                                         android:layout_width="@dimen/_20sdp"
                                         android:layout_height="@dimen/_20sdp"
                                         android:layout_marginStart="@dimen/_7sdp"

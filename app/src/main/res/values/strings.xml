@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ABC Taxi User</string>
+    <string name="app_name">ABC User</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pickup">Pickup</string>
@@ -36,5 +36,6 @@
     <string name="please_try_after_some_time">Please Try After Some Time</string>
     <string name="no_driver_found">No Driver Found</string>
     <string name="reset_location">Reset Location</string>
+    <string name="rating">Rating</string>
 
 </resources>

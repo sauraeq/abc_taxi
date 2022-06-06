@@ -525,7 +525,7 @@ class EditProfile : AppCompatActivity() {
 
                         val intent=Intent(this@EditProfile,ViewProfile::class.java)
                         startActivity(intent)
-                        finishAffinity()
+                        finish()
                         customprogress.hide()
 
                     } else {

@@ -412,8 +412,8 @@ class ConfirmPickUpFragemnt : Fragment() {
                 startActivity(intent)
                         SharedPreferenceUtils.getInstance(requireContext())!!
                             .setStringValue(ConstantUtils.Booking_id, response.body()!!.data[0].booking_id.toString())
-                        Toast.makeText(requireContext(), response.body()!!.msg, Toast.LENGTH_LONG)
-                            .show()
+                       /* Toast.makeText(requireContext(), response.body()!!.msg, Toast.LENGTH_LONG)
+                            .show()*/
 
                         customprogress.hide()
 

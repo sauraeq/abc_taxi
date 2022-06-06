@@ -29,7 +29,9 @@ class Splash_Activity : AppCompatActivity() {
             } else {
                 when (status!!.toInt()) {
                     0 -> {
-
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                     1 -> {
                         val intent = Intent(this, Location_fetchActivity::class.java)
@@ -45,6 +47,7 @@ class Splash_Activity : AppCompatActivity() {
                     3 -> {
                         val intent = Intent(this, Manual_Pick_up::class.java)
                         startActivity(intent)
+                        finish()
 
                     }
                     4 -> {

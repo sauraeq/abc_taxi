@@ -31,6 +31,8 @@ class LoginActivity : BaseActivity(), cont {
     var language: String = ""
     var device_tokenid :String=""
     var LOCATION_PERMISSION_REQUEST_CODE=1
+    var country_code_signin=""
+    var country_code_signup=""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +62,16 @@ class LoginActivity : BaseActivity(), cont {
         } catch (e: Exception) { }
 
         tv_next.setOnClickListener {
-       SigninCall()
+            country_code_signin="+"+ccps.selectedCountryCode.toString()
+            if(editText1_carrierNumber.text.toString().equals(""))
+            {
+
+            }
+            else
+            {
+                SigninCall()
+            }
+
             /* val intent = Intent(this, Location_fetchActivity::class.java)
              startActivity(intent)*/
         }
@@ -93,7 +104,12 @@ class LoginActivity : BaseActivity(), cont {
             startActivity(intent)
         }
         tv_sign_up.setOnClickListener {
-            if (email_edit_text.text.toString().isNullOrEmpty()) {
+            country_code_signup="+"+ccp.selectedCountryCode.toString()
+            if(name_edit_text.text.toString().isNullOrEmpty())
+            {
+                Toast.makeText(this, "Please Enter Your Name", Toast.LENGTH_SHORT).show()
+            }
+           else if (email_edit_text.text.toString().isNullOrEmpty()) {
                 Toast.makeText(this, "Please Enter Your Email", Toast.LENGTH_SHORT).show()
             } else if (editText_carrierNumber.text.toString().isNullOrEmpty()) {
                 Toast.makeText(this, "Please Enter Your Phone Number", Toast.LENGTH_SHORT).show()
@@ -108,7 +124,7 @@ class LoginActivity : BaseActivity(), cont {
         showProgressDialog()
         var hashMap = HashMap<String, String>()
       //  var device_tokenid: String = shrp.getStringPreference(Token).toString()
-        hashMap.put("mobile", editText1_carrierNumber.text.toString())
+        hashMap.put("mobile",country_code_signin+editText1_carrierNumber.text.toString())
         hashMap.put("device_tokanid", device_tokenid)
 
         val SinginCall = APIUtils.getServiceAPI()?.signin(hashMap)
@@ -134,7 +150,7 @@ class LoginActivity : BaseActivity(), cont {
                                     Intent(
                                         this@LoginActivity,
                                         PhoneVerificationActivity::class.java
-                                    ).putExtra("mobile",editText1_carrierNumber.text.toString())
+                                    ).putExtra("mobile",country_code_signin+editText1_carrierNumber.text.toString())
                                 )
 
                             } else {
@@ -166,7 +182,7 @@ class LoginActivity : BaseActivity(), cont {
         var hashMap = HashMap<String, String>()
      //   var language: String = shrp.getStringPreference(LANGUAGE).toString()
 
-        hashMap.put("mobile", editText_carrierNumber.text.toString())
+        hashMap.put("mobile", editText_carrierNumber.text.toString()+country_code_signup)
         hashMap.put("email", email_edit_text.text.toString())
         hashMap.put("language", "1")
 
@@ -209,7 +225,8 @@ class LoginActivity : BaseActivity(), cont {
         showProgressDialog()
         val request = HashMap<String, String>()
 
-        request.put("mobile", editText_carrierNumber.text.toString())
+        request.put("name", name_edit_text.text.toString())
+        request.put("mobile", country_code_signup+editText_carrierNumber.text.toString())
         request.put("email", email_edit_text.text.toString())
         request.put("language", "1")
 

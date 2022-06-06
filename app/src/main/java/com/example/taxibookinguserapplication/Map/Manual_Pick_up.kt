@@ -295,7 +295,7 @@ class Manual_Pick_up : AppCompatActivity() {
                             //  Toast.makeText(this@ViewProfile,response.body()!!.msg,Toast.LENGTH_LONG).show()
                             try {
 
-                                var address=response.body()!!.data[0].address
+                                var address=response.body()!!.data[0].phone
                                 user_location_sidebar_manual.setText(getCapsSentences(address))
                                 var username=response.body()!!.data[0].name
                                 username_sidebar_manual.setText(getCapsSentences(username))
@@ -343,15 +343,21 @@ class Manual_Pick_up : AppCompatActivity() {
     private fun getCapsSentences(tagName: String): String? {
         val splits = tagName.lowercase(Locale.getDefault()).split(" ".toRegex()).toTypedArray()
         val sb = StringBuilder()
-        for (i in splits.indices) {
-            val eachWord = splits[i]
-            if (i > 0 && eachWord.length > 0) {
-                sb.append(" ")
+        try{
+            for (i in splits.indices) {
+                val eachWord = splits[i]
+                if (i > 0 && eachWord.length > 0) {
+                    sb.append(" ")
+                }
+                val cap = (eachWord.substring(0, 1).uppercase(Locale.getDefault())
+                        + eachWord.substring(1))
+                sb.append(cap)
             }
-            val cap = (eachWord.substring(0, 1).uppercase(Locale.getDefault())
-                    + eachWord.substring(1))
-            sb.append(cap)
+        } catch(e:Exception)
+        {
+
         }
+
         return sb.toString()
     }
 }

@@ -6,8 +6,8 @@ import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.net.Uri
 import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,7 +15,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taxibookinguserapplication.Api.APIUtils
 import com.example.taxibookinguserapplication.LocationMap.Location_fetchActivity
@@ -43,7 +43,6 @@ import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.HashMap
 
 class TipInformation : AppCompatActivity(),OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
@@ -63,6 +62,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
     var total_km:String=""
     var rating_val:String=""
     var reveiw_string_value:String=""
+    var driver_mobile_number=""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +78,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         }
 
         try {
+            driver_mobile_number=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Driver_Mobile,"").toString()
             user_id=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.USER_ID,"").toString()
             driver_id=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Driver_id,"").toString()
             approx_km=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Total_distance,"").toString()
@@ -97,6 +98,16 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         textview_cancel.setOnClickListener {
             var intent=Intent(this,Location_fetchActivity::class.java)
             startActivity(intent)
+        }
+
+        driver_call.setOnClickListener {
+         /*   val callIntent = Intent(Intent.ACTION_CALL)
+            callIntent.data = Uri.parse("tel:$driver_mobile_number")
+            startActivity(callIntent)*/
+
+          /*  val intent=Intent(Intent.ACTION_DIAL)
+            intent.data= Uri.parse("tel:$driver_mobile_number")
+            startActivity(intent)*/
         }
 
 
@@ -252,7 +263,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
                             var vechile_img=response.body()!!.data[0].vehicle_image
                             var vehicle_no=response.body()!!.data[0].vehicle_no
                             var name=response.body()!!.data[0].name
-                            var vehicle_name=response.body()!!.data[0].name
+                            var vehicle_name=response.body()!!.data[0].vehicle_name
                             var rating=response.body()!!.data[0].rating
 
 
@@ -264,9 +275,11 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
                             vechile_number_drvFrg_aty.setText(vehicle_no)
                             otp_drvFrg_aty.setOTP(otp)
                             driver_rating_txt_aty.setText(rating)
-                            tp_driverdetails.setText("$"+response.body()!!.data[0].amount)
-                            total_distancee_driverdetails.setText(approx_km)
-                            total_timee_driverdetails.setText(toatal_time_taken)
+                            tp_driverdetails.setText("CHF"+response.body()!!.data[0].amount)
+                            total_distancee_driverdetails.setText(approx_km+" "+"Km ")
+
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.setStringValue(ConstantUtils.Driver_Mobile,response.body()!!.data[0].mobile)
+                            total_timee_driverdetails.setText(toatal_time_taken+" Min")
                             Ride_status()
 
                         }
