@@ -32,6 +32,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaxiBookingUserApplication">
         <activity
+            android:name=".Payment.Payment_method"
+            android:exported="false" />
+        <activity
             android:name=".Main.ViewProfileImage"
             android:exported="false" />
 
@@ -45,11 +48,9 @@
         <activity
             android:name=".Main.CancelRide"
             android:exported="false" />
-        <activity android:name=".Map.Adapter.SearchActivityNew"
-            android:exported="false"
-            >
-
-        </activity>
+        <activity
+            android:name=".Map.Adapter.SearchActivityNew"
+            android:exported="false" />
         <activity
             android:name=".Pofile.ViewImage"
             android:exported="false" />
@@ -138,8 +139,6 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-
-
 
         <service android:name=".util.FetchAddressServices" />
 

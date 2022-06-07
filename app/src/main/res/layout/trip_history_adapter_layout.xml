@@ -210,6 +210,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/_14sdp"
                         android:layout_marginTop="@dimen/_2sdp"
+                        android:visibility="gone"
                         android:layout_marginRight="@dimen/_10sdp"
                         android:background="#C8C3C3" />
 

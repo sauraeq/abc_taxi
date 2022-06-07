@@ -100,6 +100,12 @@ interface APIConfiguration {
         @Body stringStringHashMap: HashMap<String, String>,
     ): Call<RatingReviewResponse>
 
+    @POST("users/payment")
+    @Headers("Content-Type:application/x-www-form-urlencoded")
+    fun payment(
+        @Body stringStringHashMap: HashMap<String, String>,
+    ): Call<PaymentResponse>
+
     /*  @POST("user/resend")
      @Headers("Content-Type:application/x-www-form-urlencoded")
      fun ResendOtp(

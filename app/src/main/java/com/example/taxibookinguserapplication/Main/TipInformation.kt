@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taxibookinguserapplication.Api.APIUtils
 import com.example.taxibookinguserapplication.LocationMap.Location_fetchActivity
+import com.example.taxibookinguserapplication.Payment.Payment_method
 import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.Responses.BookingStatusResponse
 import com.example.taxibookinguserapplication.Responses.MapData
@@ -97,6 +98,10 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         }
         textview_cancel.setOnClickListener {
             var intent=Intent(this,Location_fetchActivity::class.java)
+            startActivity(intent)
+        }
+        payment_trip_information.setOnClickListener {
+            var intent=Intent(this,Payment_method::class.java)
             startActivity(intent)
         }
 
@@ -251,6 +256,21 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
 
                         }
+                       /* else if(response.body()!!.data[0].cancel.equals("1"))
+                        {
+
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Booking_id)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Driver_id)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Drop_Off_Location)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Drop_Off_Latitude)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Drop_Off_Longitude)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Total_distance)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Total_Time)
+
+                            var intent=Intent(this@TipInformation,Location_fetchActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }*/
                         else
 
                         {
@@ -280,7 +300,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
                             SharedPreferenceUtils.getInstance(this@TipInformation)!!.setStringValue(ConstantUtils.Driver_Mobile,response.body()!!.data[0].mobile)
                             total_timee_driverdetails.setText(toatal_time_taken+" Min")
-                            Ride_status()
+                            start_staus()
 
                         }
 
@@ -294,7 +314,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
                 }  catch (e: Exception) {
                     Log.e("saurav", e.toString())
-                    Toast.makeText(this@TipInformation,e.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
                     customprogress.hide()
 
                 }
@@ -303,7 +323,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
             override fun onFailure(call: Call<BookingStatusResponse>, t: Throwable) {
                 Log.e("Saurav", t.message.toString())
-                Toast.makeText(this@TipInformation,t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
                 customprogress.hide()
 
             }
@@ -354,6 +374,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
 
                         }
+
                         else
 
                         {
@@ -361,6 +382,95 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
                             handler = Handler()
                             handler.postDelayed(Runnable {
                                 Ride_status()
+
+                            }, 5000)
+
+                        }
+
+                    }
+                    else {
+
+                        Toast.makeText(this@TipInformation,response.body()!!.msg, Toast.LENGTH_LONG)
+                            .show()
+                        customprogress.hide()
+                    }
+
+                }  catch (e: Exception) {
+                    Log.e("saurav", e.toString())
+                    Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
+                    customprogress.hide()
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<BookingStatusResponse>, t: Throwable) {
+                Log.e("Saurav", t.message.toString())
+                Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
+                customprogress.hide()
+
+            }
+
+        })
+    }
+
+    fun start_staus()
+    {
+
+        val request = HashMap<String, String>()
+        request.put("booking_id",booking_id)
+
+        var driver_vec_details: Call<BookingStatusResponse> = APIUtils.getServiceAPI()!!.booking_status(request)
+
+        driver_vec_details.enqueue(object : Callback<BookingStatusResponse> {
+            override fun onResponse(call: Call<BookingStatusResponse>, response: Response<BookingStatusResponse>) {
+                try {
+
+
+                    if (response.body()!!.success.equals("true")) {
+
+                        if (response.body()!!.data[0].otp_status.equals("1"))
+
+                        {
+                            Ride_status()
+                            progess_linear.visibility=View.GONE
+                            trip_details_linear.visibility=View.VISIBLE
+                            otp_linearlayout.visibility=View.GONE
+                            linear_arriving.visibility=View.GONE
+                            otp_text_linearlayout.visibility=View.GONE
+                            var otp=response.body()!!.data[0].otp
+                            var driver_profile_pic=response.body()!!.data[0].profile_photo
+                            var vechile_img=response.body()!!.data[0].vehicle_image
+                            var vehicle_no=response.body()!!.data[0].vehicle_no
+                            var name=response.body()!!.data[0].name
+                            var vehicle_name=response.body()!!.data[0].vehicle_name
+                            var rating=response.body()!!.data[0].rating
+
+
+                            val picasso = Picasso.get()
+                            picasso.load(driver_profile_pic).into(driver_img_drvFrg_aty)
+                            picasso.load(vechile_img).into(vch_img_drvFrg_aty)
+                            driver_nmae_drvFrg_aty.setText(name)
+                            vch_name_drvFrg_aty.setText(vehicle_name)
+                            vechile_number_drvFrg_aty.setText(vehicle_no)
+                            otp_drvFrg_aty.setOTP(otp)
+                            driver_rating_txt_aty.setText(rating)
+                            tp_driverdetails.setText("CHF"+response.body()!!.data[0].amount)
+                            total_distancee_driverdetails.setText(approx_km+" "+"Km ")
+
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.setStringValue(ConstantUtils.Driver_Mobile,response.body()!!.data[0].mobile)
+                            total_timee_driverdetails.setText(toatal_time_taken+" Min")
+
+
+                        }
+
+                        else
+
+                        {
+                            var handler: Handler? = null
+                            handler = Handler()
+                            handler.postDelayed(Runnable {
+                                start_staus()
 
                             }, 5000)
 

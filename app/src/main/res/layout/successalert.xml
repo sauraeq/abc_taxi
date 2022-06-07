@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:elevation="@dimen/_10sdp"
+    app:cardBackgroundColor="@color/white"
+    android:layout_margin="@dimen/_10sdp"
+    app:cardCornerRadius="@dimen/_20sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp">
+
+
+
+       <!--     <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/paymentround"
+                >
+
+
+                <ImageView
+                    android:src="@drawable/tick"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/_16sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                </ImageView>
+            </RelativeLayout>-->
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:text="Payment Successful !"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppinsmedium"
+                android:textSize="@dimen/_17sdp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TextView>
+        </LinearLayout>
+        <TextView
+            android:text="Your payment has been paid successfully."
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppinsmedium"
+            android:textSize="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/payment_success"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginRight="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:padding="@dimen/_5sdp">
+
+            <TextView
+                android:id="@+id/pay_now_fare_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_corner"
+                android:fontFamily="@font/poppinsmedium"
+                android:paddingTop="@dimen/_12sdp"
+                android:text="Okay"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold" />
+        </LinearLayout>
+       <!-- <TextView
+            android:text="@string/write_a_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor=" #2C40F3"
+            android:fontFamily="@font/poppinsmedium"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/_14sdp"
+            >
+
+        </TextView>
+-->
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

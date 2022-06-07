@@ -250,6 +250,7 @@
 
                                 </LinearLayout>
                                 <LinearLayout
+                                    android:id="@+id/otp_text_linearlayout"
                                     android:layout_weight="1"
                                     android:layout_marginLeft="@dimen/_25sdp"
                                     android:orientation="horizontal"
@@ -271,6 +272,7 @@
 
                                     </TextView>
                                     <LinearLayout
+                                        android:id="@+id/otp_linearlayout"
                                         android:layout_marginTop="@dimen/_5sdp"
                                         android:background="@drawable/otp_bck_corner"
                                         android:layout_width="@dimen/_105sdp"
@@ -417,6 +419,8 @@
                                                 android:layout_weight="1"
                                                 android:fontFamily="@font/poppinsmedium"
                                                 android:text="0.2"
+                                                android:singleLine="true"
+                                                android:ellipsize="end"
                                                 android:gravity="center"
                                                 android:textSize="@dimen/_12ssp">
 
@@ -441,6 +445,8 @@
                                                 android:layout_weight="1"
                                                 android:fontFamily="@font/poppinsmedium"
                                                 android:text="$25.12"
+                                                android:singleLine="true"
+                                                android:ellipsize="end"
                                                 android:gravity="center"
                                                 android:textSize="@dimen/_12ssp">
 
@@ -452,27 +458,45 @@
                                 </LinearLayout>
                                 <LinearLayout
                                     android:id="@+id/linear_arriving"
-                                    android:layout_marginTop="@dimen/_10sdp"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_50sdp"
+                                    android:layout_height="@dimen/_45sdp"
                                     android:orientation="horizontal"
+                                    android:weightSum="2"
                                     android:layout_marginLeft="@dimen/_10sdp"
                                     android:layout_marginRight="@dimen/_10sdp"
                                     android:padding="@dimen/_5sdp">
 
                                     <TextView
                                         android:id="@+id/Cancel_booking_btn_aty"
-                                        android:layout_width="match_parent"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="match_parent"
                                         android:background="@drawable/button_corner"
                                         android:fontFamily="@font/poppinsmedium"
-                                        android:paddingTop="@dimen/_12sdp"
+                                        android:paddingTop="@dimen/_7sdp"
                                         android:text="@string/cancel_trip"
+                                        android:layout_marginRight="@dimen/_5sdp"
+                                        android:layout_weight="1"
+                                        android:textAlignment="center"
+
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/_13sdp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:id="@+id/payment_trip_information"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="@dimen/_2sdp"
+                                        android:background="@drawable/button_corner"
+                                        android:fontFamily="@font/poppinsmedium"
+                                        android:paddingTop="@dimen/_9sdp"
+                                        android:text="Pay"
+                                        android:layout_weight="1"
                                         android:textAlignment="center"
                                         android:textColor="@color/white"
                                         android:textSize="@dimen/_13sdp"
                                         android:textStyle="bold" />
                                 </LinearLayout>
+
 
 
                             </LinearLayout>
@@ -497,6 +521,7 @@
     <LinearLayout
         android:id="@+id/progess_linear"
         android:orientation="vertical"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
