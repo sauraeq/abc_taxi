@@ -11,6 +11,8 @@ data class BookingStausResponseData(
     val profile_photo: String,
     val rating: String,
     val amount:String,
+    val time:String,
+    val distance:String,
     val status:String,
     val cancel:String,
      val otp_status:String,

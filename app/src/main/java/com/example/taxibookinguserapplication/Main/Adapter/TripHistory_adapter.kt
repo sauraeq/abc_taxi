@@ -64,7 +64,7 @@ class TripHistory_adapter (var mContext: Context, var mlist: List<TripHistoryDat
         holder.pick_locatio.text= mlist[position].pickup_address
         holder.drop_location.text= mlist[position].drop_address
         holder.distance.text= mlist[position].distance+" "+"Km"
-        holder.rating_trip_histryy.text="⭐"+" "+"4"
+        holder.rating_trip_histryy.text="⭐"+" "+mlist[position].rating
 
         if (mlist[position].driver_photo.isEmpty())
         {

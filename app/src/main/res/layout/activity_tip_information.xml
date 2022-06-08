@@ -163,6 +163,7 @@
                                     android:id="@+id/driver_message"
                                     android:layout_marginTop="@dimen/_10sdp"
                                     android:layout_weight="1"
+                                    android:visibility="gone"
                                     android:background="@drawable/messagebck"
                                     android:layout_width="@dimen/_30sdp"
                                     android:layout_height="@dimen/_30sdp">
@@ -173,6 +174,7 @@
                                         android:layout_marginStart="@dimen/_7sdp"
                                         android:layout_marginTop="@dimen/_7sdp"
                                         android:layout_marginEnd="@dimen/_7sdp"
+                                        android:visibility="gone"
                                         android:layout_marginBottom="@dimen/_7sdp"
                                         android:src="@drawable/messageicon">
 

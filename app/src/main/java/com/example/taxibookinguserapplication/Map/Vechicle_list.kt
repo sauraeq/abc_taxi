@@ -255,6 +255,8 @@ class Vechicle_list : AppCompatActivity(),OnMapReadyCallback,VehicleListAdapter.
         hashMap.put("latitude",originLatitude)
         hashMap.put("longitude", originLongitude)
         hashMap.put("distance",distance)
+        hashMap.put("drop_latitude",destinationLatitude)
+        hashMap.put("drop_longitude",destinationLongitude)
         var vehile_list: Call<VehicleListResponse> = APIUtils.getServiceAPI()!!.veh_list(hashMap)
 
         vehile_list.enqueue(object : Callback<VehicleListResponse> {

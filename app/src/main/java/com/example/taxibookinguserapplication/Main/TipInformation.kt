@@ -85,9 +85,9 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
             approx_km=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Total_distance,"").toString()
             toatal_time_taken=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Total_Time,"").toString()
             originLatitude=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Pick_UP_Latitude,"").toString()
-            originLongitude=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Pick_UP_Latitude,"").toString()
-            destinationLatitude=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Pick_UP_Latitude,"").toString()
-            destinationLongitude=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Pick_UP_Latitude,"").toString()
+            originLongitude=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Pick_UP_Longitude,"").toString()
+            destinationLatitude=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Drop_Off_Latitude,"").toString()
+            destinationLongitude=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Drop_Off_Longitude,"").toString()
             booking_id=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Booking_id,"").toString()
         } catch (e: Exception) {
 
@@ -127,7 +127,6 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
             Places.initialize(applicationContext, apiKey)
         }
 
-
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_aty) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
@@ -144,6 +143,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
     }
 
+
     override fun onMapReady(p0: GoogleMap) {
         mMap = p0!!
         val originLocation = LatLng(originLatitude.toDouble(), originLongitude.toDouble())
@@ -151,8 +151,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         mMap.addMarker(MarkerOptions().position(originLocation))
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 5F))
     }
-
-    private fun getDirectionURL(origin:LatLng, dest:LatLng, secret: String) : String{
+    private fun getDirectionURL(origin: LatLng, dest: LatLng, secret: String) : String{
         return "https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}" +
                 "&destination=${dest.latitude},${dest.longitude}" +
                 "&sensor=false" +
@@ -186,7 +185,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
             val lineoption = PolylineOptions()
             for (i in result.indices){
                 lineoption.addAll(result[i])
-                lineoption.width(15f)
+                lineoption.width(8f)
                 lineoption.color(Color.BLACK)
                 lineoption.geodesic(true)
             }
@@ -225,7 +224,6 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         }
         return poly
     }
-
     fun Booking_status()
     {
         /*customprogress.show()*/
@@ -241,22 +239,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
                     if (response.body()!!.success.equals("true")) {
 
-                        if (response.body()!!.data[0].status.equals("0")|| response.body()!!
-                                .data[0].status.equals("1"))
-
-                        {
-
-
-                            var handler: Handler? = null
-                            handler = Handler()
-                            handler.postDelayed(Runnable {
-                                Booking_status()
-
-                            }, 5000)
-
-
-                        }
-                       /* else if(response.body()!!.data[0].cancel.equals("1"))
+                        if(response.body()!!.data[0].cancel.equals("1"))
                         {
 
                             SharedPreferenceUtils.getInstance(this@TipInformation)!!.removeKey(ConstantUtils.Booking_id)
@@ -270,7 +253,23 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
                             var intent=Intent(this@TipInformation,Location_fetchActivity::class.java)
                             startActivity(intent)
                             finish()
-                        }*/
+                        }
+
+                        else if (response.body()!!.data[0].status.equals("0")|| response.body()!!
+                                    .data[0].status.equals("1"))
+
+                            {
+
+
+                                var handler: Handler? = null
+                                handler = Handler()
+                                handler.postDelayed(Runnable {
+                                    Booking_status()
+
+                                }, 5000)
+
+
+                            }
                         else
 
                         {
@@ -288,18 +287,33 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
 
                             val picasso = Picasso.get()
-                            picasso.load(driver_profile_pic).into(driver_img_drvFrg_aty)
-                            picasso.load(vechile_img).into(vch_img_drvFrg_aty)
+                            if (vechile_img.equals(""))
+                            {
+                                picasso.load(R.drawable.driverimg).into(vch_img_drvFrg_aty)
+                            }
+                            else
+                            {
+                                picasso.load(vechile_img).into(vch_img_drvFrg_aty)
+                            }
+                            if (driver_profile_pic.equals(""))
+                            {
+                                picasso.load(R.drawable.car_i).into(driver_img_drvFrg_aty)
+                            }
+                            else{
+                                picasso.load(driver_profile_pic).into(driver_img_drvFrg_aty)
+                            }
+
+                           /* picasso.load(vechile_img).into(vch_img_drvFrg_aty)*/
                             driver_nmae_drvFrg_aty.setText(name)
                             vch_name_drvFrg_aty.setText(vehicle_name)
                             vechile_number_drvFrg_aty.setText(vehicle_no)
                             otp_drvFrg_aty.setOTP(otp)
                             driver_rating_txt_aty.setText(rating)
-                            tp_driverdetails.setText("CHF"+response.body()!!.data[0].amount)
-                            total_distancee_driverdetails.setText(approx_km+" "+"Km ")
+                            tp_driverdetails.setText("CHF"+" "+response.body()!!.data[0].amount)
+                            total_distancee_driverdetails.setText(response.body()!!.data[0].distance+" Km")
 
                             SharedPreferenceUtils.getInstance(this@TipInformation)!!.setStringValue(ConstantUtils.Driver_Mobile,response.body()!!.data[0].mobile)
-                            total_timee_driverdetails.setText(toatal_time_taken+" Min")
+                            total_timee_driverdetails.setText(response.body()!!.data[0].time)
                             start_staus()
 
                         }
@@ -447,19 +461,34 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
                             var rating=response.body()!!.data[0].rating
 
 
+
+
                             val picasso = Picasso.get()
-                            picasso.load(driver_profile_pic).into(driver_img_drvFrg_aty)
-                            picasso.load(vechile_img).into(vch_img_drvFrg_aty)
+                            if (vechile_img.equals(""))
+                            {
+                                picasso.load(R.drawable.driverimg).into(vch_img_drvFrg_aty)
+                            }
+                            else
+                            {
+                                picasso.load(vechile_img).into(vch_img_drvFrg_aty)
+                            }
+                            if (driver_profile_pic.equals(""))
+                            {
+                                picasso.load(R.drawable.car_i).into(driver_img_drvFrg_aty)
+                            }
+                            else{
+                                picasso.load(driver_profile_pic).into(driver_img_drvFrg_aty)
+                            }
                             driver_nmae_drvFrg_aty.setText(name)
                             vch_name_drvFrg_aty.setText(vehicle_name)
                             vechile_number_drvFrg_aty.setText(vehicle_no)
                             otp_drvFrg_aty.setOTP(otp)
                             driver_rating_txt_aty.setText(rating)
-                            tp_driverdetails.setText("CHF"+response.body()!!.data[0].amount)
-                            total_distancee_driverdetails.setText(approx_km+" "+"Km ")
+                            tp_driverdetails.setText("CHF"+" "+response.body()!!.data[0].amount)
+                            total_distancee_driverdetails.setText(response.body()!!.data[0].distance+" Km")
 
                             SharedPreferenceUtils.getInstance(this@TipInformation)!!.setStringValue(ConstantUtils.Driver_Mobile,response.body()!!.data[0].mobile)
-                            total_timee_driverdetails.setText(toatal_time_taken+" Min")
+                            total_timee_driverdetails.setText(response.body()!!.data[0].time)
 
 
                         }

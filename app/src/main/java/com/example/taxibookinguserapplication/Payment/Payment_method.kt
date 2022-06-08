@@ -137,9 +137,7 @@ class Payment_method : AppCompatActivity() {
                 try {
 
                     Log.d("sasa",url)
-                    val intent=Intent(this@Payment_method,TipInformation::class.java)
-                    startActivity(intent)
-                    finish()
+
                     jsonParse(url)
 
 
@@ -153,7 +151,7 @@ class Payment_method : AppCompatActivity() {
         webview_paymentt.loadUrl(url)
     }
 
-    private fun jsonParse(url: String) {
+     fun jsonParse(url: String) {
         val Url = url
         val request = JsonObjectRequest(Request.Method.GET, Url, null, { response
             ->try {
