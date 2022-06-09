@@ -22,6 +22,7 @@ import com.example.taxibookinguserapplication.LocationMap.Location_fetchActivity
 import com.example.taxibookinguserapplication.Payment.Payment_method
 import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.Responses.BookingStatusResponse
+import com.example.taxibookinguserapplication.Responses.CancelTripResponse
 import com.example.taxibookinguserapplication.Responses.MapData
 import com.example.taxibookinguserapplication.Responses.RatingReviewResponse
 import com.example.taxibookinguserapplication.util.NetworkUtils
@@ -79,7 +80,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         }
 
         try {
-            driver_mobile_number=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Driver_Mobile,"").toString()
+           // driver_mobile_number=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Driver_Mobile,"").toString()
             user_id=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.USER_ID,"").toString()
             driver_id=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Driver_id,"").toString()
             approx_km=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Total_distance,"").toString()
@@ -97,8 +98,9 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
             Booking_status()
         }
         textview_cancel.setOnClickListener {
-            var intent=Intent(this,Location_fetchActivity::class.java)
-            startActivity(intent)
+            CancelTripSubmit()
+          /*  var intent=Intent(this,Location_fetchActivity::class.java)
+            startActivity(intent)*/
         }
         payment_trip_information.setOnClickListener {
             var intent=Intent(this,Payment_method::class.java)
@@ -106,13 +108,19 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
         }
 
         driver_call.setOnClickListener {
-         /*   val callIntent = Intent(Intent.ACTION_CALL)
-            callIntent.data = Uri.parse("tel:$driver_mobile_number")
-            startActivity(callIntent)*/
 
-          /*  val intent=Intent(Intent.ACTION_DIAL)
-            intent.data= Uri.parse("tel:$driver_mobile_number")
-            startActivity(intent)*/
+            if(driver_mobile_number.equals(""))
+            {
+                Toast.makeText(this,"Mobile Number empty ",Toast.LENGTH_LONG).show()
+
+            }
+            else{
+                val callIntent = Intent(Intent.ACTION_DIAL)
+                callIntent.data = Uri.parse("tel:" +driver_mobile_number) //change the number
+                startActivity(callIntent)
+            }
+
+
         }
 
 
@@ -310,11 +318,14 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
                             otp_drvFrg_aty.setOTP(otp)
                             driver_rating_txt_aty.setText(rating)
                             tp_driverdetails.setText("CHF"+" "+response.body()!!.data[0].amount)
+                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.setStringValue(ConstantUtils.Amount,response.body()!!.data[0].amount)
                             total_distancee_driverdetails.setText(response.body()!!.data[0].distance+" Km")
 
                             SharedPreferenceUtils.getInstance(this@TipInformation)!!.setStringValue(ConstantUtils.Driver_Mobile,response.body()!!.data[0].mobile)
                             total_timee_driverdetails.setText(response.body()!!.data[0].time)
-                            start_staus()
+                            driver_mobile_number=response.body()!!.data[0].mobile
+                          //  Toast.makeText(this@TipInformation,response.body()!!.data[0].mobile, Toast.LENGTH_LONG).show()
+                           start_staus()
 
                         }
 
@@ -328,7 +339,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
                 }  catch (e: Exception) {
                     Log.e("saurav", e.toString())
-                    Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@TipInformation,e.toString(), Toast.LENGTH_LONG).show()
                     customprogress.hide()
 
                 }
@@ -337,7 +348,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
             override fun onFailure(call: Call<BookingStatusResponse>, t: Throwable) {
                 Log.e("Saurav", t.message.toString())
-                Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@TipInformation,t.message.toString(), Toast.LENGTH_LONG).show()
                 customprogress.hide()
 
             }
@@ -411,7 +422,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
                 }  catch (e: Exception) {
                     Log.e("saurav", e.toString())
-                    Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@TipInformation,e.toString(), Toast.LENGTH_LONG).show()
                     customprogress.hide()
 
                 }
@@ -420,7 +431,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
             override fun onFailure(call: Call<BookingStatusResponse>, t: Throwable) {
                 Log.e("Saurav", t.message.toString())
-                Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@TipInformation,t.message.toString(), Toast.LENGTH_LONG).show()
                 customprogress.hide()
 
             }
@@ -487,7 +498,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
                             tp_driverdetails.setText("CHF"+" "+response.body()!!.data[0].amount)
                             total_distancee_driverdetails.setText(response.body()!!.data[0].distance+" Km")
 
-                            SharedPreferenceUtils.getInstance(this@TipInformation)!!.setStringValue(ConstantUtils.Driver_Mobile,response.body()!!.data[0].mobile)
+                           // SharedPreferenceUtils.getInstance(this@TipInformation)!!.setStringValue(ConstantUtils.Driver_Mobile,response.body()!!.data[0].mobile)
                             total_timee_driverdetails.setText(response.body()!!.data[0].time)
 
 
@@ -515,7 +526,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
                 }  catch (e: Exception) {
                     Log.e("saurav", e.toString())
-                    Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@TipInformation,e.toString(), Toast.LENGTH_LONG).show()
                     customprogress.hide()
 
                 }
@@ -524,7 +535,7 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
             override fun onFailure(call: Call<BookingStatusResponse>, t: Throwable) {
                 Log.e("Saurav", t.message.toString())
-                Toast.makeText(this@TipInformation,"Weak Internet Connection", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@TipInformation, t.message.toString(), Toast.LENGTH_LONG).show()
                 customprogress.hide()
 
             }
@@ -634,5 +645,61 @@ class TipInformation : AppCompatActivity(),OnMapReadyCallback {
 
         })
     }
+
+    fun CancelTripSubmit()
+    {
+        customprogress.show()
+        val request = HashMap<String, String>()
+        request.put("booking_id",booking_id)
+        request.put("description","Waiting for long Time")
+
+
+
+        var cancel_trip: Call<CancelTripResponse> = APIUtils.getServiceAPI()!!.CancelResultSubmission(request)
+
+        cancel_trip.enqueue(object : Callback<CancelTripResponse> {
+            override fun onResponse(call: Call<CancelTripResponse>, response: Response<CancelTripResponse>) {
+                try {
+
+
+                    if (response.body()!!.success.equals("true")) {
+
+                        Toast.makeText(this@TipInformation,response.body()!!.msg.toString(), Toast.LENGTH_LONG).show()
+                        var Inte= Intent(this@TipInformation,Location_fetchActivity::class.java)
+                        startActivity(Inte)
+                        finish()
+
+
+                        customprogress.hide()
+
+
+
+
+                    } else {
+
+
+                    }
+
+                }  catch (e: Exception) {
+                    Log.e("saurav", e.toString())
+
+                    customprogress.hide()
+
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<CancelTripResponse>, t: Throwable) {
+                Log.e("Saurav", t.message.toString())
+
+                customprogress.hide()
+
+
+            }
+
+        })
+    }
+
 
 }

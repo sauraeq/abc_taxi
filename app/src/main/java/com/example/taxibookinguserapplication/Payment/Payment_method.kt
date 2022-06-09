@@ -33,7 +33,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class Payment_method : AppCompatActivity() {
-    var amount=""
+    var amount=0.0
     var driver_id=""
     var booking_idd=""
     var user_id=""
@@ -53,6 +53,7 @@ class Payment_method : AppCompatActivity() {
         // .Booking_id,"").toString()
         driver_id=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Driver_id,"")
             .toString()
+        amount=SharedPreferenceUtils.getInstance(this)?.getStringValue(ConstantUtils.Amount,"")!!.toDouble()
 
         booking_idd=SharedPreferenceUtils.getInstance(this)!!.getStringValue(ConstantUtils.Booking_id,"")
             .toString()
@@ -70,7 +71,7 @@ class Payment_method : AppCompatActivity() {
         request.put("user_id",user_id)
         request.put("payment_method","PayPal")
         request.put("booking_id",booking_idd)
-        request.put("amount","100")
+        request.put("amount",amount.toString())
         request.put("driver_id",driver_id)
 
 
