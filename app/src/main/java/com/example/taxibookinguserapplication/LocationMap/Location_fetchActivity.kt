@@ -22,11 +22,13 @@ import kotlinx.android.synthetic.main.activity_location_fetch.*
 
 class Location_fetchActivity : AppCompatActivity() {
     var statsu:String="0"
+    var count=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location_fetch)
         SharedPreferenceUtils.getInstance(this)!!.setStringValue(ConstantUtils.Activity_Status,"1")
         getMultiplePermission()
+
 
 
 
@@ -54,6 +56,7 @@ class Location_fetchActivity : AppCompatActivity() {
                     report.let {
 
                         if (report.areAllPermissionsGranted()) {
+                            count=0
 
                             lin_loc.setOnClickListener {
                                 val intent=Intent(this@Location_fetchActivity,Pick_up::class.java)
@@ -65,6 +68,8 @@ class Location_fetchActivity : AppCompatActivity() {
                                 startActivity(intent)
                             }
                         } else {
+                              count++
+                            call_permission()
                             Toast.makeText(this@Location_fetchActivity, "Please Grant Permissions to use the app", Toast.LENGTH_SHORT).show()
                         }
 
@@ -78,6 +83,20 @@ class Location_fetchActivity : AppCompatActivity() {
                 Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
             }.check()
 
+    }
+
+    fun call_permission()
+    {
+        if (count!=0)
+        {
+            lin_loc.setOnClickListener {
+                getMultiplePermission()
+            }
+
+            tv_manual_location.setOnClickListener {
+                getMultiplePermission()
+            }
+        }
     }
 
 }
