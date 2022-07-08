@@ -11,6 +11,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.taxibookinguserapplication.Api.APIUtils
 import com.example.taxibookinguserapplication.LocationMap.Location_fetchActivity
+import com.example.taxibookinguserapplication.Map.Manual_Pick_up
+import com.example.taxibookinguserapplication.Map.Pick_up
 import com.example.taxibookinguserapplication.R
 import com.example.taxibookinguserapplication.Responses.SignUpResponse
 
@@ -18,8 +20,14 @@ import com.example.taxibookinguserapplication.Responses.SigninResponse
 import com.example.taxibookinguserapplication.util.BaseActivity
 import com.example.taxibookinguserapplication.util.SharedPreferenceUtils
 import com.example.taxibookinguserapplication.util.cont
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.rehablab.localsaved.shareprefrences
 import com.rehablab.util.ConstantUtils
+import kotlinx.android.synthetic.main.activity_location_fetch.*
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,7 +50,7 @@ class LoginActivity : BaseActivity(), cont {
         SharedPreferenceUtils.getInstance(this)!!.setStringValue(ConstantUtils.Activity_Status,"0")
 
         shrp = shareprefrences(this)
-        if ((ContextCompat.checkSelfPermission(
+        /*if ((ContextCompat.checkSelfPermission(
                 applicationContext,
                 Manifest.permission.ACCESS_FINE_LOCATION
             )
@@ -54,7 +62,7 @@ class LoginActivity : BaseActivity(), cont {
             )
         } else {
 
-        }
+        }*/
 
         try {
             language = intent.getStringExtra("language").toString()
@@ -65,7 +73,8 @@ class LoginActivity : BaseActivity(), cont {
             country_code_signin="+"+ccps.selectedCountryCode.toString()
             if(editText1_carrierNumber.text.toString().equals(""))
             {
-
+             editText1_carrierNumber.error="Please enter Mobile Number"
+                editText1_carrierNumber.requestFocus()
             }
             else
             {
@@ -276,4 +285,47 @@ class LoginActivity : BaseActivity(), cont {
 
         })
     }
+
+    private fun getMultiplePermission() {
+        Dexter.withContext(this)
+            .withPermissions(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ).withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                    report.let {
+
+                        if (report.areAllPermissionsGranted()) {
+
+/*
+                            lin_loc.setOnClickListener {
+                                val intent=Intent(this@Location_fetchActivity, Pick_up::class.java)
+                                startActivity(intent)
+
+                            }
+
+                            tv_manual_location.setOnClickListener {
+                                val intent=Intent(this@Location_fetchActivity, Manual_Pick_up::class.java)
+                                startActivity(intent)
+
+                            }*/
+                        } else {
+
+
+
+                            // Toast.makeText(this@Location_fetchActivity, "Please Grant Permissions to use the app", Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+                }
+
+                override fun onPermissionRationaleShouldBeShown(permissions: List<PermissionRequest?>?, token: PermissionToken?) {
+                    token?.continuePermissionRequest()
+                }
+            }).withErrorListener{
+                Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
+            }.check()
+
+    }
+
 }

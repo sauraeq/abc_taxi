@@ -37,5 +37,8 @@
     <string name="no_driver_found">No Driver Found</string>
     <string name="reset_location">Reset Location</string>
     <string name="rating">Rating</string>
+    <string name="permission_not_granted">Location permission required</string>
+    <string name="without_location_permission_this_application_can_not_work">Without location permission this application can not work</string>
+    <string name="allow">ALLOW</string>
 
 </resources>
