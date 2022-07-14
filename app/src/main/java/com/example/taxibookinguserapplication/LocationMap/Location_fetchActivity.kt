@@ -51,12 +51,7 @@ class Location_fetchActivity : AppCompatActivity() {
             if (locationList.isNotEmpty()) {
                 //The last location in the list is the newest
                 val location = locationList.last()
-                /*Toast.makeText(
-                    this@Location_fetchActivity,
-                    "Got Location: " + location.toString(),
-                    Toast.LENGTH_LONG
-                )
-                    .show()*/
+
             }
         }
     }
@@ -207,10 +202,12 @@ class Location_fetchActivity : AppCompatActivity() {
                 } else {
                     val intent=Intent(this@Location_fetchActivity,Location_fetchActivity::class.java)
                     startActivity(intent)
+                    finish()
+
 
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show()
+                 //   Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show()
 
                     // Check if we are in a state where the user has denied the permission and
                     // selected Don't ask again
@@ -278,7 +275,7 @@ class Location_fetchActivity : AppCompatActivity() {
                     }
                 } else {
 
-                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show()
+                   // Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show()
                 }
                 return
 
